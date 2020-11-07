@@ -4,7 +4,7 @@ import { Title, IconButton } from 'react-native-paper';
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 
-export default function SignupScreen({ navigation }) {
+export default function SignUpScreen({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -33,7 +33,7 @@ export default function SignupScreen({ navigation }) {
         size={30}
         style={styles.navButton}
         color='#6646ee'
-        onPress={() => navigation.navigate('Login')}
+        onPress={() => navigation.goBack()}
       />
     </View>
   );
