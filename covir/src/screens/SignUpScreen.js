@@ -3,7 +3,7 @@ import { View, StyleSheet } from 'react-native';
 import { Title, IconButton } from 'react-native-paper';
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
-import { AuthContext } from '../navigation/AuthProvider';
+//import { AuthContext } from '../navigation/AuthProvider';
 
 export default function SignUpScreen({ navigation }) {
   const { register } = useContext(AuthContext);
@@ -29,14 +29,14 @@ export default function SignUpScreen({ navigation }) {
         title='Signup'
         modeValue='contained'
         labelStyle={styles.loginButtonLabel}
-        onPress={() => register(email, password)}
+        //onPress={() => register(email, password)}
       />
       <IconButton
         icon='keyboard-backspace'
         size={30}
         style={styles.navButton}
         color='#6646ee'
-        onPress={() => navigation.goBack()}
+        onPress={() => navigation.navigate('Login')}
       />
     </View>
   );

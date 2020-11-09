@@ -3,10 +3,10 @@ import { View, StyleSheet } from 'react-native';
 import { Title } from 'react-native-paper';
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
-import { AuthContext } from '../navigation/AuthProvider';
+//import { AuthContext } from '../navigation/AuthProvider';
 
 export default function Login({navigation}) {
-    const { login } = useContext(AuthContext);
+    //const { login } = useContext(AuthContext);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
   
@@ -29,7 +29,7 @@ export default function Login({navigation}) {
           title='Accedi'
           modeValue='contained'
           labelStyle={styles.loginButtonLabel}
-          onPress={() => login(email, password)}
+          onPress={() => navigation.navigate('Home')}  //{() => login(email, password)}
         />
         <FormButton
           title='Nuovo utente? Registrati'
