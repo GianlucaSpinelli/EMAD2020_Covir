@@ -4,6 +4,7 @@ import { Title } from 'react-native-paper';
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 import Swiper from 'react-native-swiper'
+
 //import { AuthContext } from '../navigation/AuthProvider';
 
 export default function Login({navigation}) {
@@ -13,6 +14,7 @@ export default function Login({navigation}) {
   
     return (
       <View style={styles.container}>
+      <View style={styles.container1}>
         <Swiper style={styles.swiper} showsButtons={false} loop={true} autoplay={true} >
           <View testID="Hello" style={styles.slide1}>
             <Text style={styles.text}>Cerchi compagnia? Prenota un incontro virtuale</Text>
@@ -24,6 +26,8 @@ export default function Login({navigation}) {
             <Text style={styles.text}>CO municazione VIR tuale, sconfiggiamo la solitudine insieme! </Text>
           </View>
         </Swiper>
+        </View>
+        <View style= {styles.container2}>
         <Title style={styles.titleText}>Scopri Covir</Title>
         <FormInput
           labelName='Email'
@@ -41,7 +45,7 @@ export default function Login({navigation}) {
           title='Accedi'
           modeValue='contained'
           labelStyle={styles.loginButtonLabel}
-          onPress={() => navigation.navigate('Home')}  //{() => login(email, password)}
+          onPress={() => navigation.navigate('HomeTab')}  //{() => login(email, password)}
         />
         <FormButton
           title='Nuovo utente? Registrati'
@@ -50,6 +54,7 @@ export default function Login({navigation}) {
           labelStyle={styles.navButtonText}
           onPress={() => navigation.navigate('Signup')}
         />
+        </View>
       </View>
     );
   }
@@ -57,14 +62,15 @@ export default function Login({navigation}) {
 const styles = StyleSheet.create({
     container: {
       backgroundColor: '#f5f5f5',
-      flex: 0.8,
+      flex: 3,
       justifyContent: 'center',
       alignItems: 'center',
     },
     titleText: {
       fontSize: 24,
       marginBottom: 10,
-      marginTop: 10
+      marginTop: 10,
+      textAlign: 'center'
     },
     loginButtonLabel: {
       fontSize: 22
@@ -72,7 +78,15 @@ const styles = StyleSheet.create({
     navButtonText: {
       fontSize: 16
     },
-    swiper: {},
+    container1: {
+      flex: 1
+    },
+    container2: {
+      flex: 2.5
+    },
+    swiper: {
+      alignItems: 'flex-start'
+    },
     slide1: {
       flex: 1,
       justifyContent: 'center',
