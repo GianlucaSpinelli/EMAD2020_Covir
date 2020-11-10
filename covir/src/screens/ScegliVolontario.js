@@ -49,12 +49,14 @@ export default function ScegliVolontario({navigation}) { //non legge immagin
 
 const styles = StyleSheet.create({
     card:{
-        backgroundColor:'rgba(56, 172, 236, 1)',
+        backgroundColor:'#1979a9',
         borderWidth:0,
         borderRadius:20,
         height:145,
         padding: 7,
-        marginBottom: -3,
+        marginBottom: -3
+        
+        
     },
     immagine:{
         backgroundColor:'rgba(56, 172, 236, 1)',

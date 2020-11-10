@@ -10,7 +10,7 @@ import HomeScreen from '../screens/HomeScreen';
 import SignUpScreen from '../screens/SignUpScreen';
 import LoginScreen from '../screens/LoginScreen';
 import { HeaderBackground } from '@react-navigation/stack';
-import ScegliVol from '../screens/ScegliVolontario';
+import ScegliVol from '../screens/ScegliVolontario2';
 
 const Tab = createBottomTabNavigator();
 
