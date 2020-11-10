@@ -9,14 +9,19 @@ export default function HomeScreen({navigation}) {
   
     return (
       <View style={styles.container}>
-        <Title>Home</Title>
-        <Title>Prenota il tuo incontro virtuale con un volontario</Title>
-        <Title>Ciao, Marco</Title>  
-        <FormButton
+        <View style={styles.container}>
+        <Title style={styles.titolo}>Ciao Vincenzo</Title> 
+        <Title style={styles.frase}>Prenota il tuo incontro virtuale con un volontario</Title>
+        </View>
+        <View style={styles.container}>
+        <Title style={styles.frase2}>Sono disponibili:</Title> 
+        <Title style={styles.titolo}>34 slot</Title>
+        <FormButton 
           modeValue='contained'
-          title='Logout'
+          title='Prenota'
           onPress={() => navigation.navigate('Login')} // logout()
         />
+        </View>
       </View>
     ); // {{user.uid}}
   }
@@ -27,5 +32,14 @@ export default function HomeScreen({navigation}) {
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center'
-    }
+    },
+    titolo: {
+      fontSize: 30,
+    },
+    frase: {
+       fontSize: 17
+    },
+    frase2: {
+      fontSize: 22
+   },
   });
