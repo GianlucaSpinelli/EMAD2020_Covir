@@ -10,6 +10,7 @@ import HomeScreen from '../screens/HomeScreen';
 import SignUpScreen from '../screens/SignUpScreen';
 import LoginScreen from '../screens/LoginScreen';
 import { HeaderBackground } from '@react-navigation/stack';
+import ScegliVol from '../screens/ScegliVolontario';
 
 const Tab = createBottomTabNavigator();
 
@@ -38,7 +39,7 @@ export default function HomeTabNavigator() {
               activeBackgroundColor: '#1979a9'
             }}>
               <Tab.Screen name="Home" component={HomeScreen} />
-              <Tab.Screen name="Prenota" component={LoginScreen} />
+              <Tab.Screen name="Prenota" component={ScegliVol} />
               <Tab.Screen name="Il mio Profilo" component={LoginScreen} />
           </Tab.Navigator>         
         
