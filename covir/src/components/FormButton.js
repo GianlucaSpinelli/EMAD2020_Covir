@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Dimensions, Text } from 'react-native';
 import { Button } from 'react-native-paper';
+import { color } from 'react-native-reanimated';
 
 const { width, height } = Dimensions.get('screen');
 
@@ -19,10 +20,12 @@ export default function FormButton({ title, modeValue, ...rest }) {
 
 const styles = StyleSheet.create({
   button: {
-    marginTop: 10
+    marginTop: 30,
+    backgroundColor: '#1979a9',
+    borderRadius: 9
   },
   buttonContainer: {
-    width: width / 1.5,
+    width: width / 1.9,
     height: height / 15
   }
 });

@@ -9,10 +9,24 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from '../screens/HomeScreen';
 import SignUpScreen from '../screens/SignUpScreen';
 import LoginScreen from '../screens/LoginScreen';
+import DonaTempo from '../screens/DonaTempo';
 import { HeaderBackground } from '@react-navigation/stack';
 import ScegliVol from '../screens/ScegliVolontario2';
 
 const Tab = createBottomTabNavigator();
+const utente=2;
+
+const renderContentUtente = () => {
+  return (
+    <Tab.Screen name="Prenota" component={ScegliVol} />  
+  );
+};
+
+const renderContentOperatore = () => {
+  return (
+    <Tab.Screen name="Dona tempo" component={DonaTempo} />  
+  );
+};
 
 export default function HomeTabNavigator() {
     return (          
@@ -27,6 +41,8 @@ export default function HomeTabNavigator() {
                   iconName = focused ? 'ios-list-box' : 'ios-list-box';
                 }else if (route.name === 'Il mio Profilo') {
                   iconName = focused ? 'ios-list' : 'ios-list';
+                }else if (route.name === 'Dona tempo') {
+                  iconName = focused ? 'ios-time' : 'ios-time';
                 }
     
                 // You can return any component that you like here!
@@ -39,7 +55,7 @@ export default function HomeTabNavigator() {
               activeBackgroundColor: '#1979a9'
             }}>
               <Tab.Screen name="Home" component={HomeScreen} />
-              <Tab.Screen name="Prenota" component={ScegliVol} />
+              {utente==1 ? renderContentUtente() : renderContentOperatore() } 
               <Tab.Screen name="Il mio Profilo" component={LoginScreen} />
           </Tab.Navigator>         
         
