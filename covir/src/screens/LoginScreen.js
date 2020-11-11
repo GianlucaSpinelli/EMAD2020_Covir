@@ -4,6 +4,8 @@ import { Title } from 'react-native-paper';
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 import Swiper from 'react-native-swiper';
+import FormButton2 from '../components/FormButton2';
+import { BorderlessButton } from 'react-native-gesture-handler';
 
 //import { AuthContext } from '../navigation/AuthProvider';
 
@@ -23,7 +25,7 @@ export default function Login({navigation}) {
             <Text style={styles.text}>Vuoi offrire il tuo tempo libero per aiutare a combattere la solitudine del COVID?</Text>
           </View>
           <View testID="Simple" style={styles.slide3}>
-            <Text style={styles.text}>CO municazione VIR tuale, sconfiggiamo la solitudine insieme! </Text>
+            <Text style={styles.text}>Comunicazione Virtuale, sconfiggiamo la solitudine insieme! </Text>
           </View>
         </Swiper>
         </View>
@@ -47,13 +49,7 @@ export default function Login({navigation}) {
           labelStyle={styles.loginButtonLabel}
           onPress={() => navigation.navigate('HomeTab')}  //{() => login(email, password)}
         />
-        <FormButton
-          title='Nuovo utente? Registrati'
-          modeValue='text'
-          uppercase={false}
-          labelStyle={styles.navButtonText}
-          onPress={() => navigation.navigate('Signup')}
-        />
+        <Text style={styles.register}>Nuovo utente? Registrati qui </Text>
         </View>
       </View>
     );
@@ -66,14 +62,24 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
     },
+    register:{
+      fontSize: 17,
+      marginBottom: 10,
+      marginTop: 15,
+      textAlign: 'center',
+      color: '#9ca2ad',
+      textDecorationLine: 'underline'
+      
+    },
     titleText: {
       fontSize: 24,
       marginBottom: 10,
-      marginTop: 10,
+      marginTop: 25,
       textAlign: 'center'
     },
     loginButtonLabel: {
-      fontSize: 22
+      fontSize: 22,
+      marginLeft: '41%'
     },
     navButtonText: {
       fontSize: 16
@@ -93,6 +99,7 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       backgroundColor: '#9DD6EB'
     },
+
     slide2: {
       flex: 1,
       justifyContent: 'center',
@@ -108,6 +115,8 @@ const styles = StyleSheet.create({
     text: {
       color: '#fff',
       fontSize: 30,
-      fontWeight: 'bold'
+      fontWeight: 'bold',
+      marginLeft: '10%',
+      marginRight:'10%'
     }
   });
