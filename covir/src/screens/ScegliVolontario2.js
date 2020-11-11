@@ -11,7 +11,7 @@ export default function ScegliVolontario({navigation}) { //non legge immagin
     return (
     <View>
         <Text style={styles.scelta}> SCEGLI L'OPERATORE IN BASE ALLA FASCIA D'ETÀ</Text>
-        <ListItem containerStyle={styles.card1} onPress={() => navigation.navigate('ScegliSlot')}
+        <ListItem containerStyle={styles.card1} onPress={() => navigation.navigate('ScegliTempo')}
             Component={TouchableScale}
             friction={90} //
             tension={100} // These props are passed to the parent component (here TouchableScale)

@@ -5,7 +5,7 @@ import { Title } from 'react-native-paper';
 import FormButton from '../components/FormButton';
 import { Divider } from 'react-native-elements';
 
-var utente=2;
+var utente=1;
 
 const renderContentUtente = () => {
   return (
