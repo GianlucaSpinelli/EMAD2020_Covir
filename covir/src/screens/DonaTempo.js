@@ -5,7 +5,7 @@ import { Card, ListItem, Button, Icon } from 'react-native-elements'
 import { ScrollView } from 'react-native-gesture-handler';
 
 
-export default function DonaTempo({navigation}) { //non legge immagin
+export default function ScegliVolontario({navigation}) { //non legge immagin
     return (
     <ScrollView>
     <View>

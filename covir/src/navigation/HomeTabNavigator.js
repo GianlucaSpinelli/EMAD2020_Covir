@@ -9,9 +9,11 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from '../screens/HomeScreen';
 import SignUpScreen from '../screens/SignUpScreen';
 import LoginScreen from '../screens/LoginScreen';
+import IlmioProfilo from '../screens/IlMioProfilo';
 import DonaTempo from '../screens/DonaTempo';
 import { HeaderBackground } from '@react-navigation/stack';
 import ScegliVol from '../screens/ScegliVolontario2';
+
 
 const Tab = createBottomTabNavigator();
 const utente=2;
@@ -56,7 +58,7 @@ export default function HomeTabNavigator() {
             }}>
               <Tab.Screen name="Home" component={HomeScreen} />
               {utente==1 ? renderContentUtente() : renderContentOperatore() } 
-              <Tab.Screen name="Il mio Profilo" component={LoginScreen} />
+              <Tab.Screen name="Il mio Profilo" component={IlmioProfilo} />
           </Tab.Navigator>         
         
       );                          // sopra {user ? <HomeStack /> : <AuthStack />} aggiungere <HomeStack>
