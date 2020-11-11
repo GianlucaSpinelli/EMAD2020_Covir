@@ -3,7 +3,7 @@ import { View, StyleSheet, Text, Dimensions } from 'react-native';
 import { Title } from 'react-native-paper';
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
-import Swiper from 'react-native-swiper'
+import Swiper from 'react-native-swiper';
 
 //import { AuthContext } from '../navigation/AuthProvider';
 

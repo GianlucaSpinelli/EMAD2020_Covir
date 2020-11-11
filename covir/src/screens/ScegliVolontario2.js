@@ -1,5 +1,6 @@
 import React from 'react';
 import { Title } from 'react-native-paper';
+import { configureFonts, DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import { View, Text, Image, StyleSheet } from 'react-native'
 import { Card, ListItem, Button, Icon, Avatar } from 'react-native-elements'
 import { ScrollView } from 'react-native-gesture-handler';
@@ -9,34 +10,27 @@ import { LinearGradient } from 'expo-linear-gradient';
 export default function ScegliVolontario({navigation}) { //non legge immagin
     return (
     <View>
-        <ListItem containerStyle={styles.card} onPress={() => navigation.navigate('Login')}
+        <Text style={styles.scelta}> SCEGLI L'OPERATORE IN BASE ALLA FASCIA D'ETÀ</Text>
+        <ListItem containerStyle={styles.card1} onPress={() => navigation.navigate('ScegliSlot')}
             Component={TouchableScale}
             friction={90} //
             tension={100} // These props are passed to the parent component (here TouchableScale)
             activeScale={0.95} 
-            linearGradientProps={{
-            colors: ['#FF9800', '#F44336'],
-            start: { x: 1, y: 0 },
-            end: { x: 0.2, y: 0 },}}
-            ViewComponent={LinearGradient} // Only if no expo
+             // Only if no expo
             >
-            <Avatar rounded source={{ uri: 'https://lopinabile.it/wp-content/uploads/2018/07/portrait-of-an-elderly-man-sticking-his-tongue-out-X7WHRG-678x381.jpg' }} containerStyle={styles.immagine}/>
+            <Avatar source={{uri: '../images/lente.png'}} rounded  containerStyle={styles.immagine}/>
             <ListItem.Content>
                 <ListItem.Title style={{ color: 'white', fontWeight: 'bold' }}><Text>PER OVER 18</Text></ListItem.Title>
                 <ListItem.Subtitle style={{ color: 'white' }}><Text>20 disponibili</Text></ListItem.Subtitle>
             </ListItem.Content>
             <ListItem.Chevron color="white" />
         </ListItem>  
-        <ListItem containerStyle={styles.card} onPress={() => navigation.navigate('Login')}
+        <ListItem containerStyle={styles.card2} onPress={() => navigation.navigate('Login')}
             Component={TouchableScale}
             friction={90} //
             tension={100} // These props are passed to the parent component (here TouchableScale)
-            activeScale={0.95} 
-            linearGradientProps={{
-            colors: ['#FF9800', '#F44336'],
-            start: { x: 1, y: 0 },
-            end: { x: 0.2, y: 0 },}}
-            ViewComponent={LinearGradient} // Only if no expo
+            activeScale={0.95}
+             // Only if no expo
             >
             <Avatar rounded source={{ uri: 'https://lopinabile.it/wp-content/uploads/2018/07/portrait-of-an-elderly-man-sticking-his-tongue-out-X7WHRG-678x381.jpg' }} containerStyle={styles.immagine}/>
             <ListItem.Content>
@@ -45,16 +39,12 @@ export default function ScegliVolontario({navigation}) { //non legge immagin
             </ListItem.Content>
             <ListItem.Chevron color="white" />
         </ListItem> 
-        <ListItem containerStyle={styles.card} onPress={() => navigation.navigate('Login')}
+        <ListItem containerStyle={styles.card3} onPress={() => navigation.navigate('Login')}
             Component={TouchableScale}
             friction={90} //
             tension={100} // These props are passed to the parent component (here TouchableScale)
             activeScale={0.95} 
-            linearGradientProps={{
-            colors: ['#FF9800', '#F44336'],
-            start: { x: 1, y: 0 },
-            end: { x: 0.2, y: 0 },}}
-            ViewComponent={LinearGradient} // Only if no expo
+            // Only if no expo
             >
             <Avatar rounded source={{ uri: 'https://lopinabile.it/wp-content/uploads/2018/07/portrait-of-an-elderly-man-sticking-his-tongue-out-X7WHRG-678x381.jpg' }} containerStyle={styles.immagine}  />
             <ListItem.Content>
@@ -63,16 +53,12 @@ export default function ScegliVolontario({navigation}) { //non legge immagin
             </ListItem.Content>
             <ListItem.Chevron color="white" />
         </ListItem> 
-        <ListItem containerStyle={styles.card} onPress={() => navigation.navigate('Login')}
+        <ListItem containerStyle={styles.card4} onPress={() => navigation.navigate('Login')}
             Component={TouchableScale}
             friction={90} //
             tension={100} // These props are passed to the parent component (here TouchableScale)
             activeScale={0.95} 
-            linearGradientProps={{
-            colors: ['#FF9800', '#F44336'],
-            start: { x: 1, y: 0 },
-            end: { x: 0.2, y: 0 },}}
-            ViewComponent={LinearGradient} // Only if no expo
+             // Only if no expo
             >
             <Avatar rounded source={{ uri: 'https://lopinabile.it/wp-content/uploads/2018/07/portrait-of-an-elderly-man-sticking-his-tongue-out-X7WHRG-678x381.jpg' }} containerStyle={styles.immagine}/>
             <ListItem.Content>
@@ -87,13 +73,44 @@ export default function ScegliVolontario({navigation}) { //non legge immagin
 }
 
 const styles = StyleSheet.create({
-    card:{
-        height:145,
+    card1:{
+        height:110,
         marginLeft:10,
         marginBottom: 3,
         borderRadius: 10,
         width: '95%',
-        marginTop: 10
+        marginTop: 10,
+        backgroundColor: 'rgb(182,223,221)'
+               
+    },
+    card2:{
+        height:110,
+        marginLeft:10,
+        marginBottom: 3,
+        borderRadius: 10,
+        width: '95%',
+        marginTop: 10,
+        backgroundColor: 'rgb(66,156,195)'
+               
+    },
+    card3:{
+        height:110,
+        marginLeft:10,
+        marginBottom: 3,
+        borderRadius: 10,
+        width: '95%',
+        marginTop: 10,
+        backgroundColor: 'rgb(51,123,168)'
+               
+    },
+    card4:{
+        height:110,
+        marginLeft:10,
+        marginBottom: 3,
+        borderRadius: 10,
+        width: '95%',
+        marginTop: 10,
+        backgroundColor: 'rgb(33,82,114)'
                
     },
     immagine:{
@@ -101,9 +118,17 @@ const styles = StyleSheet.create({
         borderWidth:0,
         borderTopLeftRadius:15,
         borderTopRightRadius:15,
-        height:90,
-        width:90,
+        height: '110%',
         flex:1,
         marginLeft: '0%'
+    },
+    scelta: {
+        fontSize: 26,
+        textAlign: "center",
+        marginTop: 30,
+        marginBottom: 20,
+        color:'#1979a9',
+        fontWeight: "bold"
+
     }
 });
