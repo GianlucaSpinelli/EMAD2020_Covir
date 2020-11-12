@@ -21,14 +21,17 @@ export default function FormButton({ title, modeValue, ...rest }) {
 
 const styles = StyleSheet.create({
   button: {
-    marginTop: 10,
+    marginTop: 110,
     backgroundColor: '#1979a9',
     borderRadius: 9,
+    marginLeft: 70,
+    marginRight: 70
     
 
   },
   buttonContainer: {
-    width: width / 1.8,
-    height: height / 15
+    width: width / 1.5,
+    height: height / 15,
+    
   }
 });
