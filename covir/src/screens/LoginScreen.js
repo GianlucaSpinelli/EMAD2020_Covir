@@ -4,7 +4,6 @@ import { Title } from 'react-native-paper';
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 import Swiper from 'react-native-swiper';
-import FormButton2 from '../components/FormButton2';
 import { BorderlessButton } from 'react-native-gesture-handler';
 
 //import { AuthContext } from '../navigation/AuthProvider';
