@@ -8,28 +8,43 @@ import { BorderlessButton } from 'react-native-gesture-handler';
 
 //import { AuthContext } from '../navigation/AuthProvider';
 
-export default function Login({navigation}) {
+export default function Registrazione({navigation}) {
     //const { login } = useContext(AuthContext);
+    const [nome, setnome] = useState('');
+    const [cognome, setcognome] = useState('');
+    const [descrizione, setDescrizione] = useState('');
+    const [DNascita, setDNascita] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
   
     return (
       <View style={styles.container}>
-      <View style={styles.container1}>
-        <Swiper style={styles.swiper} showsButtons={false} loop={true} autoplay={true} >
-          <View testID="Hello" style={styles.slide1}>
-            <Text style={styles.text}>Cerchi compagnia? Prenota un incontro virtuale</Text>
-          </View>
-          <View testID="Beautiful" style={styles.slide2}>
-            <Text style={styles.text}>Vuoi offrire il tuo tempo libero per aiutare a combattere la solitudine del COVID?</Text>
-          </View>
-          <View testID="Simple" style={styles.slide3}>
-            <Text style={styles.text}>Comunicazione Virtuale, sconfiggiamo la solitudine, insieme si può! </Text>
-          </View>
-        </Swiper>
-        </View>
         <View style= {styles.container2}>
-        <Title style={styles.titleText}>Scopri Covir</Title>
+        <Title style={styles.titleText}>Registrazione</Title>
+        <FormInput
+          labelName='Nome'
+          value={nome}
+          autoCapitalize='none'
+          onChangeText={userName => setnome(userName)}
+        />
+        <FormInput
+          labelName='Cognome'
+          value={cognome}
+          autoCapitalize='none'
+          onChangeText={userCognome => setcognome(userCognome)}
+        />
+        <FormInput
+          labelName='Data di nascita'
+          value={DNascita}
+          autoCapitalize='none'
+          onChangeText={userDNascita => setDNascita(userDNascita)}
+        />
+        <FormInput
+          labelName='Descrizione'
+          value={descrizione}
+          autoCapitalize='none'
+          onChangeText={userDescr => setDescrizione(userDescr)}
+        />
         <FormInput
           labelName='Email'
           value={email}
@@ -43,13 +58,11 @@ export default function Login({navigation}) {
           onChangeText={userPassword => setPassword(userPassword)}
         />
         <FormButton
-          title='Accedi'
+          title='Registrati'
           modeValue='contained'
           labelStyle={styles.loginButtonLabel}
-          onPress={() => navigation.navigate('HomeTab')}  //{() => login(email, password)}
+          onPress={() => navigation.navigate('HomeTab')}  //deve andare alla schermata del documento
         />
-        <Text style={styles.register}
-        onPress={() => navigation.navigate('Register')}>Nuovo utente? Registrati qui </Text>
         </View>
       </View>
     );

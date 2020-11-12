@@ -12,6 +12,8 @@ export default function HomeStack() {
     <Stack.Navigator initialRouteName='Auth'>
       <Stack.Screen name='Auth' component={AuthStack} />
       <Stack.Screen name='HomeTab' component={HomeTabNavigator} />
+      <Stack.Screen name='Register' component={HomeTabNavigator} />
+
     </Stack.Navigator>
   );
 }
