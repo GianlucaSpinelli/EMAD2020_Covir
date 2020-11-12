@@ -1,9 +1,10 @@
 import React, { useState/*, useContext*/ } from 'react';
-import {CheckBox, View, StyleSheet, Text, Dimensions } from 'react-native';
+import {View, StyleSheet, Text, Dimensions } from 'react-native';
 import { Title } from 'react-native-paper';
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 import FormButton2 from '../components/FormButton2';
+import CheckBox from '@react-native-community/checkbox';
 import Swiper from 'react-native-swiper';
 import { BorderlessButton } from 'react-native-gesture-handler';
 
