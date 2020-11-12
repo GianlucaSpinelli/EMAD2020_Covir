@@ -4,6 +4,7 @@ import SignUpScreen from '../screens/Registrazione';
 import LoginScreen from '../screens/LoginScreen';
 import HomeScreen from '../screens/HomeScreen';
 import ScegliSlot from '../screens/ScegliSlotTempo';
+import CambioPassword from '../screens/cambioPassword';
 
 const Stack = createStackNavigator();
 
@@ -13,7 +14,9 @@ export default function AuthStack() {
         <Stack.Screen name='Login' component={LoginScreen} />
         <Stack.Screen name='Signup' component={SignUpScreen} />
         <Stack.Screen name='Home' component={HomeScreen} />
-        <Stack.Screen name='ScegliTempo' component={ScegliSlot}/>
+        <Stack.Screen name='ScegliTempo' component={ScegliSlot}
+        />
+        <Stack.Screen name='cambioPassword' component={CambioPassword} />
       </Stack.Navigator>
     );
   }

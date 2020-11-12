@@ -8,48 +8,35 @@ import { BorderlessButton } from 'react-native-gesture-handler';
 
 //import { AuthContext } from '../navigation/AuthProvider';
 
-export default function Login({navigation}) {
+export default function CambioPassword({navigation}) {
     //const { login } = useContext(AuthContext);
-    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-  
+    const [password2, setPassword2] = useState('');
+
     return (
       <View style={styles.container}>
-      <View style={styles.container1}>
-        <Swiper style={styles.swiper} showsButtons={false} loop={true} autoplay={true} >
-          <View testID="Hello" style={styles.slide1}>
-            <Text style={styles.text}>Cerchi compagnia? Prenota un incontro virtuale</Text>
-          </View>
-          <View testID="Beautiful" style={styles.slide2}>
-            <Text style={styles.text}>Vuoi offrire il tuo tempo libero per aiutare a combattere la solitudine del COVID?</Text>
-          </View>
-          <View testID="Simple" style={styles.slide3}>
-            <Text style={styles.text}>Comunicazione Virtuale, sconfiggiamo la solitudine, insieme si può! </Text>
-          </View>
-        </Swiper>
-        </View>
         <View style= {styles.container2}>
-        <Title style={styles.titleText}>Scopri Covir</Title>
-        <FormInput
-          labelName='Email'
-          value={email}
-          autoCapitalize='none'
-          onChangeText={userEmail => setEmail(userEmail)}
-        />
+        <Title style={styles.titleText}>Cambio Password</Title>
+        
         <FormInput
           labelName='Password'
           value={password}
           secureTextEntry={true}
           onChangeText={userPassword => setPassword(userPassword)}
+          
+        />
+        <FormInput
+          labelName='Conferma Password'
+          value={password}
+          secureTextEntry={true}
+          onChangeText={userPassword2 => setPassword(userPassword2)}
         />
         <FormButton
-          title='Accedi'
+          title='Conferma'
           modeValue='contained'
           labelStyle={styles.loginButtonLabel}
-          onPress={() => navigation.navigate('HomeTab')}  //{() => login(email, password)}
+          onPress={() => navigation.navigate('HomeTab')} 
         />
-        <Text style={styles.register}
-        onPress={() => navigation.navigate('Signup')}>Nuovo utente? Registrati qui </Text>
         </View>
       </View>
     );
@@ -61,6 +48,7 @@ const styles = StyleSheet.create({
       flex: 3,
       justifyContent: 'center',
       alignItems: 'center',
+      marginTop:120
     },
     register:{
       fontSize: 17,
@@ -78,7 +66,7 @@ const styles = StyleSheet.create({
       textAlign: 'center'
     },
     loginButtonLabel: {
-      fontSize: 22,
+      fontSize: 15,
       marginLeft: '41%'
     },
     navButtonText: {

@@ -9,7 +9,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 var utente=2;
 
-const renderContentOperatore = () => {
+const renderContentOperatore = (navigation) => {
   return (
     <View style={styles.container}>
         <View style={styles.welcome}>
@@ -41,7 +41,7 @@ const renderContentOperatore = () => {
               }
               title="  Cambio Password              "
               buttonStyle={{borderRadius: 10,backgroundColor: '#1979a9'}}
-
+              onPress={() => navigation.navigate('cambioPassword')}
             />
             </View>
             <View style={styles.welcome6}>
@@ -75,7 +75,7 @@ const renderContentOperatore = () => {
   );
 };
 
-const renderContentUtente = () => {
+const renderContentUtente = (navigation) => {
   return (
     <View style={styles.container}>
         <View style={styles.welcome}>
@@ -107,7 +107,7 @@ const renderContentUtente = () => {
               }
               title="  Cambio Password    "
               buttonStyle={{borderRadius: 10,backgroundColor: '#1979a9'}}
-
+              onPress={() => navigation.navigate('cambioPassword')}
             />
             </View>
             <View style={styles.welcome6}>
@@ -146,7 +146,7 @@ export default function IlMioProfilo({navigation}) {
     //const { user, logout } = useContext(AuthContext);
     return (
      <View style={styles.container}>
-      {utente==1 ? renderContentUtente() : renderContentOperatore() }
+      {utente==1 ? renderContentUtente(navigation) : renderContentOperatore(navigation) }
       </View> 
     ); // {{user.uid}}
   }
