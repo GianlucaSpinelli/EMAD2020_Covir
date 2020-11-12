@@ -1,12 +1,11 @@
 import React, { useState/*, useContext*/ } from 'react';
-import { View, StyleSheet, Text, Dimensions } from 'react-native';
+import {CheckBox, View, StyleSheet, Text, Dimensions } from 'react-native';
 import { Title } from 'react-native-paper';
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
+import FormButton2 from '../components/FormButton2';
 import Swiper from 'react-native-swiper';
 import { BorderlessButton } from 'react-native-gesture-handler';
-
-//import { AuthContext } from '../navigation/AuthProvider';
 
 export default function Registrazione({navigation}) {
     //const { login } = useContext(AuthContext);
@@ -16,6 +15,8 @@ export default function Registrazione({navigation}) {
     const [DNascita, setDNascita] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [associazione, setAssociazione] = useState('');
+    const [isSelected, setSelection] = useState(false);
   
     return (
       <View style={styles.container}>
@@ -57,7 +58,22 @@ export default function Registrazione({navigation}) {
           secureTextEntry={true}
           onChangeText={userPassword => setPassword(userPassword)}
         />
-        <FormButton
+        <View style={styles.containerView}>
+        <Text style={styles.label}>Sei un volontario?</Text>
+        <CheckBox
+          value={isSelected}
+          onValueChange={setSelection}
+          style={styles.checkbox}
+        />
+        <Text>{isSelected ? "👍" : "👎"}</Text>
+        </View>
+        <FormInput 
+          labelName='Associazione'
+          value={associazione}
+          secureTextEntry={true}
+          onChangeText={userAssociazione => setAssociazione(userAssociazione)}
+        />
+        <FormButton2
           title='Registrati'
           modeValue='contained'
           labelStyle={styles.loginButtonLabel}
@@ -75,6 +91,15 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
     },
+    containerView:{
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center',
+    
+    },
+    checkbox: {
+      alignSelf: "center",
+    },
     register:{
       fontSize: 17,
       marginBottom: 10,
@@ -88,11 +113,12 @@ const styles = StyleSheet.create({
       fontSize: 24,
       marginBottom: 10,
       marginTop: 25,
-      textAlign: 'center'
+      textAlign: 'center',
+      fontWeight: 'bold'
     },
     loginButtonLabel: {
       fontSize: 22,
-      marginLeft: '41%'
+      marginLeft: '26%'
     },
     navButtonText: {
       fontSize: 16
@@ -131,5 +157,12 @@ const styles = StyleSheet.create({
       fontWeight: 'bold',
       marginLeft: '10%',
       marginRight:'10%'
+    },
+    label:{
+    color: '#1979a9',
+    fontSize: 15,
+    fontWeight: 'bold',
+    marginTop: 3,
+    marginRight: 10
     }
   });

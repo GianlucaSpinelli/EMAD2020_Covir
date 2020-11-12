@@ -1,3 +1,4 @@
+import { HeaderBackground } from '@react-navigation/stack';
 import React from 'react';
 import { StyleSheet, Dimensions } from 'react-native';
 import { TextInput } from 'react-native-paper';
@@ -22,4 +23,5 @@ const styles = StyleSheet.create({
       width: width / 1.5,
       height: height / 15
     }
+
   });
