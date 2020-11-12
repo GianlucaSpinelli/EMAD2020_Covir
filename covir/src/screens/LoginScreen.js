@@ -49,7 +49,7 @@ export default function Login({navigation}) {
           onPress={() => navigation.navigate('HomeTab')}  //{() => login(email, password)}
         />
         <Text style={styles.register}
-        onPress={() => navigation.navigate('Register')}>Nuovo utente? Registrati qui </Text>
+        onPress={() => navigation.navigate('')}>Nuovo utente? Registrati qui </Text>
         </View>
       </View>
     );
