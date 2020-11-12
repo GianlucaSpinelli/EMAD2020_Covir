@@ -7,6 +7,12 @@ import FormButton2 from '../components/FormButton2';
 import Swiper from 'react-native-swiper';
 import { BorderlessButton } from 'react-native-gesture-handler';
 
+function Volontario(props){
+return <FormInput labelName='Associazione' value= {props[0]} autoCapitalize='none' onChangeText={associazione => props[1](associazione)}></FormInput>;
+}
+function NVolontario(props){
+  return ;
+}
 export default function Registrazione({navigation}) {
     //const { login } = useContext(AuthContext);
     const [nome, setnome] = useState('');
@@ -15,8 +21,8 @@ export default function Registrazione({navigation}) {
     const [DNascita, setDNascita] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [associazione, setAssociazione] = useState('');
     const [isSelected, setSelection] = useState(false);
+    const [associazione, setAssociazione] = useState('');
   
     return (
       <View style={styles.container}>
@@ -64,15 +70,10 @@ export default function Registrazione({navigation}) {
           value={isSelected}
           onValueChange={setSelection}
           style={styles.checkbox}
-        />
-        <Text>{isSelected ? "👍" : "👎"}</Text>
+        /> 
+        
         </View>
-        <FormInput 
-          labelName='Associazione'
-          value={associazione}
-          secureTextEntry={true}
-          onChangeText={userAssociazione => setAssociazione(userAssociazione)}
-        />
+        {isSelected ? Volontario(associazione, setAssociazione) : NVolontario()}
         <FormButton2
           title='Registrati'
           modeValue='contained'
