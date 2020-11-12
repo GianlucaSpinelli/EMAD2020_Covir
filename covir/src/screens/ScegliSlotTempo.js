@@ -1,8 +1,8 @@
 import React from 'react';
 import { Title } from 'react-native-paper';
 import { IconButton, List, Card, Avatar } from 'react-native-paper';
-import { View, Text, Image, StyleSheet } from 'react-native'
-import {ListItem, Button, Icon } from 'react-native-elements'
+import { View, Text, Image, StyleSheet, VirtualizedList } from 'react-native'
+import {ListItem, Button, Icon, SocialIcon } from 'react-native-elements'
 import { FlatList, ScrollView } from 'react-native-gesture-handler';
 import TouchableScale from 'react-native-touchable-scale'; // https://github.com/kohver/react-native-touchable-scale
 import { LinearGradient } from 'expo-linear-gradient'; 
@@ -13,9 +13,12 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 export default function ScegliSlotTempo({navigation}) { //non legge immagin
     return (
+    
     <View>
+        
         <Text style={styles.scelta}>APPUNTAMENTI DISPONIBILI:</Text>
         <FlatList 
+        scrollEnabled={true}
             title="APPUNTAMENTI DISPONIBILI"
             containerStyle={styles.app}
             data={[
@@ -33,10 +36,12 @@ export default function ScegliSlotTempo({navigation}) { //non legge immagin
               renderItem={({item}) => <Card.Title 
                                             title={item.title}
                                             subtitle={item.subtitle}
-                                            left={(props) => <Avatar.Icon   />}
+                                            left={(props) => <Avatar.Icon  icon={{ uri:'https://simpleicon.com/wp-content/uploads/Calendar-3.png'}} style={styles.icona} />}
                                             leftStyle={styles.bottoneLeft}
-                                            right={(props) => <IconButton style={styles.bottoneRight} onPress={() => {}} />}/> }/>      
-    </View>
+                                            right={(props) => <IconButton icon={{uri:'https://www.pngkey.com/png/detail/918-9180791_next-pharmacy-arrow-right-icon-png.png'}} style={styles.bottoneRight} onPress={() => navigation.navigate('ConfermaAppuntamento')} />}/> }/>      
+     
+      </View>
+  
     );
         
 }
@@ -50,6 +55,9 @@ const styles = StyleSheet.create({
         color:'#1979a9',
         fontWeight: "bold"
 
+    },
+    icona:{
+        backgroundColor: '#1979a9'
     },
     app:{
         height: '45%'

@@ -18,7 +18,7 @@ export default function ScegliVolontario({navigation}) { //non legge immagin
             activeScale={0.95} 
              // Only if no expo
             >
-            <Avatar source={{uri: '../images/lente.png'}} rounded  containerStyle={styles.immagine}/>
+            <Avatar rounded source={{ uri: 'https://st2.depositphotos.com/3469789/10721/v/950/depositphotos_107219688-stock-illustration-magnifying-glass-flat-icon.jpg' }}  avatarStyle={styles.icona} containerStyle={styles.immagine}></Avatar>
             <ListItem.Content>
                 <ListItem.Title style={{ color: 'white', fontWeight: 'bold' }}><Text>PER OVER 18</Text></ListItem.Title>
                 <ListItem.Subtitle style={{ color: 'white' }}><Text>20 disponibili</Text></ListItem.Subtitle>
@@ -32,7 +32,7 @@ export default function ScegliVolontario({navigation}) { //non legge immagin
             activeScale={0.95}
              // Only if no expo
             >
-            <Avatar rounded source={{ uri: 'https://lopinabile.it/wp-content/uploads/2018/07/portrait-of-an-elderly-man-sticking-his-tongue-out-X7WHRG-678x381.jpg' }} containerStyle={styles.immagine}/>
+            <Avatar rounded source={{ uri: 'https://st2.depositphotos.com/3469789/10721/v/950/depositphotos_107219688-stock-illustration-magnifying-glass-flat-icon.jpg' }} avatarStyle={styles.icona} containerStyle={styles.immagine}/>
             <ListItem.Content>
                 <ListItem.Title style={{ color: 'white', fontWeight: 'bold' }}><Text>PER OVER 30</Text></ListItem.Title>
                 <ListItem.Subtitle style={{ color: 'white' }}><Text>12 disponibili</Text></ListItem.Subtitle>
@@ -46,7 +46,7 @@ export default function ScegliVolontario({navigation}) { //non legge immagin
             activeScale={0.95} 
             // Only if no expo
             >
-            <Avatar rounded source={{ uri: 'https://lopinabile.it/wp-content/uploads/2018/07/portrait-of-an-elderly-man-sticking-his-tongue-out-X7WHRG-678x381.jpg' }} containerStyle={styles.immagine}  />
+            <Avatar rounded source={{ uri: 'https://st2.depositphotos.com/3469789/10721/v/950/depositphotos_107219688-stock-illustration-magnifying-glass-flat-icon.jpg' }} avatarStyle={styles.icona} containerStyle={styles.immagine} />
             <ListItem.Content>
                 <ListItem.Title style={{ color: 'white', fontWeight: 'bold' }}><Text>PER OVER 40</Text></ListItem.Title>
                 <ListItem.Subtitle style={{ color: 'white' }}><Text>30 disponibili</Text></ListItem.Subtitle>
@@ -60,7 +60,7 @@ export default function ScegliVolontario({navigation}) { //non legge immagin
             activeScale={0.95} 
              // Only if no expo
             >
-            <Avatar rounded source={{ uri: 'https://lopinabile.it/wp-content/uploads/2018/07/portrait-of-an-elderly-man-sticking-his-tongue-out-X7WHRG-678x381.jpg' }} containerStyle={styles.immagine}/>
+            <Avatar rounded source={{ uri: 'https://st2.depositphotos.com/3469789/10721/v/950/depositphotos_107219688-stock-illustration-magnifying-glass-flat-icon.jpg' }} avatarStyle={styles.icona} containerStyle={styles.immagine}/>
             <ListItem.Content>
                 <ListItem.Title style={{ color: 'white', fontWeight: 'bold' }}><Text>PER OVER 60</Text></ListItem.Title>
                 <ListItem.Subtitle style={{ color: 'white' }}><Text>1 disponibili</Text></ListItem.Subtitle>
@@ -114,13 +114,19 @@ const styles = StyleSheet.create({
                
     },
     immagine:{
-        backgroundColor:'rgba(56, 172, 236, 1)',
-        borderWidth:0,
-        borderTopLeftRadius:15,
-        borderTopRightRadius:15,
-        height: '110%',
-        flex:1,
-        marginLeft: '0%'
+        borderTopLeftRadius:17,
+        borderTopRightRadius:17,
+        height: '135%',
+        width: '35%',
+        paddingLeft: '0%',
+        marginLeft: '-4.2%'
+    },
+    icona: {
+        height:'100%',
+        width: '100%',
+        alignContent: 'center',
+        justifyContent: 'center',
+        borderRadius: 80,  
     },
     scelta: {
         fontSize: 26,
