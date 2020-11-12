@@ -24,7 +24,7 @@ export default function Login({navigation}) {
             <Text style={styles.text}>Vuoi offrire il tuo tempo libero per aiutare a combattere la solitudine del COVID?</Text>
           </View>
           <View testID="Simple" style={styles.slide3}>
-            <Text style={styles.text}>Comunicazione Virtuale, sconfiggiamo la solitudine insieme! </Text>
+            <Text style={styles.text}>Comunicazione Virtuale, sconfiggiamo la solitudine, insieme si può! </Text>
           </View>
         </Swiper>
         </View>
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
     },
     text: {
       color: '#fff',
-      fontSize: 30,
+      fontSize: 20,
       fontWeight: 'bold',
       marginLeft: '10%',
       marginRight:'10%'
