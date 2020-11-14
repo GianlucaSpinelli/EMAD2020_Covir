@@ -1,5 +1,5 @@
 import React, { useState/*, useContext*/ } from 'react';
-import { View, StyleSheet, Text, Dimensions } from 'react-native';
+import { View, StyleSheet, Text, Dimensions, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import { Title } from 'react-native-paper';
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
@@ -15,6 +15,7 @@ export default function CambioPassword({navigation}) {
     const [passwordvecchia, setPasswordvecchia] = useState('');
 
     return (
+      <TouchableWithoutFeedback onPress= {() => {Keyboard.dismiss();}}>
       <View style={styles.container}>
         <View style= {styles.container2}>
         <Title style={styles.titleText}>Cambio Password</Title>
@@ -48,6 +49,7 @@ export default function CambioPassword({navigation}) {
         />
         </View>
       </View>
+      </TouchableWithoutFeedback>
     );
   }
   

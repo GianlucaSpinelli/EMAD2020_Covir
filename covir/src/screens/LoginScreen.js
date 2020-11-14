@@ -1,5 +1,5 @@
 import React, { useState/*, useContext*/ } from 'react';
-import { View, StyleSheet, Text, Dimensions } from 'react-native';
+import { View, StyleSheet, Text, Dimensions, Keyboard, TouchableWithoutFeedback, TextInput } from 'react-native';
 import { Title } from 'react-native-paper';
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
@@ -14,6 +14,7 @@ export default function Login({navigation}) {
     const [password, setPassword] = useState('');
   
     return (
+      <TouchableWithoutFeedback onPress= {() => {Keyboard.dismiss();}}>
       <View style={styles.container}>
       <View style={styles.container1}>
         <Swiper style={styles.swiper} showsButtons={false} loop={true} autoplay={true} >
@@ -30,18 +31,22 @@ export default function Login({navigation}) {
         </View>
         <View style= {styles.container2}>
         <Title style={styles.titleText}>Scopri Covir</Title>
-        <FormInput
-          labelName='Email'
-          value={email}
-          autoCapitalize='none'
-          onChangeText={userEmail => setEmail(userEmail)}
-        />
-        <FormInput
-          labelName='Password'
-          value={password}
-          secureTextEntry={true}
-          onChangeText={userPassword => setPassword(userPassword)}
-        />
+        
+          
+          <FormInput
+            labelName='Email'
+            value={email}
+            autoCapitalize='none'
+            onChangeText={userEmail => setEmail(userEmail)}
+          />
+          <FormInput
+            labelName='Password'
+            value={password}
+            secureTextEntry={true}
+            onChangeText={userPassword => setPassword(userPassword)}
+          />
+          
+        
         <FormButton
           title='Accedi'
           modeValue='contained'
@@ -52,6 +57,7 @@ export default function Login({navigation}) {
         onPress={() => navigation.navigate('Signup')}>Nuovo utente? Registrati qui </Text>
         </View>
       </View>
+      </TouchableWithoutFeedback>
     );
   }
   
