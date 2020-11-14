@@ -16,7 +16,7 @@ import ScegliVol from '../screens/ScegliVolontario2';
 
 
 const Tab = createBottomTabNavigator();
-const utente=1;
+const utente=2;
 
 const renderContentUtente = () => {
   return (

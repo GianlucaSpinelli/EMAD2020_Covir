@@ -5,37 +5,58 @@
 import React, {useState} from 'react';
 
 // import all the components we are going to use
-import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import {SafeAreaView, StyleSheet, Text, View, Button, Platform} from 'react-native';
 
 //import TimePicker from the package we installed
 import TimePicker from 'react-native-simple-time-picker';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 export default function AggiuntaSlot({navigation}) {
-  const [selectedHours, setSelectedHours] = useState(0);
-  const [selectedMinutes, setSelectedMinutes] = useState(0);
+  /*const [selectedHours, setSelectedHours] = useState(0);
+  const [selectedMinutes, setSelectedMinutes] = useState(0);*/
+
+  const [date, setDate] = useState(new Date(1598051730000));
+  const [mode, setMode] = useState('date');
+  const [show, setShow] = useState(false);
+
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setShow(Platform.OS === 'ios');
+    setDate(currentDate);
+  };
+
+  const showMode = (currentMode) => {
+    setShow(true);
+    setMode(currentMode);
+  };
+
+  const showDatepicker = () => {
+    showMode('date');
+  };
+
+  const showTimepicker = () => {
+    showMode('time');
+  };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.container}>
-        <Text style={styles.title}>
-          React Native Time Picker –
-          To Pick the Time using Native Time Picker
-        </Text>
-        <Text>
-          Selected Time: {selectedHours}:{selectedMinutes}
-        </Text>
-        <TimePicker
-          selectedHours={selectedHours}
-          //initial Hourse value
-          selectedMinutes={selectedMinutes}
-          //initial Minutes value
-          onChange={(hours, minutes) => {
-            setSelectedHours(hours);
-            setSelectedMinutes(minutes);
-          }}
-        />
+    <View>
+      <View>
+        <Button onPress={showDatepicker} title="Show date picker!" />
       </View>
-    </SafeAreaView>
+      <View>
+        <Button onPress={showTimepicker} title="Show time picker!" />
+      </View>
+      {show && (
+        <DateTimePicker
+          testID="dateTimePicker"
+          value={date}
+          mode={mode}
+          is24Hour={true}
+          display="default"
+          onChange={onChange}
+        />
+      )}
+    </View>
   );
 };
 
