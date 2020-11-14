@@ -38,7 +38,7 @@ export default function ScegliSlotTempo({navigation}) { //non legge immagin
                                             subtitle={item.subtitle}
                                             left={(props) => <Avatar.Icon  icon={{ uri:'https://simpleicon.com/wp-content/uploads/Calendar-3.png'}} style={styles.icona} />}
                                             leftStyle={styles.bottoneLeft}
-                                            right={(props) => <IconButton icon={{uri:'https://www.pngkey.com/png/detail/918-9180791_next-pharmacy-arrow-right-icon-png.png'}} style={styles.bottoneRight} onPress={() => navigation.navigate('ConfermaAppuntamento')} />}/> }/>      
+                                            right={(props) => <IconButton icon={{uri:'https://simpleicon.com/wp-content/uploads/arrow-35.png'}} style={styles.bottoneRight} onPress={() => navigation.navigate('ConfermaAppuntamento')} />}/> }/>      
      
       </View>
   
