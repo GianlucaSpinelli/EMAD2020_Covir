@@ -12,6 +12,7 @@ export default function CambioPassword({navigation}) {
     //const { login } = useContext(AuthContext);
     const [password, setPassword] = useState('');
     const [password2, setPassword2] = useState('');
+    const [passwordvecchia, setPasswordvecchia] = useState('');
 
     return (
       <View style={styles.container}>
@@ -19,7 +20,15 @@ export default function CambioPassword({navigation}) {
         <Title style={styles.titleText}>Cambio Password</Title>
         
         <FormInput
-          labelName='Password'
+          labelName='Vecchia Password'
+          value={passwordvecchia}
+          secureTextEntry={true}
+          onChangeText={userPassword3 => setPassword(userPassword3)}
+          
+        />
+
+        <FormInput
+          labelName='Nuova Password'
           value={password}
           secureTextEntry={true}
           onChangeText={userPassword => setPassword(userPassword)}

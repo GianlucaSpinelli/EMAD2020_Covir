@@ -2,15 +2,18 @@ import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import RadioButtonRN from 'radio-buttons-react-native';
+import FormInput from '../components/FormInput';
 
 class Radio extends React.Component {
-
+	
+	
+	
 	constructor(props) {
         super(props);
-
+		
         this.state = {
-			res: {},
-			example: 1
+				res: {},
+			example: 1,
 		};
 
 		this.colors = [
@@ -32,11 +35,14 @@ class Radio extends React.Component {
 		];
 		
 		this._renderRadioBtn = this._renderRadioBtn.bind(this);
+		
 	}
 
 	_renderRadioBtn() {
 		let { example } = this.state;
+		const info=''
 			return (
+				<View>
 				<RadioButtonRN
                     data={this.colors}
 					animationTypes={['rotate']}
@@ -51,11 +57,21 @@ class Radio extends React.Component {
 						/>
 					}
 				/>
+				<FormInput style={{marginTop:10,backgroundColor:'#ffffff'}}
+          			labelName='Info contatto relativo alla piattaforma scelta'
+          			value={info}
+          			onChangeText={(testo) => this.setState({ info: testo })}
+        		/>
+				</View>
+				
 			)
 		}
 
+		
+
 	render() {
 		let { example } = this.state;
+		
 		return (
 			<View>
 				<View style={{ top: 50, padding: 20, marginBottom: '-10%' }}>
@@ -67,7 +83,7 @@ class Radio extends React.Component {
 					this.state.res &&
 						<View style={{ top: 100, width: '100%', alignItems: 'center', marginTop: '0%' }}>
 							<Text style={{ fontSize: 13 }}>
-								Selected Color:
+								Piattaforma scelta:
 							</Text>
 							<Text style={{ fontSize: 24, color: 'rgb(33,82,114)', fontSize: 25, fontWeight: "bold"}}>
 								{this.state.res.label}

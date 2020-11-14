@@ -7,7 +7,7 @@ import { Divider } from 'react-native-elements';
 
 var utente=1;
 
-const renderContentUtente = () => {
+const renderContentUtente = (navigation) => {
   return (
     <View style={styles.container}>
     <View style={styles.container}>
@@ -33,7 +33,7 @@ const renderContentUtente = () => {
   );
 };
 
-const renderContentOperatore = () => {
+const renderContentOperatore = (navigation) => {
   return (
     <View style={styles.container}>
     <View style={styles.container}>
@@ -52,8 +52,8 @@ const renderContentOperatore = () => {
     <FormButton 
       backgroundColor= '#2196F3'
       modeValue='contained'
-      title='Dona altro tempo'
-      onPress={() => navigation.navigate('Prenota')} // logout()
+      title='DonaTempo'
+      onPress={() => navigation.navigate('DonaTempo')} // logout()
     />
     </View>
   </View>
@@ -65,7 +65,7 @@ export default function HomeScreen({navigation}) {
     //const { user, logout } = useContext(AuthContext);
     return (
      <View style={styles.container}>
-      {utente==1 ? renderContentUtente() : renderContentOperatore() }
+      {utente==1 ? renderContentUtente(navigation) : renderContentOperatore(navigation) }
       </View> 
     ); // {{user.uid}}
   }

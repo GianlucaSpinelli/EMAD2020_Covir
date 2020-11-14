@@ -7,7 +7,7 @@ import { Divider } from 'react-native-elements';
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-var utente=2;
+var utente=1;
 
 const renderContentOperatore = (navigation) => {
   return (
@@ -55,6 +55,7 @@ const renderContentOperatore = (navigation) => {
               }
               buttonStyle={{borderRadius: 10,backgroundColor: '#1979a9'}}
               title="  Slot messi a disposizione "
+              onPress={() => navigation.navigate('MieiSlot')}
             />
             </View>
             <View style={styles.welcome6}>
@@ -67,7 +68,8 @@ const renderContentOperatore = (navigation) => {
                 />
               }
               buttonStyle={{borderRadius: 10,backgroundColor: '#1979a9'}}
-              title="  Aggiorna documento          "
+              title="  Log-out                                "
+              onPress={() => navigation.navigate('Login')}
             />
             </View>
         </View>
@@ -121,6 +123,7 @@ const renderContentUtente = (navigation) => {
               }
               buttonStyle={{borderRadius: 10,backgroundColor: '#1979a9'}}
               title="  I Miei Appuntamenti "
+              onPress={() => navigation.navigate('IMieiAppuntamenti')}
             />
             </View>
             <View style={styles.welcome6}>
@@ -133,7 +136,8 @@ const renderContentUtente = (navigation) => {
                 />
               }
               buttonStyle={{borderRadius: 10,backgroundColor: '#1979a9'}}
-              title="  Aggiorna documento"
+              title="  Log-out                       "
+              onPress={() => navigation.navigate('Login')}
             />
             </View>
         </View>

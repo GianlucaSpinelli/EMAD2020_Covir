@@ -5,6 +5,7 @@ import { View, Text, Image, StyleSheet, TouchableOpacity, ViewPropTypes  } from 
 import RadioButton from '../components/Radio';
 import { Divider, Card, Button, Icon } from 'react-native-elements';
 import FormButton from '../components/FormButton3';
+import FormInput from '../components/FormInput';
 
 
 export default function ConfermaPrenotazione({navigation}) { //non legge immagin
