@@ -8,6 +8,9 @@ import TouchableScale from 'react-native-touchable-scale'; // https://github.com
 import { LinearGradient } from 'expo-linear-gradient'; 
 
 
+
+ 
+
 export default function IMieiAppuntamenti({navigation}) { //non legge immagin
     return (
     

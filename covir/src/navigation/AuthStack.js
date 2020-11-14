@@ -9,6 +9,7 @@ import ConfermaPrenot from '../screens/ConfermaPrenotazione';
 import ScegliVolontario2 from '../screens/ScegliVolontario2'
 import Appuntamenti from '../screens/IMieiAppuntamenti';
 import MieiSlot from '../screens/MieiSlot';
+import AggiuntaSlot from '../screens/AggiuntaSlot';
 
 const Stack = createStackNavigator();
 
@@ -25,6 +26,8 @@ export default function AuthStack() {
         <Stack.Screen name='Prenota' component={ScegliVolontario2}/>
         <Stack.Screen name='IMieiAppuntamenti' component={Appuntamenti}/>
         <Stack.Screen name='MieiSlot' component={MieiSlot}/>
+        <Stack.Screen name='AggiuntaSlot' component={AggiuntaSlot}/>
+        
 
       </Stack.Navigator>
     );
