@@ -5,13 +5,15 @@
 import React, {useState} from 'react';
 
 // import all the components we are going to use
-import {SafeAreaView, StyleSheet, Text, View, Dimensions, Platform, Button} from 'react-native';
+import { StyleSheet, Text, View, Dimensions, Platform, Button, Image} from 'react-native';
 
 //import TimePicker from the package we installed
 import TimePicker from 'react-native-simple-time-picker';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { Card, Icon } from 'react-native-elements';import { color } from 'react-native-reanimated';
 const { width, height } = Dimensions.get('screen');
+import Datepic from '../components/Pick';
+import DatePicker from 'react-native-datepicker'
 
 
 export default function AggiuntaSlot({navigation}) {
@@ -43,58 +45,18 @@ export default function AggiuntaSlot({navigation}) {
 
   return (
     <View style={styles.container}>  
-      <View containerStyle={styles.container1}>
+      <View containerStyle={styles.container1} >
+        <Image
+          style={{ width: 100, height: 100, borderRadius: 100, marginBottom: '20%',marginTop: '7%', marginLeft:'7%' }}
+          source={require('../images/anziano1.jpg')}
+          />
         <Text  style={styles.scelta}>SCEGLI LA PIATTAFORMA</Text>
+      </View>
+      <View>
         <Card containerStyle={styles.card}>
           </Card>
       </View>
-      <View >  
-      <Button  
-           mode="date"
-          customStyles={{
-          dateIcon: {
-            position: 'absolute',
-            left: 0,
-            top: 4,
-            marginLeft: 0
-          }}}
-          onPress={showDatepicker} title="Giorno:" />
-      <Button 
-           mode="date"
-          customStyles={{
-          dateIcon: {
-            position: 'absolute',
-            left: 0,
-            top: 4,
-            marginLeft: 0
-          }}}
-          onPress={showTimepicker} title="Dalle ore:" />
-      <Button 
-             mode="date"
-            customStyles={{
-            dateIcon: {
-            position: 'absolute',
-            left: 0,
-            top: 4,
-            marginLeft: 0
-          }}}
-          onPress={showTimepicker} title="Alle ore:" />
-      
-
-        </View>
-      {show && (
-        <DateTimePicker
-          testID="dateTimePicker"
-          value={date}
-          mode={mode}
-          is24Hour={true}
-          display="spinner"
-          onChange={onChange}
-          minuteInterval={30}
-        />
-      )}
-
-    
+        <Datepic></Datepic>   
     </View>
   );
 };
@@ -105,12 +67,13 @@ const styles = StyleSheet.create({
     scelta: {
         fontSize: 26,
         textAlign: "center",
-        marginTop: 30,
+        marginTop: 0,
         marginBottom: 10,
         marginLeft: '10%',
         marginRight: '10%',
         color:'#1979a9',
-        fontWeight: "bold"
+        fontWeight: "bold",
+        alignItems: 'center'
     },
     card:{
         backgroundColor:'#1979a9',
@@ -136,10 +99,12 @@ const styles = StyleSheet.create({
     },
     container1: {
       marginTop:'20%',
-      flex:1
+      flexDirection: 'row',
+      alignItems:'center',
+      justifyContent:'center'
     },
     container2: {
-      flex:2,
+    
       width:'70%',
       
     },
