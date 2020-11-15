@@ -18,7 +18,7 @@ export default function ScegliVolontario({navigation}) { //non legge immagin
             activeScale={0.95} 
              // Only if no expo
             >
-            <Avatar rounded source={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/lente.png' }}  avatarStyle={styles.icona} containerStyle={styles.immagine}></Avatar>
+            <Avatar rounded source={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/lente2.png' }}  avatarStyle={styles.icona} containerStyle={styles.immagine}></Avatar>
             <ListItem.Content>
                 <ListItem.Title style={{ color: 'white', fontWeight: 'bold' }}><Text>PER OVER 18</Text></ListItem.Title>
                 <ListItem.Subtitle style={{ color: 'white' }}><Text>20 disponibili</Text></ListItem.Subtitle>
