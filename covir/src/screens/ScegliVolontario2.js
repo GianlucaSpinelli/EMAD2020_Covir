@@ -18,7 +18,7 @@ export default function ScegliVolontario({navigation}) { //non legge immagin
             activeScale={0.95} 
              // Only if no expo
             >
-            <Avatar rounded source={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/lente2.png' }}  avatarStyle={styles.icona} containerStyle={styles.immagine}></Avatar>
+            <Avatar rounded source={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/teenage.png' }}  avatarStyle={styles.icona} containerStyle={styles.immagine}></Avatar>
             <ListItem.Content>
                 <ListItem.Title style={{ color: 'white', fontWeight: 'bold' }}><Text>PER OVER 18</Text></ListItem.Title>
                 <ListItem.Subtitle style={{ color: 'white' }}><Text>20 disponibili</Text></ListItem.Subtitle>
@@ -32,7 +32,7 @@ export default function ScegliVolontario({navigation}) { //non legge immagin
             activeScale={0.95}
              // Only if no expo
             >
-            <Avatar rounded source={{ uri: 'https://st2.depositphotos.com/3469789/10721/v/950/depositphotos_107219688-stock-illustration-magnifying-glass-flat-icon.jpg' }} avatarStyle={styles.icona} containerStyle={styles.immagine}/>
+            <Avatar rounded source={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/actress.png' }} avatarStyle={styles.icona} containerStyle={styles.immagine}/>
             <ListItem.Content>
                 <ListItem.Title style={{ color: 'white', fontWeight: 'bold' }}><Text>PER OVER 30</Text></ListItem.Title>
                 <ListItem.Subtitle style={{ color: 'white' }}><Text>12 disponibili</Text></ListItem.Subtitle>
@@ -46,7 +46,7 @@ export default function ScegliVolontario({navigation}) { //non legge immagin
             activeScale={0.95} 
             // Only if no expo
             >
-            <Avatar rounded source={{ uri: 'https://st2.depositphotos.com/3469789/10721/v/950/depositphotos_107219688-stock-illustration-magnifying-glass-flat-icon.jpg' }} avatarStyle={styles.icona} containerStyle={styles.immagine} />
+            <Avatar rounded source={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/40.png' }} avatarStyle={styles.icona} containerStyle={styles.immagine} />
             <ListItem.Content>
                 <ListItem.Title style={{ color: 'white', fontWeight: 'bold' }}><Text>PER OVER 40</Text></ListItem.Title>
                 <ListItem.Subtitle style={{ color: 'white' }}><Text>30 disponibili</Text></ListItem.Subtitle>
@@ -60,7 +60,7 @@ export default function ScegliVolontario({navigation}) { //non legge immagin
             activeScale={0.95} 
              // Only if no expo
             >
-            <Avatar rounded source={{ uri: 'https://st2.depositphotos.com/3469789/10721/v/950/depositphotos_107219688-stock-illustration-magnifying-glass-flat-icon.jpg' }} avatarStyle={styles.icona} containerStyle={styles.immagine}/>
+            <Avatar rounded source={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/grandmother.png' }} avatarStyle={styles.icona} containerStyle={styles.immagine2}/>
             <ListItem.Content>
                 <ListItem.Title style={{ color: 'white', fontWeight: 'bold' }}><Text>PER OVER 60</Text></ListItem.Title>
                 <ListItem.Subtitle style={{ color: 'white' }}><Text>1 disponibili</Text></ListItem.Subtitle>
@@ -114,6 +114,14 @@ const styles = StyleSheet.create({
                
     },
     immagine:{
+        borderTopLeftRadius:17,
+        borderTopRightRadius:17,
+        height: '100%',
+        width: '25%',
+        paddingLeft: '0%',
+        marginLeft: '0%'
+    },
+    immagine2:{
         borderTopLeftRadius:17,
         borderTopRightRadius:17,
         height: '100%',
