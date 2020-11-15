@@ -5,6 +5,7 @@ import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 import Swiper from 'react-native-swiper';
 import { BorderlessButton } from 'react-native-gesture-handler';
+import {Header} from 'react-native-elements'; 
 
 //import { AuthContext } from '../navigation/AuthProvider';
 
@@ -51,7 +52,7 @@ export default function Login({navigation}) {
           title='Accedi'
           modeValue='contained'
           labelStyle={styles.loginButtonLabel}
-          onPress={() => navigation.navigate('HomeTab')}  //{() => login(email, password)}
+          onPress={() => navigation.navigate('Home')}  //{() => login(email, password)}
         />
         <Text style={styles.register}
         onPress={() => navigation.navigate('Signup')}>Nuovo utente? Registrati qui </Text>

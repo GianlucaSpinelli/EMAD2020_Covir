@@ -5,7 +5,7 @@ import { Title } from 'react-native-paper';
 import FormButton from '../components/FormButton';
 import { Divider } from 'react-native-elements';
 
-var utente=2;
+var utente=1;
 
 const renderContentUtente = (navigation) => {
   return (
@@ -53,7 +53,7 @@ const renderContentOperatore = (navigation) => {
       backgroundColor= '#2196F3'
       modeValue='contained'
       title='DonaTempo'
-      onPress={() => navigation.navigate('AggiuntaSlot')} // logout()
+      onPress={() => navigation.navigate('Dona tempo')} // logout()
     />
     </View>
   </View>

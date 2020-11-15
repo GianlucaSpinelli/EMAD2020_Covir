@@ -12,8 +12,10 @@ import HomeScreen from '../screens/HomeScreen';
 import SignUpScreen from '../screens/SignUpScreen';
 import LoginScreen from '../screens/LoginScreen';
 import HomeStack from './HomeStack';
+import HomeTabNavigator from './HomeTabNavigator';
 
 const Tab = createBottomTabNavigator();
+const aut=false;
 
 export default function Routes() {
   /*const { user, setUser } = useContext(AuthContext);
@@ -39,7 +41,7 @@ export default function Routes() {
 
   return (
     <NavigationContainer>
-      <HomeStack/>      
+      {aut ? <HomeTabNavigator /> : <AuthStack />}      
     </NavigationContainer>
   );                          // sopra {user ? <HomeStack /> : <AuthStack />} aggiungere <HomeStack>
 }

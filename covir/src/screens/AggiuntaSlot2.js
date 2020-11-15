@@ -14,6 +14,9 @@ import { Card, Icon } from 'react-native-elements';import { color } from 'react-
 const { width, height } = Dimensions.get('screen');
 import Datepic from '../components/Pick';
 import DatePicker from 'react-native-datepicker'
+import { ScrollView } from 'react-native-gesture-handler';
+import { RadioButton } from 'react-native-paper';
+import FormButton from '../components/FormButton';
 
 
 export default function AggiuntaSlot({navigation}) {
@@ -23,6 +26,7 @@ export default function AggiuntaSlot({navigation}) {
   const [date, setDate] = useState(new Date(1598051730000));
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
+
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
@@ -42,22 +46,27 @@ export default function AggiuntaSlot({navigation}) {
   const showTimepicker = () => {
     showMode('time');
   };
+  
+  const [checked, setChecked] = React.useState('first');
 
   return (
+    <ScrollView>
     <View style={styles.container}>  
-      <View containerStyle={styles.container1} >
-        <Image
-          style={{ width: 100, height: 100, borderRadius: 100, marginBottom: '20%',marginTop: '7%', marginLeft:'7%' }}
-          source={require('../images/anziano1.jpg')}
-          />
-        <Text  style={styles.scelta}>SCEGLI LA PIATTAFORMA</Text>
-      </View>
-      <View>
-        <Card containerStyle={styles.card}>
-          </Card>
-      </View>
-        <Datepic></Datepic>   
+      
+      <Text  style={styles.scelta}>in che giorno sei disponibile?</Text>
+      <Datepic></Datepic> 
+      <FormButton
+          title='CONFERMA'
+          modeValue='contained'
+          labelStyle={styles.loginButtonLabel}
+          onPress={() => navigation.navigate('HomeTab')}  //{() => login(email, password)}
+        />
     </View>
+    </ScrollView>
+        
+      
+          
+    
   );
 };
 
@@ -68,7 +77,7 @@ const styles = StyleSheet.create({
         fontSize: 26,
         textAlign: "center",
         marginTop: 0,
-        marginBottom: 10,
+        marginBottom: 20,
         marginLeft: '10%',
         marginRight: '10%',
         color:'#1979a9',
@@ -87,15 +96,16 @@ const styles = StyleSheet.create({
             
     },
     loginButtonLabel: {
-        fontSize: 22,
+        fontSize: 15,
         marginLeft: '0%',
         textAlign: 'center'
     },
     container: {
-      backgroundColor: '#f5f5f5',
-      alignItems:'stretch',
       
-      justifyContent: 'center'
+      alignItems:'center',
+      justifyContent:'center',
+      marginTop: 100
+      
     },
     container1: {
       marginTop:'20%',
@@ -116,6 +126,22 @@ const styles = StyleSheet.create({
       height: height / 16,
       justifyContent: 'center',
       alignItems: 'center'
-    }
-        
+    },
+    welcome: {
+      flex: 1,
+      textAlign: 'center',
+      flexDirection: 'row',
+    },
+    testo:{
+        fontSize: 20,
+        textAlign: "center",
+        marginRight: '10%',
+        color:'#1979a9',
+        fontWeight: "bold",
+        alignItems: 'center'
+    },
+    loginButtonLabel: {
+      fontSize: 22,
+      
+    },     
 });
