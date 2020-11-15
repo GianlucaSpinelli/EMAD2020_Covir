@@ -16,7 +16,7 @@ export default class Pick extends Component {
   render(){
     return (
     <View>  
-      <Text style={styles.instructions}>Giorno: {this.state.date}</Text>
+      
       <DatePicker
         style={{width: 250, justifyContent:'center', position:'relative'}}
         date={this.state.date}
@@ -42,29 +42,7 @@ export default class Pick extends Component {
         }}
         onDateChange={(date) => {this.setState({date: date})}}
       />
-      <Text style={styles.instructions}>Dalle ore: {this.state.time}</Text>
-        <DatePicker
-          style={{width: 220}}
-          date={this.state.time}
-          mode="time"
-          format="HH:mm"
-          confirmBtnText="Conferma"
-          cancelBtnText="Cancella"
-          minuteInterval={30}
-          onDateChange={(time) => {this.setState({time: time});}}
-        />
-        <Text style={styles.instructions}>Alle ore: {this.state.time}</Text>
-        <DatePicker
-          style={{width: 220}}
-          date={this.state.time}
-          mode="time"
-          format="HH:mm"
-          confirmBtnText="Conferma"
-          cancelBtnText="Cancella"
-          minuteInterval={30}
-          minTime={this.state.time}
-          onDateChange={(time) => {this.setState({time: time});}}
-        />
+      <Text style={styles.instructions}>Data disponibilità: {this.state.date}</Text>
         
     </View>  
     )
@@ -84,7 +62,9 @@ const styles = StyleSheet.create({
   },
   instructions: {
     textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5
+    color: '#1979a9',
+    marginBottom: 5,
+    marginTop: 10,
+    marginBottom: 30
   }
 });
