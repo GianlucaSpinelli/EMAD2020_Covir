@@ -22,7 +22,7 @@ function Header() {
   )
 }
 
-export default function AuthStack() {
+export default function PrenotaStack({navigation}) {
     return (
       <Stack.Navigator initialRouteName='Prenota'>
          <Stack.Screen name='Prenota' component={ScegliVolontario2}  />

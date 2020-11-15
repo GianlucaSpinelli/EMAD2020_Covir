@@ -52,7 +52,7 @@ export default function Login({navigation}) {
           title='Accedi'
           modeValue='contained'
           labelStyle={styles.loginButtonLabel}
-          onPress={() => navigation.navigate('Home')}  //{() => login(email, password)}
+          onPress={() => navigation.navigate('HomeTab')}  //{() => login(email, password)}
         />
         <Text style={styles.register}
         onPress={() => navigation.navigate('Signup')}>Nuovo utente? Registrati qui </Text>

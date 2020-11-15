@@ -18,7 +18,7 @@ export default function ScegliVolontario({navigation}) { //non legge immagin
             activeScale={0.95} 
              // Only if no expo
             >
-            <Avatar rounded source={{ uri: 'https://st2.depositphotos.com/3469789/10721/v/950/depositphotos_107219688-stock-illustration-magnifying-glass-flat-icon.jpg' }}  avatarStyle={styles.icona} containerStyle={styles.immagine}></Avatar>
+            <Avatar rounded source={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/lente.png' }}  avatarStyle={styles.icona} containerStyle={styles.immagine}></Avatar>
             <ListItem.Content>
                 <ListItem.Title style={{ color: 'white', fontWeight: 'bold' }}><Text>PER OVER 18</Text></ListItem.Title>
                 <ListItem.Subtitle style={{ color: 'white' }}><Text>20 disponibili</Text></ListItem.Subtitle>
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         width: '95%',
         marginTop: 10,
-        backgroundColor: 'rgb(182,223,221)'
+        backgroundColor: 'rgb(172,213,211)'
                
     },
     card2:{
@@ -116,10 +116,10 @@ const styles = StyleSheet.create({
     immagine:{
         borderTopLeftRadius:17,
         borderTopRightRadius:17,
-        height: '135%',
-        width: '35%',
+        height: '100%',
+        width: '25%',
         paddingLeft: '0%',
-        marginLeft: '-4.2%'
+        marginLeft: '0%'
     },
     icona: {
         height:'100%',

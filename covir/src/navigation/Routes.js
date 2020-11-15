@@ -41,7 +41,7 @@ export default function Routes() {
 
   return (
     <NavigationContainer>
-      {aut ? <HomeTabNavigator /> : <AuthStack />}      
+      {aut ? <HomeTabNavigator /> : <HomeStack />}      
     </NavigationContainer>
   );                          // sopra {user ? <HomeStack /> : <AuthStack />} aggiungere <HomeStack>
 }
