@@ -169,7 +169,7 @@ export default function IlMioProfilo({navigation}) {
     },
       welcome2: {
         flex: 1,
-        marginTop: 50
+        marginTop: 10
       },
       titolo: {
         fontSize: 30,

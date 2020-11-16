@@ -27,11 +27,8 @@ class Radio extends React.Component {
 				label: 'Skype'
 			},
 			{
-				label: 'Chiamata Normale'
-			},
-			{
-				label: 'Messaggio'
-			},
+				label: 'Cellulare'
+			}
 		];
 		
 		this._renderRadioBtn = this._renderRadioBtn.bind(this);
@@ -81,7 +78,7 @@ class Radio extends React.Component {
 				</View>
 				{
 					this.state.res &&
-						<View style={{ top: 100, width: '100%', alignItems: 'center', marginTop: '0%' }}>
+						<View style={{ top: 100, width: '100%', alignItems: 'center', marginTop: '-6%' }}>
 							<Text style={{ fontSize: 13 }}>
 								Piattaforma scelta:
 							</Text>
