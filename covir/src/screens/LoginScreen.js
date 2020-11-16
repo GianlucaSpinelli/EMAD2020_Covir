@@ -31,10 +31,10 @@ export default function Login({navigation}) {
         </Swiper>
         </View>
         <View style= {styles.container2}>
-        <Image style={{ width: 80, height: 80, borderRadius: 100,marginTop: 15,marginLeft: 0}}
-                source={require('../images/logo.png')}></Image>
+        <View style= {styles.logo}><Image style={{ width: 120, height: 120, borderRadius: 100,marginTop: 8,marginLeft: 0, justifyContent: 'center',}}
+                source={require('../images/logoSF.png')}></Image></View>
         
-        <Title style={styles.titleText}>Scopri Covir</Title>
+        {/*<Title style={styles.titleText}>Scopri Covir</Title>*/}
         
           
           <FormInput
@@ -84,8 +84,9 @@ const styles = StyleSheet.create({
     titleText: {
       fontSize: 24,
       marginBottom: 10,
-      marginTop: 25,
-      textAlign: 'center'
+      marginTop: 10,
+      textAlign: 'center',
+      color: '#1979a9'
     },
     loginButtonLabel: {
       fontSize: 22,
@@ -98,7 +99,13 @@ const styles = StyleSheet.create({
       flex: 1
     },
     container2: {
-      flex: 2.5
+      flex: 2.5,
+      
+    },
+    logo: {
+      justifyContent:'center',
+      alignItems: 'center',
+      marginBottom: '-1.5%'
     },
     swiper: {
       alignItems: 'flex-start'
