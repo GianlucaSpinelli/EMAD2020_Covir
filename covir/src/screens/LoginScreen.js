@@ -1,5 +1,5 @@
 import React, { useState/*, useContext*/ } from 'react';
-import { View, StyleSheet, Text, Dimensions, Keyboard, TouchableWithoutFeedback, TextInput } from 'react-native';
+import { View, StyleSheet, Text, Dimensions, Keyboard, TouchableWithoutFeedback, TextInput, Image } from 'react-native';
 import { Title } from 'react-native-paper';
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
@@ -31,6 +31,9 @@ export default function Login({navigation}) {
         </Swiper>
         </View>
         <View style= {styles.container2}>
+        <Image style={{ width: 80, height: 80, borderRadius: 100,marginTop: 15,marginLeft: 0}}
+                source={require('../images/logo.png')}></Image>
+        
         <Title style={styles.titleText}>Scopri Covir</Title>
         
           
