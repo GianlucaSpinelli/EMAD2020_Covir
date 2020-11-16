@@ -114,20 +114,25 @@ const styles = StyleSheet.create({
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: '#9DD6EB'
+      backgroundColor: 'rgb(172,213,211)',
+      flexDirection: 'row'
     },
 
     slide2: {
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: '#97CAE5'
+      backgroundColor: 'rgb(66,156,195)',
+      flexDirection: 'row'
+
     },
     slide3: {
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: '#92BBD9'
+      backgroundColor: 'rgb(33,82,114)',
+      flexDirection: 'row'
+
     },
     text: {
       color: '#fff',
