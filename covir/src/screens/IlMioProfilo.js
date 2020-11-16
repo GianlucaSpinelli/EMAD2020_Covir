@@ -8,7 +8,7 @@ import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { FontAwesome } from '@expo/vector-icons';
 
-var utente=1;
+var utente=2;
 
 const renderContentOperatore = (navigation) => {
   return (
@@ -16,7 +16,7 @@ const renderContentOperatore = (navigation) => {
         <View style={styles.welcome}>
             <View style={styles.welcome2}>
                 <Image
-                style={{ width: 150, height: 150, borderRadius: 100,marginTop: 15,marginLeft: 10}}
+                style={{ width: 150, height: 150, borderRadius: 100,marginTop: 15,marginLeft: 0}}
                 source={require('../images/user.png')}
                 />
             </View>
@@ -41,7 +41,7 @@ const renderContentOperatore = (navigation) => {
                 />
               }
               title="  Cambio Password              "
-              buttonStyle={{borderRadius: 10,backgroundColor: '#1979a9'}}
+              buttonStyle={styles.bottone}
               onPress={() => navigation.navigate('cambioPassword')}
             />
             </View>
@@ -54,12 +54,12 @@ const renderContentOperatore = (navigation) => {
                   color="white"
                 />
               }
-              buttonStyle={{borderRadius: 10,backgroundColor: '#1979a9'}}
+              buttonStyle={styles.bottone}
               title="  Slot messi a disposizione "
               onPress={() => navigation.navigate('MieiSlot')}
             />
             </View>
-            <View style={styles.welcome6}>
+            <View style={styles.welcome7}>
             <Button
               icon={
                 <Icon
@@ -68,7 +68,7 @@ const renderContentOperatore = (navigation) => {
                   color="white"
                 />
               }
-              buttonStyle={{borderRadius: 10,backgroundColor: '#1979a9'}}
+              buttonStyle={styles.bottone}
               title="  Log-out                                "
               onPress={() => navigation.navigate('Login')}
             />

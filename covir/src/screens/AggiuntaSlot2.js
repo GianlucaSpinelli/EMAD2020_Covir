@@ -53,7 +53,8 @@ export default function AggiuntaSlot({navigation}) {
     <ScrollView>
     <View style={styles.container}>  
       
-      <Text  style={styles.scelta}>in che giorno sei disponibile?</Text>
+      <Text  style={styles.scelta}>In che giorno sei disponibile?</Text>
+      <Card containerStyle={styles.card}></Card>
       <Datepic></Datepic> 
       <FormButton
           title='CONFERMA'
@@ -77,7 +78,7 @@ const styles = StyleSheet.create({
         fontSize: 26,
         textAlign: "center",
         marginTop: 0,
-        marginBottom: 20,
+        marginBottom: '5%',
         marginLeft: '10%',
         marginRight: '10%',
         color:'#1979a9',
@@ -88,10 +89,11 @@ const styles = StyleSheet.create({
         backgroundColor:'#1979a9',
         borderWidth:0,
         height:30,
-        width:'100%', 
-        padding: 7,
-        marginBottom: '0%',
-        marginLeft: '0%'
+        width:'100%',
+        marginBottom: '3%',
+        marginLeft: '0%',
+        marginRight: '0%',
+        alignContent: 'center'
             
             
     },
@@ -104,8 +106,7 @@ const styles = StyleSheet.create({
       
       alignItems:'center',
       justifyContent:'center',
-      marginTop: 100
-      
+      marginTop: '10%'      
     },
     container1: {
       marginTop:'20%',

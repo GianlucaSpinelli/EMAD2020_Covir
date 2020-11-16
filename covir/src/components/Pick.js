@@ -16,7 +16,7 @@ export default class Pick extends Component {
   render(){
     return (
     <View>  
-      
+      <Text style={styles.instructions}>Data disponibilità: {this.state.date}</Text>
       <DatePicker
         style={{width: 250, justifyContent:'center', position:'relative'}}
         date={this.state.date}
@@ -36,13 +36,13 @@ export default class Pick extends Component {
           },
           dateInput: {
             marginLeft: 30,
-            
+            borderRadius: 10
           }
           // ... You can check the source to find the other keys.
         }}
         onDateChange={(date) => {this.setState({date: date})}}
       />
-      <Text style={styles.instructions}>Data disponibilità: {this.state.date}</Text>
+      
       <Text style={styles.instructions}>Dalle ore: {this.state.time}</Text>
         <DatePicker
           style={{width: 250,justifyContent:'center', position:'relative'}}
@@ -62,7 +62,7 @@ export default class Pick extends Component {
             },
             dateInput: {
               marginLeft: 30,
-              
+              borderRadius: 10
             }
             // ... You can check the source to find the other keys.
           }}
@@ -87,6 +87,7 @@ export default class Pick extends Component {
             },
             dateInput: {
               marginLeft: 30,
+              borderRadius: 10
               
             }
             // ... You can check the source to find the other keys.
@@ -114,7 +115,9 @@ const styles = StyleSheet.create({
     color: '#1979a9',
     marginBottom: 5,
     marginTop: 20,
-    marginBottom: 20
+    marginBottom: 20,
+    fontSize: 20,
+    fontWeight: 'bold'
   },
   scelta: {
     fontSize: 26,
