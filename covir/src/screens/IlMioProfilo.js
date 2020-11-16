@@ -6,6 +6,7 @@ import FormButton from '../components/FormButton';
 import { Divider } from 'react-native-elements';
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { FontAwesome } from '@expo/vector-icons';
 
 var utente=1;
 
@@ -16,7 +17,7 @@ const renderContentOperatore = (navigation) => {
             <View style={styles.welcome2}>
                 <Image
                 style={{ width: 150, height: 150, borderRadius: 100,marginTop: 15,marginLeft: 10}}
-                source={require('../images/anziano1.jpg')}
+                source={require('../images/user.png')}
                 />
             </View>
             <View style={styles.welcome2}>
@@ -83,8 +84,8 @@ const renderContentUtente = (navigation) => {
         <View style={styles.welcome}>
             <View style={styles.welcome2}>
                 <Image
-                style={{ width: 150, height: 150, borderRadius: 100,marginTop: 15,marginLeft: 10}}
-                source={require('../images/anziano2.jpg')}
+                style={{ width: 150, height: 150, borderRadius: 100,marginTop: 15,marginLeft: 0}}
+                source={require('../images/user.png')}
                 />
             </View>
             <View style={styles.welcome2}>
@@ -95,7 +96,7 @@ const renderContentUtente = (navigation) => {
         </View>
            
         <View style={styles.welcome3}>
-            <Title style={styles.frasesotto2}>Ciao, mi chiamo Nicola Ansanelli e ho 64 anni, vivo a Baronissi, un piccolo paesino in provincia di Salerno. In questo periodo per via della pandemia mi sento spesso molto solo, mi piacerebbe che qualuno ogni tanto potesse tenermi compagnia.</Title> 
+            <Title style={styles.frasesotto2}>Ciao, mi chiamo Gaetano Ansanelli e ho 64 anni, vivo a Baronissi, un piccolo paesino in provincia di Salerno. In questo periodo per via della pandemia mi sento spesso molto solo, mi piacerebbe che qualuno ogni tanto potesse tenermi compagnia.</Title> 
         </View>
         <View style={styles.welcome4}>
           <View style={styles.welcome5}>
@@ -107,8 +108,8 @@ const renderContentUtente = (navigation) => {
                   color="white"
                 />
               }
-              title="  Cambio Password    "
-              buttonStyle={{borderRadius: 10,backgroundColor: '#1979a9'}}
+              title="  Cambia Password    "
+              buttonStyle={styles.bottone}
               onPress={() => navigation.navigate('cambioPassword')}
             />
             </View>
@@ -121,12 +122,12 @@ const renderContentUtente = (navigation) => {
                   color="white"
                 />
               }
-              buttonStyle={{borderRadius: 10,backgroundColor: '#1979a9'}}
+              buttonStyle={styles.bottone}
               title="  I Miei Appuntamenti "
               onPress={() => navigation.navigate('IMieiAppuntamenti')}
             />
             </View>
-            <View style={styles.welcome6}>
+            <View style={styles.welcome7}>
             <Button
               icon={
                 <Icon
@@ -135,7 +136,7 @@ const renderContentUtente = (navigation) => {
                   color="white"
                 />
               }
-              buttonStyle={{borderRadius: 10,backgroundColor: '#1979a9'}}
+              buttonStyle={styles.bottone}
               title="  Log-out                       "
               onPress={() => navigation.navigate('Login')}
             />
@@ -160,6 +161,11 @@ export default function IlMioProfilo({navigation}) {
       flex: 1,
       backgroundColor: '#F5FCFF',
     },
+    bottone: {
+      borderRadius: 10,
+      backgroundColor:'rgb(172,213,211)',
+      fontWeight: "bold" 
+    },
     welcome: {
       flex: 1,
       margin: 10,
@@ -169,7 +175,7 @@ export default function IlMioProfilo({navigation}) {
     },
       welcome2: {
         flex: 1,
-        marginTop: 10
+        marginTop: '5%'
       },
       titolo: {
         fontSize: 30,
@@ -178,8 +184,9 @@ export default function IlMioProfilo({navigation}) {
       frase: {
          fontSize: 21,
          color: '#4d5354',
-         marginTop: 20,
-         fontWeight: "bold"
+         marginTop: 35,
+         fontWeight: "bold",
+         marginLeft: '-6%'
          
       },
       frasesotto2:{
@@ -191,9 +198,10 @@ export default function IlMioProfilo({navigation}) {
 
       },
       frase2: {
-        fontSize: 17,
+        fontSize: 15,
         color: '#4d5354',
-        marginTop: 20
+        marginTop: 2,
+        marginLeft: '-6%'
      },
      frasesotto:{
       fontSize: 22,
@@ -206,7 +214,11 @@ export default function IlMioProfilo({navigation}) {
         justifyContent: 'center',
         alignItems: 'center',
         color: '#ffffff',
-        margin: 10
+        marginLeft: '3%',
+        marginRight: '3%',
+        paddingTop: '5%',
+        paddingBottom: '5%',
+        borderRadius: 15
          },
       welcome4:{
           flex: 1, 
@@ -214,12 +226,20 @@ export default function IlMioProfilo({navigation}) {
       },
       welcome5:{
         flex: 1,
-        marginTop: 30,
-        marginLeft: 20
+        marginTop: '3%',
+        marginLeft: '3%',
+        width: '94%'
     },
-    welcome6:{
-      flex: 1,
-      marginLeft: 20,
-      marginTop: -20
-  },
+      welcome6:{
+        flex: 1,
+        marginTop: '-5%',
+        marginLeft: '3%',
+        width: '94%'
+    },
+      welcome7:{
+        flex: 1,
+        marginTop: '-5%',
+        marginLeft: '3%',
+        width: '94%'
+    }
   });
