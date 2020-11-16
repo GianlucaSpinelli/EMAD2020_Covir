@@ -60,7 +60,7 @@ export default function ScegliVolontario({navigation}) { //non legge immagin
             activeScale={0.95} 
              // Only if no expo
             >
-            <Avatar rounded source={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/grandmother.png' }} avatarStyle={styles.icona} containerStyle={styles.immagine2}/>
+            <Avatar rounded source={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/grandmother.png' }} avatarStyle={styles.icona} containerStyle={styles.immagine}/>
             <ListItem.Content>
                 <ListItem.Title style={{ color: 'white', fontWeight: 'bold' }}><Text>PER OVER 60</Text></ListItem.Title>
                 <ListItem.Subtitle style={{ color: 'white' }}><Text>1 disponibili</Text></ListItem.Subtitle>
@@ -114,14 +114,6 @@ const styles = StyleSheet.create({
                
     },
     immagine:{
-        borderTopLeftRadius:17,
-        borderTopRightRadius:17,
-        height: '100%',
-        width: '25%',
-        paddingLeft: '0%',
-        marginLeft: '0%'
-    },
-    immagine2:{
         borderTopLeftRadius:17,
         borderTopRightRadius:17,
         height: '100%',

@@ -58,6 +58,7 @@ export default function HomeTabNavigator() {
               activeTintColor: 'white',
               inactiveTintColor: '#1979a9',
               activeBackgroundColor: '#1979a9'
+              
             }}>
               <Tab.Screen name="Home" component={HomeScreen} />
               {utente==1 ? renderContentUtente() : renderContentOperatore() } 

@@ -26,7 +26,7 @@ export default function HomeStack({navigation}) {
 
         if (route.state) {
           if (route.state.routeNames[route.state.index] == "Home") {
-            backButton = <Button icon="logout" color="#1979a9"  onPress={() => { logout() }}></Button>
+            //backButton = <Button icon="logout" color="#1979a9"  onPress={() => { navigation.goBack() }}></Button> //logout()
           } else {
             backButton = <Button icon="keyboard-backspace" color="#1979a9"  onPress={() => { navigation.goBack() }}></Button>
           }
