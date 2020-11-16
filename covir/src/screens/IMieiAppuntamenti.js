@@ -22,16 +22,9 @@ export default function IMieiAppuntamenti({navigation}) { //non legge immagin
             title="APPUNTAMENTI DISPONIBILI"
             containerStyle={styles.app}
             data={[
-                {key: '01', title: 'Lunedì 20 Novembre', subtitle: '12:00 - 13:00'},
-                {key: '02', title: 'Lunedì 20 Novembre', subtitle: '11:00 - 12:00'},
-                {key: '03', title: 'Lunedì 20 Novembre', subtitle: '10:00 - 11:00'},
-                {key: '04', title: 'Lunedì 20 Novembre', subtitle: '12:00 - 13:00'},
-                {key: '05', title: 'Lunedì 20 Novembre', subtitle: '12:00 - 13:00'},
-                {key: '06', title: 'Lunedì 20 Novembre', subtitle: '12:00 - 13:00'},
-                {key: '07', title: 'Lunedì 20 Novembre', subtitle: '12:00 - 13:00'},
-                {key: '08', title: 'Lunedì 20 Novembre', subtitle: '12:00 - 13:00'},
-                {key: '09', title: 'Lunedì 20 Novembre', subtitle: '12:00 - 13:00'},
-                {key: '10', title: 'Lunedì 20 Novembre', subtitle: '12:00 - 13:00'},
+                {key: '01', title: 'Lunedì 20 Novembre', subtitle: '12:00 - 12:30'},
+                {key: '02', title: 'Lunedì 25 Novembre', subtitle: '11:00 - 12:00'},
+                {key: '03', title: 'Lunedì 28 Novembre', subtitle: '10:30 - 11:00'}
               ]}
               renderItem={({item}) => <Card.Title 
                                             style={styles.card}
@@ -40,7 +33,7 @@ export default function IMieiAppuntamenti({navigation}) { //non legge immagin
                                             subtitle={item.subtitle}
                                             left={(props) => <Avatar.Icon  icon={{ uri:'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/date.png'}} style={styles.icona} />}
                                             leftStyle={styles.bottoneLeft}
-                                            right={(props) => <IconButton icon={{uri:'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/x-button.png'}} style={styles.bottoneRight} onPress={() => navigation.navigate('ConfermaAppuntamento')} />}/> }/>      
+                                            right={(props) => <IconButton icon={{uri:'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/trash.png'}} style={styles.bottoneRight} onPress={() => navigation.navigate('ConfermaAppuntamento')} />}/> }/>      
      
       </View>
   
@@ -77,6 +70,7 @@ const styles = StyleSheet.create({
     card: {
         borderColor: 'rgba(172, 213, 211, 1)',
         borderTopWidth: 4,
+        borderBottomWidth: 4,
         marginTop: '0%'
     },
     testo: {

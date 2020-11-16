@@ -78,6 +78,7 @@ const styles = StyleSheet.create({
     card: {
         borderColor: 'rgba(172, 213, 211, 1)',
         borderTopWidth: 4,
+        borderBottomWidth: 4,
         marginTop: '0%'
     },
     testo: {
