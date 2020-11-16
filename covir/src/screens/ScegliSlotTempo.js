@@ -39,7 +39,7 @@ export default function ScegliSlotTempo({navigation}) { //non legge immagin
                                             title={item.title}
                                             titleStyle={styles.testo}
                                             subtitle={item.subtitle}
-                                            left={(props) => <Avatar.Icon  icon={{ uri:'https://simpleicon.com/wp-content/uploads/Calendar-3.png'}} style={styles.icona} />}
+                                            left={(props) => <Avatar.Icon  icon={{ uri:'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/signList.png'}} style={styles.icona} />}
                                             leftStyle={styles.bottoneLeft}
                                             right={(props) => <IconButton icon={{uri:'https://simpleicon.com/wp-content/uploads/arrow-35.png'}} style={styles.bottoneRight} onPress={() => navigation.navigate('ConfermaAppuntamento')} />}/> }/>      
      
@@ -60,8 +60,11 @@ const styles = StyleSheet.create({
 
     },
     icona:{
-        backgroundColor: '#007AFF',
-        borderRadius:18
+        backgroundColor: 'rgba(172, 213, 211, 1)',
+        borderRadius:0,
+        marginLeft: '-40%',
+        height: '177%'
+        
     },
     app:{
         height: '45%',
@@ -73,7 +76,7 @@ const styles = StyleSheet.create({
         marginRight: '10%'
     },
     card: {
-        borderColor: 'rgb(33,82,114)',
+        borderColor: 'rgba(172, 213, 211, 1)',
         borderTopWidth: 1.5,
         marginTop: '0%'
     },
