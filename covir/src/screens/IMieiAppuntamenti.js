@@ -38,9 +38,9 @@ export default function IMieiAppuntamenti({navigation}) { //non legge immagin
                                             title={item.title}
                                             titleStyle={styles.testo}
                                             subtitle={item.subtitle}
-                                            left={(props) => <Avatar.Icon  icon={{ uri:'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/pencil.png'}} style={styles.icona} />}
+                                            left={(props) => <Avatar.Icon  icon={{ uri:'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/date.png'}} style={styles.icona} />}
                                             leftStyle={styles.bottoneLeft}
-                                            right={(props) => <IconButton icon={{uri:'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/logout.png'}} style={styles.bottoneRight} onPress={() => navigation.navigate('ConfermaAppuntamento')} />}/> }/>      
+                                            right={(props) => <IconButton icon={{uri:'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/x-button.png'}} style={styles.bottoneRight} onPress={() => navigation.navigate('ConfermaAppuntamento')} />}/> }/>      
      
       </View>
   
