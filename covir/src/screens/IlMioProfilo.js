@@ -8,7 +8,7 @@ import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { FontAwesome } from '@expo/vector-icons';
 
-var utente=2;
+var utente=1;
 
 const renderContentOperatore = (navigation) => {
   return (
@@ -42,7 +42,7 @@ const renderContentOperatore = (navigation) => {
               }
               title="  Cambio Password              "
               buttonStyle={styles.bottone}
-              onPress={() => navigation.navigate('cambioPassword')}
+              onPress={() => navigation.navigate('CambioPass')}
             />
             </View>
             <View style={styles.welcome6}>
@@ -110,7 +110,7 @@ const renderContentUtente = (navigation) => {
               }
               title="  Cambia Password    "
               buttonStyle={styles.bottone}
-              onPress={() => navigation.navigate('cambioPassword')}
+              onPress={() => navigation.navigate('CambioPass')}
             />
             </View>
             <View style={styles.welcome6}>
@@ -124,7 +124,7 @@ const renderContentUtente = (navigation) => {
               }
               buttonStyle={styles.bottone}
               title="  I Miei Appuntamenti "
-              onPress={() => navigation.navigate('IMieiAppuntamenti')}
+              onPress={() => navigation.navigate('ImieiAppuntamenti')}
             />
             </View>
             <View style={styles.welcome7}>

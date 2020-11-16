@@ -29,6 +29,7 @@ export default function AuthStack() {
         <Stack.Screen name='Profilo' component={IlmioProfilo}  />
         <Stack.Screen name='ImieiAppuntamenti' component={Appuntamenti}  />
         <Stack.Screen name='MieiSlot' component={MieiSlot}  />
+        <Stack.Screen name='CambioPass' component={CambioPassword}  />
         
         
 
