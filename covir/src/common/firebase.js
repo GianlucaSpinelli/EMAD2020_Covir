@@ -1,4 +1,11 @@
 import * as firebase from 'firebase'; 
+import 'firebase/firestore';
+import 'firebase/auth';
+const db = firebase.firestore();
+export const createRichiedente = (username) => {
+  return db
+    .collection('richiedenti').add(username);
+}
 
 const firebaseConfig = {
     apiKey: "AIzaSyCCtUq1IhL-QqTVuBmCqRarqXM38oBbZtI",
@@ -11,7 +18,9 @@ const firebaseConfig = {
     measurementId: "G-JP11MN3ZE5"
   };
   // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+  }
+  //firebase.analytics();
 
-  export default firebase;
+  export const auth=firebase.auth();

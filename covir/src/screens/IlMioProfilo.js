@@ -1,16 +1,18 @@
-import React /*, { useContext }*/ from 'react';
+import React , { useContext } from 'react';
 import { View, StyleSheet,Image } from 'react-native';
 import { Title } from 'react-native-paper';
-//import { AuthContext } from '../navigation/AuthProvider';
+import { AuthContext } from '../navigation/AuthProvider';
 import FormButton from '../components/FormButton';
 import { Divider } from 'react-native-elements';
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { FontAwesome } from '@expo/vector-icons';
 
 var utente=1;
 
-const renderContentOperatore = (navigation) => {
+
+const renderContentOperatore = (navigation,logout) => {
+  
+
   return (
     <View style={styles.container}>
         <View style={styles.welcome}>
@@ -70,7 +72,7 @@ const renderContentOperatore = (navigation) => {
               }
               buttonStyle={styles.bottone}
               title="  Log-out                                "
-              onPress={() => navigation.navigate('Login')}
+              onPress={() => logout()}
             />
             </View>
         </View>
@@ -78,7 +80,7 @@ const renderContentOperatore = (navigation) => {
   );
 };
 
-const renderContentUtente = (navigation) => {
+const renderContentUtente = (navigation,logout) => {
   return (
     <View style={styles.container}>
         <View style={styles.welcome}>
@@ -138,7 +140,7 @@ const renderContentUtente = (navigation) => {
               }
               buttonStyle={styles.bottone}
               title="  Log-out                       "
-              onPress={() => navigation.navigate('Login')}
+              onPress={() => logout()}
             />
             </View>
         </View>
@@ -148,12 +150,12 @@ const renderContentUtente = (navigation) => {
 
 
 export default function IlMioProfilo({navigation}) {
-    //const { user, logout } = useContext(AuthContext);
+    const { logout } = useContext(AuthContext);
     return (
      <View style={styles.container}>
-      {utente==1 ? renderContentUtente(navigation) : renderContentOperatore(navigation) }
+      {utente==1 ? renderContentUtente(navigation,logout) : renderContentOperatore(navigation,logout) }
       </View> 
-    ); // {{user.uid}}
+    );
   }
   
   const styles = StyleSheet.create({

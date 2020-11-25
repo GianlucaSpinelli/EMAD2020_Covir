@@ -3,7 +3,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { View, StyleSheet, Text, Dimensions } from 'react-native';
 
 import AuthStack from './AuthStack';
-import HomeStack from './HomeStack';
 import PrenotaStack from '../navigation/PrenotaStack';
 import DonaStack from '../navigation/DonaStack';
 import ProfiloStack from '../navigation/ProfiloStack';

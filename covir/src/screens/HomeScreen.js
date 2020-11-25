@@ -1,9 +1,10 @@
-import React /*, { useContext }*/ from 'react';
+import React, { useContext } from 'react';
 import { View, StyleSheet,Image } from 'react-native';
 import { Title } from 'react-native-paper';
-//import { AuthContext } from '../navigation/AuthProvider';
+import { AuthContext } from '../navigation/AuthProvider';
 import FormButton from '../components/FormButton';
 import { Divider } from 'react-native-elements';
+
 
 var utente=1;
 
@@ -15,7 +16,7 @@ const renderContentUtente = (navigation) => {
     style={{ width: 200, height: 200, borderRadius: 100, marginBottom: 30,marginTop: 70}}
     source={require('../images/anziano1.jpg')}
     />
-    <Title style={styles.titolo}>Ciao Vincenzo!</Title> 
+    <Title style={styles.titolo}>Ciao {}</Title> 
     <Title style={styles.frase}>Prenota il tuo incontro</Title>
     </View>
     <Divider style={{ backgroundColor: '#6b7070',height: 2, width: 310, marginTop: 80}} />
@@ -62,7 +63,7 @@ const renderContentOperatore = (navigation) => {
 
 
 export default function HomeScreen({navigation}) {
-    //const { user, logout } = useContext(AuthContext);
+    const { user, logout } = useContext(AuthContext);
     return (
      <View style={styles.container}>
       {utente==1 ? renderContentUtente(navigation) : renderContentOperatore(navigation) }

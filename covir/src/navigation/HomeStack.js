@@ -20,7 +20,7 @@ function Header() {
 
 export default function HomeStack({navigation}) {
   return (
-    <Stack.Navigator initialRouteName='Auth' screenOptions={({ route, navigation }) => ({
+    <Stack.Navigator initialRouteName='HomeTab' screenOptions={({ route, navigation }) => ({
       headerLeft: () => {
         let backButton = null;
 
@@ -35,7 +35,6 @@ export default function HomeStack({navigation}) {
       }
     })}>
 
-    <Stack.Screen name='Auth' component={AuthStack} />
     <Stack.Screen name='HomeTab' component={HomeTabNavigator} />
 
     </Stack.Navigator>

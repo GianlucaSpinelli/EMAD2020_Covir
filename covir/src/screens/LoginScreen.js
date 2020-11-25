@@ -1,4 +1,4 @@
-import React, { useState/*, useContext*/ } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, StyleSheet, Text, Dimensions, Keyboard, TouchableWithoutFeedback, TextInput, Image } from 'react-native';
 import { Title } from 'react-native-paper';
 import FormInput from '../components/FormInput';
@@ -7,10 +7,11 @@ import Swiper from 'react-native-swiper';
 import { BorderlessButton } from 'react-native-gesture-handler';
 import {Header} from 'react-native-elements'; 
 
-//import { AuthContext } from '../navigation/AuthProvider';
+import { AuthContext } from '../navigation/AuthProvider';
+import CheckBox from '@react-native-community/checkbox';
 
 export default function Login({navigation}) {
-    //const { login } = useContext(AuthContext);
+    const { login } = useContext(AuthContext);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
   
@@ -55,7 +56,7 @@ export default function Login({navigation}) {
           title='Accedi'
           modeValue='contained'
           labelStyle={styles.loginButtonLabel}
-          onPress={() => navigation.navigate('HomeTab')}  //{() => login(email, password)}
+          onPress={() => login(email, password)} //navigation.navigate('HomeTab')}  
         />
         <Text style={styles.register}
         onPress={() => navigation.navigate('Signup')}>Nuovo utente? Registrati qui </Text>

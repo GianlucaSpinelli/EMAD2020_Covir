@@ -1,4 +1,4 @@
-import React, { useState/*, useContext*/ } from 'react';
+import React, { useState, useContext } from 'react';
 import {View, StyleSheet, Text, Dimensions, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import { Title } from 'react-native-paper';
 import FormInput from '../components/FormInput';
@@ -7,6 +7,8 @@ import FormButton2 from '../components/FormButton2';
 import CheckBox from '@react-native-community/checkbox';
 import Swiper from 'react-native-swiper';
 import { BorderlessButton } from 'react-native-gesture-handler';
+import { createRichiedente } from '../common/firebase';
+import { AuthContext, AuthProvider } from '../navigation/AuthProvider';
 
 function Volontario(props){
 return <FormInput labelName='Associazione' value= {props[0]} autoCapitalize='none' onChangeText={associazione => props[1](associazione)}></FormInput>;
@@ -16,6 +18,7 @@ function NVolontario(props){
 }
 export default function Registrazione({navigation}) {
     //const { login } = useContext(AuthContext);
+    const {register} = useContext(AuthContext);
     const [nome, setnome] = useState('');
     const [cognome, setcognome] = useState('');
     const [descrizione, setDescrizione] = useState('');
@@ -24,6 +27,7 @@ export default function Registrazione({navigation}) {
     const [password, setPassword] = useState('');
     const [isSelected, setSelection] = useState(false);
     const [associazione, setAssociazione] = useState('');
+    
   
     return (
       <TouchableWithoutFeedback onPress= {() => {Keyboard.dismiss();}}>
@@ -80,7 +84,7 @@ export default function Registrazione({navigation}) {
           title='Registrati'
           modeValue='contained'
           labelStyle={styles.loginButtonLabel}
-          onPress={() => navigation.navigate('HomeTab')}  //deve andare alla schermata del documento
+          onPress={() =>{ createRichiedente({ id:email, nome:nome, cognome:cognome, datanascita:DNascita, descrizione:descrizione, password:password} ); register(email, password)}} //navigation.navigate('HomeTab')}  //deve andare alla schermata del documento
         />
         </View>
       </View>
