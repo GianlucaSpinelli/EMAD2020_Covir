@@ -1,11 +1,12 @@
 import * as firebase from 'firebase'; 
 import 'firebase/firestore';
 import 'firebase/auth';
+/*
 const db = firebase.firestore();
 export const createRichiedente = (username) => {
   return db
     .collection('richiedenti').add(username);
-}
+}*/
 
 const firebaseConfig = {
     apiKey: "AIzaSyCCtUq1IhL-QqTVuBmCqRarqXM38oBbZtI",
@@ -24,3 +25,5 @@ const firebaseConfig = {
   //firebase.analytics();
 
   export const auth=firebase.auth();
+
+  export const ref=firebase.firestore();
