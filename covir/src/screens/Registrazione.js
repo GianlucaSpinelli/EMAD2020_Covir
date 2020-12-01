@@ -7,14 +7,18 @@ import FormButton2 from '../components/FormButton2';
 import CheckBox from '@react-native-community/checkbox';
 import Swiper from 'react-native-swiper';
 import { BorderlessButton } from 'react-native-gesture-handler';
-import { createRichiedente } from '../common/firebase';
 import { AuthContext, AuthProvider } from '../navigation/AuthProvider';
+import { db } from '../common/crud';
 
 function Volontario(props){
 return <FormInput labelName='Associazione' value= {props[0]} autoCapitalize='none' onChangeText={associazione => props[1](associazione)}></FormInput>;
 }
 function NVolontario(props){
   return ;
+}
+
+function registrazione(utente){
+    db.addUtente(utente,"fjfjf@libeorl.it");
 }
 export default function Registrazione({navigation}) {
     //const { login } = useContext(AuthContext);
@@ -84,7 +88,7 @@ export default function Registrazione({navigation}) {
           title='Registrati'
           modeValue='contained'
           labelStyle={styles.loginButtonLabel}
-          onPress={() =>{ createRichiedente({ id:email, nome:nome, cognome:cognome, datanascita:DNascita, descrizione:descrizione, password:password} ); register(email, password)}} //navigation.navigate('HomeTab')}  //deve andare alla schermata del documento
+          onPress={() =>{ registrazione({ nome:nome, cognome:cognome, datanascita:DNascita, descrizione:descrizione, password:password} ); register(email, password)}} //navigation.navigate('HomeTab')}  //deve andare alla schermata del documento
         />
         </View>
       </View>
