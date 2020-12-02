@@ -2,14 +2,20 @@
 import { ref } from './firebase.js';
 
 const manage={
-    addUtente:function(utenteobj,mail){
-        //convertire json
-        console.log("spnie");
-        console.log(utenteobj);
-         ref.collection("richiedenti").doc(mail)
-            .set(utenteobj)
-            .then(() => {
-                console.log('User added!');
+    addUtente:function(utenteobj){
+         ref.collection("richiedenti").add(utenteobj)
+            .then(function(docRef) {
+                console.log('User id',docRef.id);
+            }).catch(function(error) {
+                console.error("Error writing document: ", error);
+            });
+    },
+    addVolontario:function(utenteobj){
+         ref.collection("volontari").add(utenteobj)
+            .then(function(docRef) {
+                console.log('User id',docRef.id);
+            }).catch(function(error) {
+                console.error("Error writing document: ", error);
             });
     }
 }
