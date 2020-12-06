@@ -16,7 +16,7 @@ return <FormInput labelName='Associazione' value= {props[0]} autoCapitalize='non
 function NVolontario(props){
   return ;
 }
-
+/*
 function registrazione(obj,isSelected){
   if(isSelected==true){
     db.addVolontario(obj);
@@ -25,7 +25,7 @@ function registrazione(obj,isSelected){
     const utenteric={email:obj.email, nome:obj.nome, cognome:obj.cognome, datanascita:obj.datanascita, descrizione:obj.descrizione, password:obj.password};
     db.addUtente(utenteric);
   }
-}
+}*/
 export default function Registrazione({navigation}) {
     //const { login } = useContext(AuthContext);
     const {register} = useContext(AuthContext);
@@ -94,8 +94,9 @@ export default function Registrazione({navigation}) {
           title='Registrati'
           modeValue='contained'
           labelStyle={styles.loginButtonLabel}
-          //onPress={() =>{register(email, password);}} //navigation.navigate('HomeTab')}  //deve andare alla schermata del documento
-          onPress={() =>{ registrazione({email:email, nome:nome, cognome:cognome, datanascita:DNascita, descrizione:descrizione, password:password, associazione:associazione},isSelected ); register(email, password);}} //navigation.navigate('HomeTab')}  //deve andare alla schermata del documento
+          onPress={() =>{register({email:email, nome:nome, cognome:cognome, datanascita:DNascita, descrizione:descrizione, password:password, associazione:associazione},isSelected);}} //navigation.navigate('HomeTab')}  //deve andare alla schermata del documento
+          //onPress={() =>{ registrazione({email:email, nome:nome, cognome:cognome, datanascita:DNascita, descrizione:descrizione, password:password, associazione:associazione},isSelected ); register(email, password);}} //navigation.navigate('HomeTab')}  //deve andare alla schermata del documento
+          //onPress={() =>{ registrazione({email:email, nome:nome, cognome:cognome, datanascita:DNascita, descrizione:descrizione, password:password, associazione:associazione},isSelected ); register(email, password);}} //navigation.navigate('HomeTab')}  //deve andare alla schermata del documento
 
         />
         </View>

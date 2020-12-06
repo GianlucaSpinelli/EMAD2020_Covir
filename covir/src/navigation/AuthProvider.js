@@ -1,5 +1,6 @@
 import React, { createContext, useState } from 'react';
 import {auth} from '../common/firebase';
+import { db } from '../common/crud';
 
 export const AuthContext = createContext({});
 
@@ -18,9 +19,16 @@ export const AuthProvider = ({ children }) => {
               console.log(e);
             }
           },
-          register: async (email, password) => {
+          register: async (utenteobj,isSelected) => {
             try {
-              await auth.createUserWithEmailAndPassword(email, password);
+              if(isSelected==true){
+                db.addVolontario(utenteobj);
+              }
+              else{
+                const utenteric={email:utenteobj.email, nome:utenteobj.nome, cognome:utenteobj.cognome, datanascita:utenteobj.datanascita, descrizione:utenteobj.descrizione, password:utenteobj.password};
+                db.addUtente(utenteric);
+              }
+              await auth.createUserWithEmailAndPassword(utenteobj.email, utenteobj.password);
             } catch (e) {
               console.log(e);
             }
