@@ -1,9 +1,10 @@
 // './firebase.js';
+import ListAccordionGroup from 'react-native-paper/lib/typescript/src/components/List/ListAccordionGroup';
 import { ref } from './firebase.js';
 
 const manage={
     addUtente:function(utenteobj){
-         ref.collection("richiedenti").add(utenteobj)
+         ref.collection("richiedenti").add(utenteobj)      //.doc("spinelli@gmail.it").set(obj)
             .then(function(docRef) {
                 console.log('User id',docRef.id);
             }).catch(function(error) {
@@ -21,7 +22,7 @@ const manage={
     addAppuntamento:function(appuntamentoobj){
         ref.collection("appuntamenti").add(appuntamentoobj)
            .then(function(docRef) {
-               //aggiornare numero appuntamenti al volontario e al richiedente
+               //prenotare lo slot
                console.log('appuntamento id',docRef.id);
            }).catch(function(error) {
                console.error("Error writing document: ", error);
@@ -39,7 +40,6 @@ const manage={
     removeSlot:function(chiaveslot){
         ref.collection("slot").doc(chiaveslot).delete()
         .then(function() {
-            //aggiornare numero slot del volontario dello slot tolto
             console.log("Document successfully deleted!");
             //rimuovere l'appuntamento a cui fa riferimento
         }).catch(function(error) {
@@ -49,7 +49,6 @@ const manage={
     removeAppuntamento:function(chiaveapp){
         ref.collection("richiedenti").doc(chiaveapp).delete()
         .then(function() {
-            //aggiornare numero appuntamenti del volontario dell appuntamento tolo
             console.log("Document successfully deleted!");
             //mettere a "libero" lo slot a cui fa riferimento e togliergli da lì la chiave esterna
         }).catch(function(error) {
@@ -59,7 +58,7 @@ const manage={
     //AGGIUNGERE I RETURN AI GET
     getAppuntamento:function(chiaveappuntamento){
         var docRef = ref.collection("appuntamenti").doc(chiaveappuntamento);
-        docRef.get().then(function(doc) {
+        return docRef.get().then(function(doc) {
             if (doc.exists) {
                 console.log("Document data:", doc.data());
             } else {
@@ -71,8 +70,8 @@ const manage={
         });        
     },
     getSlot:function(chiaveslot){
-        var docRef = ref.collection("slot").doc(chiaveslot);
-        docRef.get().then(function(doc) {
+        const docRef = ref.collection("slot").doc(chiaveslot)
+        return  docRef.get().then(function(doc) {
             if (doc.exists) {
                 console.log("Document data:", doc.data());
             } else {
@@ -83,34 +82,29 @@ const manage={
             console.log("Error getting document:", error);
         });        
     },
-    getAllAppuntamentiByUtente:function(emailutente){
-        ref.collection("appuntamenti").where("emailrichiedente", "==", emailutente).orderBy("data","asc")
+    getAllAppuntamentiByUtente:async function(emailutente){ //FUNONZ
+         //return await ref.collection("appuntamenti").where("mailrichiedente", "==", emailutente)
+        //.get();
+        return await ref.collection("appuntamenti").where("mailrichiedente", "==", emailutente)
         .get()
         .then(function(querySnapshot) {
-        querySnapshot.forEach(function(doc) {
-            // doc.data() is never undefined for query doc snapshots
-            console.log(doc.id, " => ", doc.data());
-        });
+            querySnapshot.forEach(function(doc) {
+                // doc.data() is never undefined for query doc snapshots
+                lista
+                console.log(doc.id, " => ", doc.data());
+            });
         })
         .catch(function(error) {
-        console.log("Error getting documents: ", error);
-        });
+            console.log("GIORDANO");
+            console.log("Error getting documents: ", error);
+        });    
     },
-    getAllAppuntamentiByVolontario:function(emailvolontario){
-        ref.collection("appuntamenti").where("emailvolontario", "==", emailvolontario).orderBy("data","asc")
-        .get()
-        .then(function(querySnapshot) {
-        querySnapshot.forEach(function(doc) {
-            // doc.data() is never undefined for query doc snapshots
-            console.log(doc.id, " => ", doc.data());
-        });
-        })
-        .catch(function(error) {
-        console.log("Error getting documents: ", error);
-        });
+    getAllAppuntamentiByVolontario:async function(emailvolontario){
+        return await ref.collection("appuntamenti").where("mailvolontario", "==", emailvolontario)
+        .get();
     },
     getAllSlotByVolontario:function(emailvolontario){
-        ref.collection("slot").where("email", "==", emailvolontario).orderBy("data","asc")
+        return ref.collection("slot").where("email", "==", emailvolontario).orderBy("data","asc")
         .get()
         .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
@@ -122,9 +116,8 @@ const manage={
         console.log("Error getting documents: ", error);
         });
     },
-    getUtente:function(chiaveutente){
-        var docRef = ref.collection("richiedenti").doc(chiaveutente);
-        docRef.get().then(function(doc) {
+    getUtente:async function(chiaveutente){  //FUNONZ
+        return await ref.collection("richiedenti").doc(chiaveutente).get().then(function(doc) {
             if (doc.exists) {
                 console.log("Document data:", doc.data());
             } else {
@@ -137,7 +130,7 @@ const manage={
     },
     getVolontario:function(chiavevolontario){
         var docRef = ref.collection("volontari").doc(chiavevolontario);
-        docRef.get().then(function(doc) {
+        return docRef.get().then(function(doc) {
             if (doc.exists) {
                 console.log("Document data:", doc.data());
             } else {
@@ -149,7 +142,33 @@ const manage={
         });        
     },
     getVolontariByEta:function(eta){
-        ref.collection("volontari").where("eta", ">=", eta)
+        return ref.collection("volontari").where("eta", ">=", eta)
+        .get()
+        .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.id, " => ", doc.data());
+        });
+        })
+        .catch(function(error) {
+        console.log("Error getting documents: ", error);
+        });
+    },
+    getVolontarioByMail:function(mail){
+        return ref.collection("volontari").where("email", "==", mail)
+        .get()
+        .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.id, " => ", doc.data());
+        });
+        })
+        .catch(function(error) {
+        console.log("Error getting documents: ", error);
+        });
+    },
+    getRichiedenteByMail:function(mail){
+        return ref.collection("richiedenti").where("email", "==", mail)
         .get()
         .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {

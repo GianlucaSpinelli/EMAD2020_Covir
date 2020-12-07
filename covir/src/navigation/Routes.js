@@ -18,7 +18,7 @@ const aut=false;
 
 
 export default function Routes() {
-  const { user, setUser } = useContext(AuthContext);
+  const { user, setUser } = useContext(AuthContext);  //COME QUA
   const [loading, setLoading] = useState(true);
   const [initializing, setInitializing] = useState(true);
   console.log(user);

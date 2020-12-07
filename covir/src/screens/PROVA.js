@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React from 'react';
 import { Title } from 'react-native-paper';
 import { IconButton, List, Card, Avatar } from 'react-native-paper';
 import { View, Text, Image, StyleSheet, VirtualizedList,ActivityIndicator } from 'react-native'
@@ -7,38 +7,28 @@ import { FlatList, ScrollView } from 'react-native-gesture-handler';
 import TouchableScale from 'react-native-touchable-scale'; // https://github.com/kohver/react-native-touchable-scale
 import { LinearGradient } from 'expo-linear-gradient';
 import { db } from '../common/crud'; 
-import { AuthContext } from '../navigation/AuthProvider';
 
 export default function IMieiAppuntamenti({navigation}) {
+  
   const [loading,setLoading] = useState(true);
   const [result,setResult] = useState('');
-  const { user, setUser } = useContext(AuthContext); 
-
 
   useEffect(() => {     //per far partire la fetch appena viene creato lo screen, senno la chiamavo sull on press di un button la getWallet
     caricaDati();
   }, []);
 
-  async function caricaDati(){
-    console.log(user.email);
-    var lista = db.getAllAppuntamentiByUtente(user.email);
-    console.warn(lista);
-    /*.forEach(function(doc) {
-      // doc.data() is never undefined for query doc snapshots
-      console.log(doc.id, " => ", doc.data().info);*/
-    };
-    //const app = db.getAllAppuntamentiByUtente(user.email);
-/*
-    if(db.getRichiedenteByMail(user.email)!=null){
-       res=  db.getAllAppuntamentiByUtente(user.email);
+  function caricaDati(){
+    const res;
+    const tipo=1;
+    if(tipo==1){
+       res= db.getAllAppuntamentiByUtente("cc@cc.it");
     }
     else{
-        res= db.getAllAppuntamentiByVolontario(user.email);
+        res= db.getAllAppuntamentiByVolontario(mail);
     }
     setLoading(false);
     this.setResult(res);
-    */
-
+  }
 
   
 const renderContent =()=>{
@@ -54,11 +44,11 @@ const renderContent =()=>{
                         scrollEnabled={true}
                         title="APPUNTAMENTI DISPONIBILI"
                         containerStyle={styles.app}
-                        data={[
+                        /*data={[
                             { key: '01', title: 'Lunedì 20 Novembre', subtitle: '12:00 - 12:30' },
                             { key: '02', title: 'Lunedì 25 Novembre', subtitle: '11:00 - 12:00' },
                             { key: '03', title: 'Lunedì 28 Novembre', subtitle: '10:30 - 11:00' }
-                        ]}
+                        ]}*/
                         data={result}
                         renderItem={({ item }) => <Card.Title
                             style={styles.card}
@@ -79,7 +69,7 @@ const renderContent =()=>{
             {renderContent()}
     </View>
   );
-  }
+}
 
 const styles = StyleSheet.create({
     scelta: {
