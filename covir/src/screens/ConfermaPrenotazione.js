@@ -57,7 +57,8 @@ const styles = StyleSheet.create({
     loginButtonLabel: {
         fontSize: 22,
         marginLeft: '0%',
-        textAlign: 'center'
+        textAlign: 'center',
+        color: '#ffffff'
     },
     container: {
         flex:1

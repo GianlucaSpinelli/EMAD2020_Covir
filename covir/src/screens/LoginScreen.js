@@ -9,6 +9,7 @@ import {Header} from 'react-native-elements';
 
 import { AuthContext } from '../navigation/AuthProvider';
 import CheckBox from '@react-native-community/checkbox';
+import { color } from 'react-native-reanimated';
 
 export default function Login({navigation}) {
     const { login } = useContext(AuthContext);
@@ -38,17 +39,18 @@ export default function Login({navigation}) {
         {/*<Title style={styles.titleText}>Scopri Covir</Title>*/}
         
           
-          <FormInput
+          <FormInput 
             labelName='Email'
             value={email}
             autoCapitalize='none'
             onChangeText={userEmail => setEmail(userEmail)}
           />
-          <FormInput
+          <FormInput 
             labelName='Password'
             value={password}
             secureTextEntry={true}
             onChangeText={userPassword => setPassword(userPassword)}
+            
           />
           
         
@@ -91,7 +93,8 @@ const styles = StyleSheet.create({
     },
     loginButtonLabel: {
       fontSize: 22,
-      marginLeft: '41%'
+      marginLeft: '41%',
+      color: '#ffffff'
     },
     navButtonText: {
       fontSize: 16

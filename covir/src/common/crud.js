@@ -1,5 +1,4 @@
 // './firebase.js';
-import ListAccordionGroup from 'react-native-paper/lib/typescript/src/components/List/ListAccordionGroup';
 import { ref } from './firebase.js';
 
 const manage={
@@ -82,23 +81,38 @@ const manage={
             console.log("Error getting document:", error);
         });        
     },
-    getAllAppuntamentiByUtente:async function(emailutente){ //FUNONZ
+    
+    getAllAppuntamentiByUtente: async   function(emailutente){ //FUNONZ
+        //return await ref.collection("appuntamenti").where("mailrichiedente", "==", emailutente)
+       //.get();
+       var lista = [];
+       const n =  ref.collection("appuntamenti").get().then(querySnapshot => {
+        
+        querySnapshot.forEach(doc => {
+                lista.push(doc.data());
+                //console.log(doc.data());
+           })
+           
+       });
+       try {
+           await n;
+           return lista;
+       } catch (error) {
+           
+       }       
+   },
+    
+
+   /* getAllAppuntamentiByUtente:async function(emailutente){ //FUNONZ
          //return await ref.collection("appuntamenti").where("mailrichiedente", "==", emailutente)
         //.get();
         return await ref.collection("appuntamenti").where("mailrichiedente", "==", emailutente)
         .get()
-        .then(function(querySnapshot) {
-            querySnapshot.forEach(function(doc) {
-                // doc.data() is never undefined for query doc snapshots
-                lista
-                console.log(doc.id, " => ", doc.data());
-            });
-        })
         .catch(function(error) {
             console.log("GIORDANO");
             console.log("Error getting documents: ", error);
         });    
-    },
+    },*/
     getAllAppuntamentiByVolontario:async function(emailvolontario){
         return await ref.collection("appuntamenti").where("mailvolontario", "==", emailvolontario)
         .get();

@@ -11,7 +11,7 @@ import { AuthContext } from '../navigation/AuthProvider';
 
 export default function IMieiAppuntamenti({navigation}) {
   const [loading,setLoading] = useState(true);
-  const [result,setResult] = useState('');
+  const [result,setResult] = useState([]);
   const { user, setUser } = useContext(AuthContext); 
 
 
@@ -19,29 +19,23 @@ export default function IMieiAppuntamenti({navigation}) {
     caricaDati();
   }, []);
 
-  async function caricaDati(){
+   async function caricaDati(){
     console.log(user.email);
-    var lista = db.getAllAppuntamentiByUtente(user.email);
-    console.warn(lista);
-    /*.forEach(function(doc) {
-      // doc.data() is never undefined for query doc snapshots
-      console.log(doc.id, " => ", doc.data().info);*/
-    };
-    //const app = db.getAllAppuntamentiByUtente(user.email);
-/*
-    if(db.getRichiedenteByMail(user.email)!=null){
-       res=  db.getAllAppuntamentiByUtente(user.email);
-    }
-    else{
-        res= db.getAllAppuntamentiByVolontario(user.email);
-    }
-    setLoading(false);
-    this.setResult(res);
-    */
+ 
+    var list = await db.getAllAppuntamentiByUtente(user.email);
+    console.log(list[0].piattaforma);
 
+    
+    setLoading(false);
+    setResult( list/*oldArray => [...oldArray, {
+      piattaforma: list[0].piattaforma,
+      mailvolontario: list[0].mailvolontario,
+      info: list[0].info
+    }]*/
+    )};
 
   
-const renderContent =()=>{
+/*const renderContent =()=>{
   if(loading){
     return (
       <ActivityIndicator size="small" color={"#000000"}/>
@@ -54,17 +48,13 @@ const renderContent =()=>{
                         scrollEnabled={true}
                         title="APPUNTAMENTI DISPONIBILI"
                         containerStyle={styles.app}
-                        data={[
-                            { key: '01', title: 'Lunedì 20 Novembre', subtitle: '12:00 - 12:30' },
-                            { key: '02', title: 'Lunedì 25 Novembre', subtitle: '11:00 - 12:00' },
-                            { key: '03', title: 'Lunedì 28 Novembre', subtitle: '10:30 - 11:00' }
-                        ]}
+                        
                         data={result}
                         renderItem={({ item }) => <Card.Title
                             style={styles.card}
-                            title={item.dataapp}
+                            title={item.piattaforma}
                             titleStyle={styles.testo}
-                            subtitle={item.ora}
+                            subtitle={item.mailvolontario}
                             left={(props) => <Avatar.Icon icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/date.png' }} style={styles.icona} />}
                             leftStyle={styles.bottoneLeft}
                             right={(props) => <IconButton icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/trash.png' }} style={styles.bottoneRight} onPress={() => navigation.navigate('ConfermaAppuntamento')} />} />} />
@@ -72,11 +62,28 @@ const renderContent =()=>{
                 </View>
     )
   }
-}
+}*/
 
   return (
     <View> 
-            {renderContent()}
+            <View>
+                    <Text style={styles.scelta}>APPUNTAMENTI DISPONIBILI:</Text>
+                    <FlatList
+                        scrollEnabled={true}
+                        title="APPUNTAMENTI DISPONIBILI"
+                        containerStyle={styles.app}
+                        
+                        data={result}
+                        renderItem={({ item }) => <Card.Title
+                            style={styles.card}
+                            title={item.piattaforma}
+                            titleStyle={styles.testo}
+                            subtitle={item.info}
+                            left={(props) => <Avatar.Icon icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/date.png' }} style={styles.icona} />}
+                            leftStyle={styles.bottoneLeft}
+                            right={(props) => <IconButton icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/trash.png' }} style={styles.bottoneRight} onPress={() => navigation.navigate('ConfermaAppuntamento')} />} />} />
+
+                </View>
     </View>
   );
   }
