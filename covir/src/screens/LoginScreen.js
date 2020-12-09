@@ -55,7 +55,7 @@ export default function Login({navigation}) {
           
         
         <FormButton
-          title='Accedi'
+          title='         Accedi'
           modeValue='contained'
           labelStyle={styles.loginButtonLabel}
           onPress={() => login(email, password)} //navigation.navigate('HomeTab')}  
@@ -91,11 +91,7 @@ const styles = StyleSheet.create({
       textAlign: 'center',
       color: '#1979a9'
     },
-    loginButtonLabel: {
-      fontSize: 22,
-      marginLeft: '41%',
-      color: '#ffffff'
-    },
+
     navButtonText: {
       fontSize: 16
     },

@@ -12,7 +12,7 @@ export default function FormButton({ title, modeValue, ...rest }) {
       {...rest}
       style={styles.button}
       contentStyle={styles.buttonContainer}
-      labelStyle={styles.loginButtonLabel}
+      labelStyle={styles.loginButtonLabell}
     >
       {title}
     </Button>
@@ -22,12 +22,11 @@ export default function FormButton({ title, modeValue, ...rest }) {
 
 const styles = StyleSheet.create({
   button: {
-
     marginTop: 43,
     backgroundColor: '#1979a9',
     borderRadius: 9
   },
-  loginButtonLabel: {
+  loginButtonLabell: {
     fontSize: 22,
     color: '#ffffff'
   },
