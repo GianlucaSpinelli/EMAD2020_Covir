@@ -15,10 +15,11 @@ import IlmioProfilo from '../screens/IlMioProfilo';
 import DonaTempo from '../screens/DonaTempo';
 import { HeaderBackground } from '@react-navigation/stack';
 import ScegliVol from '../screens/ScegliVolontario2';
+import HomeStack from './HomeStack';
 
 
 const Tab = createBottomTabNavigator();
-const utente=1;
+const utente=2;
 
 const renderContentUtente = () => {
   return (
@@ -44,7 +45,7 @@ export default function HomeTabNavigator() {
                 } else if (route.name === 'Prenota') {
                   iconName = focused ? 'ios-list-box' : 'ios-list-box';
                 }else if (route.name === 'Il mio Profilo') {
-                  iconName = focused ? 'ios-list' : 'ios-list';
+                  iconName = focused ? 'ios-person' : 'ios-person';
                 }else if (route.name === 'Dona tempo') {
                   iconName = focused ? 'ios-time' : 'ios-time';
                 }
@@ -59,10 +60,10 @@ export default function HomeTabNavigator() {
               activeBackgroundColor: '#1979a9'
               
             }}>
-              <Tab.Screen name="Home" component={HomeScreen} />
+              <Tab.Screen name="Home" component={HomeStack} />
               {utente==1 ? renderContentUtente() : renderContentOperatore() } 
               <Tab.Screen name="Il mio Profilo" component={ProfiloStack} />
           </Tab.Navigator>         
         
-      );                          // sopra {user ? <HomeStack /> : <AuthStack />} aggiungere <HomeStack>
+      );                         
     }

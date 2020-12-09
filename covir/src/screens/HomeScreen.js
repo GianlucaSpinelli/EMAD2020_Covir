@@ -6,7 +6,7 @@ import FormButton from '../components/FormButton';
 import { Divider } from 'react-native-elements';
 
 
-var utente=1;
+var utente=2;
 
 const renderContentUtente = (navigation) => {
   return (

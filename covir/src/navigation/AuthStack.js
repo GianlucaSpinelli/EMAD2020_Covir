@@ -18,8 +18,22 @@ function Header() {
 export default function AuthStack() {
     return (
       <Stack.Navigator initialRouteName='Login'>
-        <Stack.Screen name='Login' component={LoginScreen} />
-        <Stack.Screen name='Signup' component={SignUpScreen} />
+        <Stack.Screen name='Login' component={LoginScreen}
+        options={{
+          title: 'Login',
+          headerStyle: {
+            backgroundColor: '#1979a9',
+          },
+          headerTintColor: '#fff',
+        }} />
+        <Stack.Screen name='Signup' component={SignUpScreen}
+        options={{
+          title: 'Registrati',
+          headerStyle: {
+            backgroundColor: '#1979a9',
+          },
+          headerTintColor: '#fff',
+        }} />
       
 
 

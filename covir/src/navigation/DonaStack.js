@@ -22,11 +22,24 @@ function Header() {
   )
 }
 
-export default function AuthStack() {
+export default function DonaStack() {
     return (
       <Stack.Navigator initialRouteName='AggiuntaSlot'>
-        <Stack.Screen name='AggiuntaSlot' component={AggiuntaSlot2}  />
-        <Stack.Screen name='MieiSlot' component={MieiSlot}  />
+        <Stack.Screen name='AggiuntaSlot' component={AggiuntaSlot2} options={{
+          title: 'Nuovo slot',
+          headerStyle: {
+            backgroundColor: '#1979a9',
+          },
+          headerTintColor: '#fff',
+        }} />
+        <Stack.Screen name='MieiSlot' component={MieiSlot} 
+        options={{
+          title: 'Miei slot',
+          headerStyle: {
+            backgroundColor: '#1979a9',
+          },
+          headerTintColor: '#fff',
+        }} />
         
         
 

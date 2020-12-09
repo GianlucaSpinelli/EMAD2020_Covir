@@ -7,7 +7,6 @@ import { View, Text, Image } from 'react-native';
 import PrenotaStack from '../navigation/PrenotaStack';
 import { Button} from 'react-native-paper';
 
-
 const Stack = createStackNavigator();
 
 
@@ -20,7 +19,7 @@ function Header() {
 
 export default function HomeStack({navigation}) {
   return (
-    <Stack.Navigator initialRouteName='HomeTab' screenOptions={({ route, navigation }) => ({
+    <Stack.Navigator initialRouteName='HomeTab' /*screenOptions={({ route, navigation }) => ({
       headerLeft: () => {
         let backButton = null;
 
@@ -33,9 +32,15 @@ export default function HomeStack({navigation}) {
         } 
         return backButton;
       }
-    })}>
+    })}*/>
 
-    <Stack.Screen name='HomeTab' component={HomeTabNavigator} />
+    <Stack.Screen name='HomeTab' component={HomeScreen} options={{
+                title: 'Home',
+                headerStyle: {
+                  backgroundColor: '#1979a9',
+                },
+                headerTintColor: '#fff',
+              }}/>
 
     </Stack.Navigator>
   );

@@ -23,13 +23,41 @@ function Header() {
   )
 }
 
-export default function AuthStack() {
+export default function ProfiloStack() {
     return (
       <Stack.Navigator initialRouteName='Profilo'>
-        <Stack.Screen name='Profilo' component={IlmioProfilo}  />
-        <Stack.Screen name='ImieiAppuntamenti' component={Appuntamenti}  />
-        <Stack.Screen name='MieiSlot' component={MieiSlot}  />
-        <Stack.Screen name='CambioPass' component={CambioPassword}  />
+        <Stack.Screen name='Profilo' component={IlmioProfilo}
+        options={{
+          title: 'Profilo',
+          headerStyle: {
+            backgroundColor: '#1979a9',
+          },
+          headerTintColor: '#fff',
+        }}  />
+        <Stack.Screen name='ImieiAppuntamenti' component={Appuntamenti}
+        options={{
+          title: 'Appuntamenti',
+          headerStyle: {
+            backgroundColor: '#1979a9',
+          },
+          headerTintColor: '#fff',
+        }}  />
+        <Stack.Screen name='MieiSlot' component={MieiSlot} 
+        options={{
+          title: 'Miei slot',
+          headerStyle: {
+            backgroundColor: '#1979a9',
+          },
+          headerTintColor: '#fff',
+        }} />
+        <Stack.Screen name='CambioPass' component={CambioPassword} 
+        options={{
+          title: 'Cambio password',
+          headerStyle: {
+            backgroundColor: '#1979a9',
+          },
+          headerTintColor: '#fff',
+        }} />
         
         
 

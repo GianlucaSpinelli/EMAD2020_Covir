@@ -25,10 +25,31 @@ function Header() {
 export default function PrenotaStack({navigation}) {
     return (
       <Stack.Navigator initialRouteName='Prenota'>
-         <Stack.Screen name='Prenota' component={ScegliVolontario2}  />
-        <Stack.Screen name='ScegliTempo' component={ScegliSlot} />
+         <Stack.Screen name='Prenota' component={ScegliVolontario2}
+         options={{
+          title: "Scegli l'operatore",
+          headerStyle: {
+            backgroundColor: '#1979a9',
+          },
+          headerTintColor: '#fff',
+        }}  />
+        <Stack.Screen name='ScegliTempo' component={ScegliSlot}
+        options={{
+          title: 'Scegli slot',
+          headerStyle: {
+            backgroundColor: '#1979a9',
+          },
+          headerTintColor: '#fff',
+        }} />
     
-        <Stack.Screen name='ConfermaAppuntamento' component={ConfermaPrenot}/>
+        <Stack.Screen name='ConfermaAppuntamento' component={ConfermaPrenot}
+        options={{
+          title: 'Piattaforma',
+          headerStyle: {
+            backgroundColor: '#1979a9',
+          },
+          headerTintColor: '#fff',
+        }} />
        
         
 
