@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import DatePicker from 'react-native-datepicker'
+import DatePicker from '@react-native-community/datetimepicker'
 import {
   StyleSheet,
   Text,
@@ -19,7 +19,7 @@ export default class Pick extends Component {
       <Text style={styles.instructions}>Data disponibilità: {this.state.date}</Text>
       <DatePicker
         style={{width: 250, justifyContent:'center', position:'relative'}}
-        date={this.state.date}
+        value={this.state.date}
         mode="date"
         placeholder="select date"
         format="YYYY-MM-DD"
@@ -46,7 +46,7 @@ export default class Pick extends Component {
       <Text style={styles.instructions}>Dalle ore: {this.state.time}</Text>
         <DatePicker
           style={{width: 250,justifyContent:'center', position:'relative'}}
-          date={'09:00'}
+          value={'09:00'}
           mode="time"
           format="HH:mm"
           confirmBtnText="Conferma"
@@ -70,7 +70,7 @@ export default class Pick extends Component {
         <Text style={styles.instructions}>Alle ore: {this.state.time}</Text>
         <DatePicker
           style={{width: 250,justifyContent:'center', position:'relative'}}
-          date={'09:30'}
+          value={'09:30'}
           mode="time"
           format="HH:mm"
           confirmBtnText="Conferma"
