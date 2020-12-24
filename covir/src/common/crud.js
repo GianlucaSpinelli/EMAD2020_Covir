@@ -45,7 +45,8 @@ const manage={
             console.error("Error removing document: ", error);
         });
     },
-    removeAppuntamento:function(chiaveapp){
+    removeAppuntamento:async function(idslot){
+        /*
         ref.collection("richiedenti").doc(chiaveapp).delete()
         .then(function() {
             console.log("Document successfully deleted!");
@@ -53,6 +54,18 @@ const manage={
         }).catch(function(error) {
             console.error("Error removing document: ", error);
         });
+        */
+        try {
+            console.log(idslot);
+            var docref = ref.collection("appuntamenti").where("idslot","==",idslot).get();
+            console.log(docref);
+            ref.forEach((doc) => {
+              console.log(doc);
+              doc.ref.delete();
+            });
+          } catch (error) {
+            console.log(error);
+          }
     },
     //AGGIUNGERE I RETURN AI GET
     getAppuntamento:function(chiaveappuntamento){
@@ -68,18 +81,22 @@ const manage={
             console.log("Error getting document:", error);
         });        
     },
-    getSlot:function(chiaveslot){
-        const docRef = ref.collection("slot").doc(chiaveslot)
-        return  docRef.get().then(function(doc) {
+    getSlot:async function(chiaveslot){
+        var slot;
+        const n = ref.collection("slot").doc(chiaveslot).get().then(function(doc) {
             if (doc.exists) {
-                console.log("Document data:", doc.data());
+                slot= doc.data();
             } else {
                 // doc.data() will be undefined in this case
                 console.log("No such document!");
             }
-        }).catch(function(error) {
-            console.log("Error getting document:", error);
-        });        
+        });
+        try {
+            await n;
+            return slot;
+        } catch (error) {
+            
+        } 
     },
     
     getAllAppuntamentiByUtente: async   function(emailutente){ //FUNONZ

@@ -13,6 +13,7 @@ export default function IMieiAppuntamenti({navigation}) {
   const [loading,setLoading] = useState(true);
   const [result,setResult] = useState([]);
   const { user, setUser } = useContext(AuthContext); 
+  const [chiave,setChiave] = useState("");
 
 
   useEffect(() => {     //per far partire la fetch appena viene creato lo screen, senno la chiamavo sull on press di un button la getWallet
@@ -23,11 +24,30 @@ export default function IMieiAppuntamenti({navigation}) {
     console.log(user.email);
  
     var list = await db.getAllAppuntamentiByUtente(user.email);
+    var listaslot = [];
     console.log(list[0].piattaforma);
-
-    
+    for(i=0;i<list.length;i++){
+      var chiaveslot= list[0].chiaveslot;
+      var slot= await db.getSlot(chiaveslot);
+      const datajs = slot.dataorainizio.toDate();
+      var dataoggi= new Date(Date.now()+(10*60*1000));
+      console.log(slot.documentID);
+      setChiave(slot.documentID);
+      console.log(dataoggi);
+      if(datajs>dataoggi){
+        listaslot.push(slot); 
+      }  
+      /*
+      const datajs = slot.dataorainizio.toDate().toDateString();
+      const inizio = slot.inizio;
+      const fine = slot.fine;
+      console.log(datajs);
+      console.log(inizio);
+      console.log(fine);
+      */
+    }
     setLoading(false);
-    setResult( list/*oldArray => [...oldArray, {
+    setResult( listaslot/*oldArray => [...oldArray, {
       piattaforma: list[0].piattaforma,
       mailvolontario: list[0].mailvolontario,
       info: list[0].info
@@ -76,12 +96,12 @@ export default function IMieiAppuntamenti({navigation}) {
                         data={result}
                         renderItem={({ item }) => <Card.Title
                             style={styles.card}
-                            title={item.piattaforma}
+                            title={item.dataorainizio.toDate().toDateString()}
                             titleStyle={styles.testo}
-                            subtitle={item.info}
+                            subtitle={item.chiavevolontario}
                             left={(props) => <Avatar.Icon icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/date.png' }} style={styles.icona} />}
                             leftStyle={styles.bottoneLeft}
-                            right={(props) => <IconButton icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/trash.png' }} style={styles.bottoneRight} onPress={() => navigation.navigate('ConfermaAppuntamento')} />} />} />
+                            right={(props) => <IconButton icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/trash.png' }} style={styles.bottoneRight} onPress={() => db.removeAppuntamento(item.id)} />} />} />
 
                 </View>
     </View>
