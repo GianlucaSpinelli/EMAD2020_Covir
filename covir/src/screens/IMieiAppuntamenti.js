@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Title } from 'react-native-paper';
-import { IconButton, List, Card, Avatar } from 'react-native-paper';
+import { IconButton,Portal,Paragraph,Dialog, Card, Avatar } from 'react-native-paper';
 import { View, Text, Image, StyleSheet, VirtualizedList,ActivityIndicator } from 'react-native'
 import {ListItem, Button, Icon, SocialIcon } from 'react-native-elements'
 import { FlatList, ScrollView } from 'react-native-gesture-handler';
@@ -8,20 +8,28 @@ import TouchableScale from 'react-native-touchable-scale'; // https://github.com
 import { LinearGradient } from 'expo-linear-gradient';
 import { db } from '../common/crud'; 
 import { AuthContext } from '../navigation/AuthProvider';
+import { set } from 'react-native-reanimated';
 
 export default function IMieiAppuntamenti({navigation}) {
   const [loading,setLoading] = useState(true);
   const [result,setResult] = useState([]);
   const { user, setUser } = useContext(AuthContext); 
   const [chiave,setChiave] = useState("");
+  const [visible, setVisible] = useState(false);
+  const [id,setid] = useState("");
+  function showDialog(id){ setVisible(true); setid(id);};                         
+  const confermaDialog = () => db.removeAppuntamento(id);
+  const hideDialog = () => setVisible(false);
+    
 
 
-  useEffect(() => {     //per far partire la fetch appena viene creato lo screen, senno la chiamavo sull on press di un button la getWallet
+  useEffect(() => {
+    setVisible(false);     //per far partire la fetch appena viene creato lo screen, senno la chiamavo sull on press di un button la getWallet
     caricaDati();
   }, []);
 
    async function caricaDati(){
-    console.log(user.email);
+    console.log(user.email); 
  
     var list = await db.getAllAppuntamentiByUtente(user.email);
     var listaslot = [];
@@ -29,6 +37,7 @@ export default function IMieiAppuntamenti({navigation}) {
     for(i=0;i<list.length;i++){
       var chiaveslot= list[0].chiaveslot;
       console.log(chiaveslot);
+      console.log("id uguale"+id);
       var slot= await db.getSlot(chiaveslot);
       const datajs = slot.dataorainizio.toDate();
       var dataoggi= new Date(Date.now()+(10*60*1000));
@@ -83,22 +92,32 @@ export default function IMieiAppuntamenti({navigation}) {
   return (
     <View> 
             <View>
+            <Portal>
+        <Dialog visible={visible}  onDismiss={hideDialog}>
+          <Dialog.Title>CONFERMA</Dialog.Title>
+          <Dialog.Content>
+            <Paragraph>Sei sicuro di voler eliminare questo appuntamento?</Paragraph>
+          </Dialog.Content>
+          <Dialog.Actions>
+            <Button buttonStyle ={styles.botton} onPress={hideDialog}>No</Button>
+            <Button style={styles.botton} onPress={ () => {confermaDialog(); {hideDialog};}}>Sì</Button>
+          </Dialog.Actions>
+        </Dialog>
+      </Portal>
                     <Text style={styles.scelta}>APPUNTAMENTI DISPONIBILI:</Text>
                     <FlatList
                         scrollEnabled={true}
                         title="APPUNTAMENTI DISPONIBILI"
                         containerStyle={styles.app}
-                        
                         data={result}
                         renderItem={({ item }) => <Card.Title
                             style={styles.card}
                             title={item.dataorainizio.toDate().toDateString()}
                             titleStyle={styles.testo}
                             subtitle={item.chiavevolontario}
-                            left={(props) => <Avatar.Icon icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/date.png' }} style={styles.icona} />}
+                            left={(props) => <Avatar.Icon icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/date.png' }} style={styles.icona} />} 
                             leftStyle={styles.bottoneLeft}
-                            right={(props) => <IconButton icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/trash.png' }} style={styles.bottoneRight} onPress={() => db.removeAppuntamento(item.id)} />} />} />
-
+                            right={(props) => <IconButton icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/trash.png' }} style={styles.bottoneRight} onPress={showDialog(item.id)} />} />} />
                 </View>
     </View>
   );
@@ -113,6 +132,12 @@ const styles = StyleSheet.create({
         color:'#1979a9',
         fontWeight: "bold"
 
+    },
+
+    botton:{
+      height: '10%',
+      width: '10%',
+      padding: '10%'
     },
     icona:{
         backgroundColor: 'rgba(172, 213, 211, 1)',
