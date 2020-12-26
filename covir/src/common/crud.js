@@ -45,7 +45,7 @@ const manage={
             console.error("Error removing document: ", error);
         });
     },
-    removeAppuntamento:async function(idslot){
+    removeAppuntamento: async function(idslot){
         /*
         ref.collection("richiedenti").doc(chiaveapp).delete()
         .then(function() {
@@ -55,14 +55,15 @@ const manage={
             console.error("Error removing document: ", error);
         });
         */
-        try {
-            console.log(idslot);
-            var docref = ref.collection("appuntamenti").where("idslot","==",idslot).get();
-            console.log(docref);
-            ref.forEach((doc) => {
-              console.log(doc);
-              doc.ref.delete();
+            console.log("id"+idslot);
+            var docref = ref.collection("appuntamenti").where("idslot","==",idslot).get().then(querySnapshot => {
+                querySnapshot.forEach(doc => {
+                   console.log("eleminato"+docref); 
+                   doc.ref.delete();
+               })
             });
+          try {
+            await docref;
           } catch (error) {
             console.log(error);
           }
@@ -103,11 +104,12 @@ const manage={
         //return await ref.collection("appuntamenti").where("mailrichiedente", "==", emailutente)
        //.get();
        var lista = [];
-       const n =  ref.collection("appuntamenti").get().then(querySnapshot => {
+       const n =  ref.collection("appuntamenti").where("chiaveutente", "==",emailutente).get().then(querySnapshot => {
         
         querySnapshot.forEach(doc => {
+                console.log("app:"+doc.data());
                 lista.push(doc.data());
-                //console.log(doc.data());
+                
            })
            
        });
