@@ -60,6 +60,7 @@ const manage={
                 querySnapshot.forEach(doc => {
                    console.log("eleminato"+docref); 
                    doc.ref.delete();
+                   window.location.reload(false);
                })
             });
           try {
@@ -104,7 +105,7 @@ const manage={
         //return await ref.collection("appuntamenti").where("mailrichiedente", "==", emailutente)
        //.get();
        var lista = [];
-       const n =  ref.collection("appuntamenti").where("chiaveutente", "==",emailutente).get().then(querySnapshot => {
+       const n =  ref.collection("appuntamenti").where("mailrichiedente", "==",emailutente).get().then(querySnapshot => {
         
         querySnapshot.forEach(doc => {
                 console.log("app:"+doc.data());

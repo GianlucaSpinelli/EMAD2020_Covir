@@ -28,6 +28,7 @@ export default function IMieiAppuntamenti({navigation}) {
     console.log(list[0].piattaforma);
     for(i=0;i<list.length;i++){
       var chiaveslot= list[0].chiaveslot;
+      console.log(chiaveslot);
       var slot= await db.getSlot(chiaveslot);
       const datajs = slot.dataorainizio.toDate();
       var dataoggi= new Date(Date.now()+(10*60*1000));
@@ -47,12 +48,7 @@ export default function IMieiAppuntamenti({navigation}) {
       */
     }
     setLoading(false);
-    setResult( listaslot/*oldArray => [...oldArray, {
-      piattaforma: list[0].piattaforma,
-      mailvolontario: list[0].mailvolontario,
-      info: list[0].info
-    }]*/
-    )};
+    setResult( listaslot)};
 
   
 /*const renderContent =()=>{
