@@ -137,20 +137,25 @@ const manage={
         return await ref.collection("appuntamenti").where("mailvolontario", "==", emailvolontario)
         .get();
     },
+
     getAllSlotByVolontario:async function(emailvolontario){
-       var lista = [];
-       const n =  ref.collection("slot").where("chiavevolontario", "==",emailvolontario).orderBy("dataorainizio","asc").get().then(querySnapshot => {
+       
+       var listaSlot = [];
+       console.log("Sono dentro email:"+ emailvolontario);
+       const x =  ref.collection("slot").where("chiavevolontario", "==",emailvolontario).orderBy("dataorainizio","asc").get().then(querySnapshot => {
         
         querySnapshot.forEach(doc => {
-                console.log("app:"+doc.data());
-                lista.push(doc.data());
+                console.log("appSlot:"+doc.data());
+                listaSlot.push(doc.data());
                 
            })
            
        });
        try {
-           await n;
-           return lista;
+           await x;
+           console.log("Sono alla fine:"+listaSlot);
+           return listaSlot;
+
        } catch (error) {
            
        }    
@@ -181,19 +186,19 @@ const manage={
         });        
     },
     getAllVolontari:async function(){
-       var lista = [];
-       const n =  ref.collection("volontari").get().then(querySnapshot => {
+       var listaVolo = [];
+       const m =  ref.collection("volontari").get().then(querySnapshot => {
         
         querySnapshot.forEach(doc => {
-                console.log("app:"+doc.data());
-                lista.push(doc.data());
+                console.log("appVolo:"+doc.data());
+                listaVolo.push(doc.data());
                 
            })
            
        });
        try {
-           await n;
-           return lista;
+           await m;
+           return listaVolo;
        } catch (error) {
            
        }    

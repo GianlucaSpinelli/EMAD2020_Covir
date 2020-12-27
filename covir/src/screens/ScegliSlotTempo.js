@@ -16,15 +16,70 @@ import { color } from 'react-native-reanimated';
 
 export default function ScegliSlotTempo({navigation,route}) {
     const  etajs = route.params.eta;
-    console.log(etajs);
+    console.log("età"+etajs);
     const [result,setResult] = useState([]);
     const [loading,setLoading] = useState(true);
+    var listavolontaricorretti = [];
+    var listafinale=[];
 
 
     useEffect(() => {
         caricaDati(etajs);
+        caricaSlot();
       }, []);
 
+      
+      function calcolaeta( d ) {
+        var timestamp = Date.parse( d );
+        var today = new Date().getTime();
+        var diff = ( today - timestamp ) / ( 1000 * 60 * 60 * 24 * 365 );
+        var n = parseInt( diff, 10 );
+        return n;
+    };
+
+    async function caricaDati(eta){
+        
+        var list = await db.getAllVolontari();
+        
+        for(i=0;i<list.length;i++){
+          const datajs = list[i].datanascita.toDate();
+          const etaattuale = calcolaeta(datajs);
+          var volon = list[i];
+          if(etaattuale>eta){
+            listavolontaricorretti.push(volon); 
+        }
+        
+          /*
+          const datajs = slot.dataorainizio.toDate().toDateString();
+          const inizio = slot.inizio;
+          const fine = slot.fine;
+          console.log(datajs);
+          console.log(inizio);
+          console.log(fine);
+          */
+        }
+        //setLoading(false);
+        
+        
+    };
+      
+     async function caricaSlot() {
+      //ERRORE QUI
+      var i,j;
+      for(i=0;i<listavolontaricorretti.length;i++){
+          var mail = listavolontaricorretti[i].email;
+          var listaslot = await db.getAllSlotByVolontario(mail);
+          console.log("Chiavevol:"+listaslot[i].chiavevolontario);
+          for(j=0;j<listaslot.length;j++){
+              listafinale.push(listaslot[j]);
+          }
+        }  
+        //A QUI
+      //setLoading(false);
+      setResult( listafinale)
+    }
+      
+      
       const renderContent =()=>{
         if(loading){
           return (
@@ -54,47 +109,6 @@ export default function ScegliSlotTempo({navigation,route}) {
           )
         }
       }
-
-
-    function calcolaeta( d ) {
-        var timestamp = Date.parse( d );
-        var today = new Date().getTime();
-        var diff = ( today - timestamp ) / ( 1000 * 60 * 60 * 24 * 365 );
-        var n = parseInt( diff, 10 );
-        return n;
-    };
-
-    async function caricaDati(eta){
-        var listafinale=[];
-        var list = await db.getAllVolontari();
-        var listavolontaricorretti = [];
-        for(i=0;i<list.length;i++){
-          const datajs = list[i].datanascita.toDate();
-          const etaattuale = calcolaeta(datajs);
-          if(etaattuale>eta){
-            listavolontaricorretti.push(list[i]); 
-        }  
-          /*
-          const datajs = slot.dataorainizio.toDate().toDateString();
-          const inizio = slot.inizio;
-          const fine = slot.fine;
-          console.log(datajs);
-          console.log(inizio);
-          console.log(fine);
-          */
-        }
-        //ERRORE QUI
-        for(i=0;i<listavolontaricorretti.length;i++){
-            var listaslot = await db.getAllSlotByVolontario(listavolontaricorretti[i].email);
-            console.log(listaslot);
-            for(j=0;j<listaslot.length;j++){
-                listafinale.push(listaslot[j]);
-            }
-          }  
-          //A QUI
-        setLoading(false);
-        setResult( listafinale)
-    };
 
 
     return (
