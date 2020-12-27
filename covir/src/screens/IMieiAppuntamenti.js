@@ -60,65 +60,50 @@ export default function IMieiAppuntamenti({navigation}) {
     setResult( listaslot)};
 
   
-/*const renderContent =()=>{
+  const renderContent =()=>{
   if(loading){
     return (
       <ActivityIndicator size="small" color={"#000000"}/>
     )
   }else{
     return(
-        <View>
-                    <Text style={styles.scelta}>APPUNTAMENTI DISPONIBILI:</Text>
-                    <FlatList
-                        scrollEnabled={true}
-                        title="APPUNTAMENTI DISPONIBILI"
-                        containerStyle={styles.app}
-                        
-                        data={result}
-                        renderItem={({ item }) => <Card.Title
-                            style={styles.card}
-                            title={item.piattaforma}
-                            titleStyle={styles.testo}
-                            subtitle={item.mailvolontario}
-                            left={(props) => <Avatar.Icon icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/date.png' }} style={styles.icona} />}
-                            leftStyle={styles.bottoneLeft}
-                            right={(props) => <IconButton icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/trash.png' }} style={styles.bottoneRight} onPress={() => navigation.navigate('ConfermaAppuntamento')} />} />} />
-
-                </View>
+      <View> 
+      <View>
+      <Portal>
+  <Dialog visible={visible}  onDismiss={hideDialog}>
+    <Dialog.Title>CONFERMA</Dialog.Title>
+    <Dialog.Content>
+      <Paragraph>Sei sicuro di voler eliminare questo appuntamento?</Paragraph>
+    </Dialog.Content>
+    <Dialog.Actions>
+      <Button buttonStyle ={styles.botton} onPress={hideDialog}>No</Button>
+      <Button style={styles.botton} onPress={ () => {confermaDialog(); {hideDialog};}}>Sì</Button>
+    </Dialog.Actions>
+  </Dialog>
+</Portal>
+              <Text style={styles.scelta}>APPUNTAMENTI DISPONIBILI:</Text>
+              <FlatList
+                  scrollEnabled={true}
+                  title="APPUNTAMENTI DISPONIBILI"
+                  containerStyle={styles.app}
+                  data={result}
+                  renderItem={({ item }) => <Card.Title
+                      style={styles.card}
+                      title={item.dataorainizio.toDate().toDateString()}
+                      titleStyle={styles.testo}
+                      subtitle={item.chiavevolontario}
+                      left={(props) => <Avatar.Icon icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/date.png' }} style={styles.icona} />} 
+                      leftStyle={styles.bottoneLeft}
+                      right={(props) => <IconButton icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/trash.png' }} style={styles.bottoneRight} onPress={() => showDialog(item.id)} />} />} />
+          </View>
+</View>
     )
   }
-}*/
+}
 
   return (
-    <View> 
-            <View>
-            <Portal>
-        <Dialog visible={visible}  onDismiss={hideDialog}>
-          <Dialog.Title>CONFERMA</Dialog.Title>
-          <Dialog.Content>
-            <Paragraph>Sei sicuro di voler eliminare questo appuntamento?</Paragraph>
-          </Dialog.Content>
-          <Dialog.Actions>
-            <Button buttonStyle ={styles.botton} onPress={hideDialog}>No</Button>
-            <Button style={styles.botton} onPress={ () => {confermaDialog(); {hideDialog};}}>Sì</Button>
-          </Dialog.Actions>
-        </Dialog>
-      </Portal>
-                    <Text style={styles.scelta}>APPUNTAMENTI DISPONIBILI:</Text>
-                    <FlatList
-                        scrollEnabled={true}
-                        title="APPUNTAMENTI DISPONIBILI"
-                        containerStyle={styles.app}
-                        data={result}
-                        renderItem={({ item }) => <Card.Title
-                            style={styles.card}
-                            title={item.dataorainizio.toDate().toDateString()}
-                            titleStyle={styles.testo}
-                            subtitle={item.chiavevolontario}
-                            left={(props) => <Avatar.Icon icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/date.png' }} style={styles.icona} />} 
-                            leftStyle={styles.bottoneLeft}
-                            right={(props) => <IconButton icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/trash.png' }} style={styles.bottoneRight} onPress={showDialog(item.id)} />} />} />
-                </View>
+    <View>
+    {renderContent()}
     </View>
   );
   }

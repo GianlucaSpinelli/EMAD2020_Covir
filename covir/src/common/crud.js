@@ -137,18 +137,23 @@ const manage={
         return await ref.collection("appuntamenti").where("mailvolontario", "==", emailvolontario)
         .get();
     },
-    getAllSlotByVolontario:function(emailvolontario){
-        return ref.collection("slot").where("email", "==", emailvolontario).orderBy("data","asc")
-        .get()
-        .then(function(querySnapshot) {
-        querySnapshot.forEach(function(doc) {
-            // doc.data() is never undefined for query doc snapshots
-            console.log(doc.id, " => ", doc.data());
-        });
-        })
-        .catch(function(error) {
-        console.log("Error getting documents: ", error);
-        });
+    getAllSlotByVolontario:async function(emailvolontario){
+       var lista = [];
+       const n =  ref.collection("slot").where("chiavevolontario", "==",emailvolontario).orderBy("dataorainizio","asc").get().then(querySnapshot => {
+        
+        querySnapshot.forEach(doc => {
+                console.log("app:"+doc.data());
+                lista.push(doc.data());
+                
+           })
+           
+       });
+       try {
+           await n;
+           return lista;
+       } catch (error) {
+           
+       }    
     },
     getUtente:async function(chiaveutente){  //FUNONZ
         return await ref.collection("richiedenti").doc(chiaveutente).get().then(function(doc) {
@@ -175,18 +180,23 @@ const manage={
             console.log("Error getting document:", error);
         });        
     },
-    getVolontariByEta:function(eta){
-        return ref.collection("volontari").where("eta", ">=", eta)
-        .get()
-        .then(function(querySnapshot) {
-        querySnapshot.forEach(function(doc) {
-            // doc.data() is never undefined for query doc snapshots
-            console.log(doc.id, " => ", doc.data());
-        });
-        })
-        .catch(function(error) {
-        console.log("Error getting documents: ", error);
-        });
+    getAllVolontari:async function(){
+       var lista = [];
+       const n =  ref.collection("volontari").get().then(querySnapshot => {
+        
+        querySnapshot.forEach(doc => {
+                console.log("app:"+doc.data());
+                lista.push(doc.data());
+                
+           })
+           
+       });
+       try {
+           await n;
+           return lista;
+       } catch (error) {
+           
+       }    
     },
     getVolontarioByMail:function(mail){
         return ref.collection("volontari").where("email", "==", mail)

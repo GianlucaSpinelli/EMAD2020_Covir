@@ -6,12 +6,14 @@ import { Card, ListItem, Button, Icon, Avatar } from 'react-native-elements'
 import { ScrollView } from 'react-native-gesture-handler';
 import TouchableScale from 'react-native-touchable-scale'; // https://github.com/kohver/react-native-touchable-scale
 import { LinearGradient } from 'expo-linear-gradient'; 
+import { db } from '../common/crud';
 
 export default function ScegliVolontario({navigation}) { //non legge immagin
+    
     return (
     <View>
         <Text style={styles.scelta}> SCEGLI L'OPERATORE IN BASE ALLA FASCIA D'ETÀ</Text>
-        <ListItem containerStyle={styles.card1} onPress={() => navigation.navigate('ScegliTempo')}
+        <ListItem containerStyle={styles.card1} onPress={() => navigation.navigate('ScegliTempo',{"eta":18})}
             Component={TouchableScale}
             friction={90} //
             tension={100} // These props are passed to the parent component (here TouchableScale)
@@ -25,7 +27,7 @@ export default function ScegliVolontario({navigation}) { //non legge immagin
             </ListItem.Content>
             <ListItem.Chevron color="white" />
         </ListItem>  
-        <ListItem containerStyle={styles.card2} onPress={() => navigation.navigate('Login')}
+        <ListItem containerStyle={styles.card2} onPress={() => navigation.navigate('ScegliTempo',{"eta":30})}
             Component={TouchableScale}
             friction={90} //
             tension={100} // These props are passed to the parent component (here TouchableScale)
@@ -39,7 +41,7 @@ export default function ScegliVolontario({navigation}) { //non legge immagin
             </ListItem.Content>
             <ListItem.Chevron color="white" />
         </ListItem> 
-        <ListItem containerStyle={styles.card3} onPress={() => navigation.navigate('Login')}
+        <ListItem containerStyle={styles.card3} onPress={() => navigation.navigate('ScegliTempo',{"eta":40})}
             Component={TouchableScale}
             friction={90} //
             tension={100} // These props are passed to the parent component (here TouchableScale)
@@ -53,7 +55,7 @@ export default function ScegliVolontario({navigation}) { //non legge immagin
             </ListItem.Content>
             <ListItem.Chevron color="white" />
         </ListItem> 
-        <ListItem containerStyle={styles.card4} onPress={() => navigation.navigate('Login')}
+        <ListItem containerStyle={styles.card4} onPress={() => navigation.navigate('ScegliTempo',{"eta":60})}
             Component={TouchableScale}
             friction={90} //
             tension={100} // These props are passed to the parent component (here TouchableScale)
