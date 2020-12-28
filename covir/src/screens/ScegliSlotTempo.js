@@ -80,10 +80,6 @@ export default function ScegliSlotTempo({navigation,route}) {
         //A QUI
     }
 
-    function settaris(){
-      
-    }
-
     function crealistafinale(listaslot){
        var j;
        for(j=0;j<listaslot.length;j++){
