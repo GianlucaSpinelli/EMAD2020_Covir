@@ -62,33 +62,35 @@ export default function ScegliSlotTempo({navigation,route}) {
           
     };
       
-     function caricaSlot() {
+     async function caricaSlot() {
       //ERRORE QUI
       var i,j;
       var listaslot= [];
       for(i=0;i<listavolontaricorretti.length;i++){
           var mail = listavolontaricorretti[i].email;
-          listaslot = db.getAllSlotByVolontario(mail);
+          listaslot = await db.getAllSlotByVolontario(mail);
+          console.log("ciao"+listaslot);
           if(listaslot.length>0){
             crealistafinale(listaslot);
           }
         }  
-        settaris();
+        setResult( listafinale);
+        setLoading(false); 
         //settaris();
         //A QUI
     }
 
     function settaris(){
-      setResult( listafinale);
-      setLoading(false); 
+      
     }
 
     function crealistafinale(listaslot){
-       var j=0;
+       var j;
        for(j=0;j<listaslot.length;j++){
         console.log("Chiavevol:"+listaslot[j]);
         listafinale.push(listaslot[j]);
         }
+        
     }
       
       const renderContent =()=>{
@@ -97,7 +99,7 @@ export default function ScegliSlotTempo({navigation,route}) {
             <ActivityIndicator size="small" color={"#000000"}/>
           )
         }else{
-          console.log("VOGLIO CARICARE ");
+          console.log("sto renderizzando lo screen");
           return(
             <View>
         

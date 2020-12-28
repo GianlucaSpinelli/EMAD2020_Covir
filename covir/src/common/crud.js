@@ -141,6 +141,7 @@ const manage={
     getAllSlotByVolontario:async function(emailvolontario){
        
         var lista = [];
+        if (emailvolontario != null) {
         const n =  ref.collection("slot").where("chiavevolontario", "==",emailvolontario).get().then(querySnapshot => {
          
          querySnapshot.forEach(doc => {
@@ -154,7 +155,9 @@ const manage={
             await n;
             return lista;
         } catch (error) {
-        }   
+        } 
+    }
+    else return lista;  
     },
     getUtente:async function(chiaveutente){  //FUNONZ
         return await ref.collection("richiedenti").doc(chiaveutente).get().then(function(doc) {
