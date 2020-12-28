@@ -243,6 +243,9 @@ const manage={
     modificaNumSlotVolontario:function(chiavevolontario, nuovonumero){
         ref.collection("volontari").doc(chiavevolontario).update({numeroslot: nuovonumero});
     },
+    setSlotOccupato: function(id) {
+        ref.collection("slot").where("id","==",id).update({oppucato:true});
+    }
 }
 
 export const db=manage; 

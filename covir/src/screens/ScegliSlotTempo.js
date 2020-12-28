@@ -112,7 +112,7 @@ export default function ScegliSlotTempo({navigation,route}) {
                                                 subtitle={item.inizio+":00 / "+item.fine+":00"}
                                                 left={(props) => <Avatar.Icon  icon={{ uri:'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/pencil.png'}} style={styles.icona} />}
                                                 leftStyle={styles.bottoneLeft}
-                                                right={(props) => <IconButton icon={{uri:'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/logout.png'}} style={styles.bottoneRight} onPress={() => navigation.navigate('ConfermaAppuntamento')} />}/> }/>      
+                                                right={(props) => <IconButton icon={{uri:'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/logout.png'}} style={styles.bottoneRight} onPress={() => navigation.navigate('ConfermaAppuntamento',{"idSlot":item.id,"emailvolontario":item.chiavevolontario})} />}/> }/>      
          
           </View>
       
