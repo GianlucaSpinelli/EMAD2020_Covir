@@ -140,25 +140,21 @@ const manage={
 
     getAllSlotByVolontario:async function(emailvolontario){
        
-       var listaSlot = [];
-       console.log("Sono dentro email:"+ emailvolontario);
-       const x =  ref.collection("slot").where("chiavevolontario", "==",emailvolontario).orderBy("dataorainizio","asc").get().then(querySnapshot => {
-        
-        querySnapshot.forEach(doc => {
-                console.log("appSlot:"+doc.data());
-                listaSlot.push(doc.data());
-                
-           })
-           
-       });
-       try {
-           await x;
-           console.log("Sono alla fine:"+listaSlot);
-           return listaSlot;
-
-       } catch (error) {
-           
-       }    
+        var lista = [];
+        const n =  ref.collection("slot").where("chiavevolontario", "==",emailvolontario).get().then(querySnapshot => {
+         
+         querySnapshot.forEach(doc => {
+                 console.log("entrato nel foreach:"+doc.data());
+                 lista.push(doc.data());
+                 
+            })
+            
+        });
+        try {
+            await n;
+            return lista;
+        } catch (error) {
+        }   
     },
     getUtente:async function(chiaveutente){  //FUNONZ
         return await ref.collection("richiedenti").doc(chiaveutente).get().then(function(doc) {

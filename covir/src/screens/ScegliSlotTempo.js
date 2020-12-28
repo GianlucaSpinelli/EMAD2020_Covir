@@ -25,7 +25,6 @@ export default function ScegliSlotTempo({navigation,route}) {
 
     useEffect(() => {
         caricaDati(etajs);
-        caricaSlot();
       }, []);
 
       
@@ -59,26 +58,38 @@ export default function ScegliSlotTempo({navigation,route}) {
           */
         }
         //setLoading(false);
-        
-        
+        caricaSlot();
+          
     };
       
-     async function caricaSlot() {
+     function caricaSlot() {
       //ERRORE QUI
       var i,j;
+      var listaslot= [];
       for(i=0;i<listavolontaricorretti.length;i++){
           var mail = listavolontaricorretti[i].email;
-          var listaslot = await db.getAllSlotByVolontario(mail);
-          console.log("Chiavevol:"+listaslot[i].chiavevolontario);
-          for(j=0;j<listaslot.length;j++){
-              listafinale.push(listaslot[j]);
+          listaslot = db.getAllSlotByVolontario(mail);
+          if(listaslot.length>0){
+            crealistafinale(listaslot);
           }
         }  
+        settaris();
+        //settaris();
         //A QUI
-      //setLoading(false);
-      setResult( listafinale)
     }
-      
+
+    function settaris(){
+      setResult( listafinale);
+      setLoading(false); 
+    }
+
+    function crealistafinale(listaslot){
+       var j=0;
+       for(j=0;j<listaslot.length;j++){
+        console.log("Chiavevol:"+listaslot[j]);
+        listafinale.push(listaslot[j]);
+        }
+    }
       
       const renderContent =()=>{
         if(loading){
@@ -86,6 +97,7 @@ export default function ScegliSlotTempo({navigation,route}) {
             <ActivityIndicator size="small" color={"#000000"}/>
           )
         }else{
+          console.log("VOGLIO CARICARE ");
           return(
             <View>
         

@@ -32,6 +32,7 @@ export default function IMieiAppuntamenti({navigation}) {
     console.log(user.email); 
  
     var list = await db.getAllAppuntamentiByUtente(user.email);
+    console.log(list);
     var listaslot = [];
     console.log(list[0].piattaforma);
     for(i=0;i<list.length;i++){
