@@ -18,7 +18,8 @@ const manage={
                 console.error("Error writing document: ", error);
             });
     },
-    addAppuntamento:function(appuntamentoobj){
+    addAppuntamento:function(id,appuntamentoobj){
+        //this.setSlotOccupato(id);
         ref.collection("appuntamenti").add(appuntamentoobj)
            .then(function(docRef) {
                //prenotare lo slot
@@ -83,22 +84,25 @@ const manage={
             console.log("Error getting document:", error);
         });        
     },
-    getSlot:async function(chiaveslot){
+    getSlot:async function(chiave){
         var slot;
-        const n = ref.collection("slot").doc(chiaveslot).get().then(function(doc) {
-            if (doc.exists) {
-                slot= doc.data();
-            } else {
-                // doc.data() will be undefined in this case
-                console.log("No such document!");
-            }
+        var lista = [];
+        if (chiave != null) {
+        const n = ref.collection("slot").where("id","==",chiave).get().then(querySnapshot  => {
+            querySnapshot.forEach(doc => {
+                console.log("app:"+doc.data());
+                lista.push(doc.data());
+                
+           })
         });
         try {
             await n;
-            return slot;
+            return lista[0];
         } catch (error) {
             
         } 
+    }
+    else return lista[0];
     },
     
     getAllAppuntamentiByUtente: async   function(emailutente){ //FUNONZ
@@ -243,8 +247,8 @@ const manage={
     modificaNumSlotVolontario:function(chiavevolontario, nuovonumero){
         ref.collection("volontari").doc(chiavevolontario).update({numeroslot: nuovonumero});
     },
-    setSlotOccupato: function(id) {
-        ref.collection("slot").where("id","==",id).update({oppucato:true});
+    setSlotOccupato: function(ids) {
+        ref.collection("slot").where("id","==",ids).get().update({oppucato:true});
     }
 }
 

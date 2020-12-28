@@ -16,9 +16,9 @@ export default function IMieiAppuntamenti({navigation}) {
   const { user, setUser } = useContext(AuthContext); 
   const [chiave,setChiave] = useState("");
   const [visible, setVisible] = useState(false);
-  const [id,setid] = useState("");
-  function showDialog(id){ setVisible(true); setid(id);};                         
-  const confermaDialog = () => db.removeAppuntamento(id);
+  const [ids,setid] = useState("");
+  function showDialog(id){ setVisible(true); setid(ids);};                         
+  const confermaDialog = () => db.removeAppuntamento(ids);
   const hideDialog = () => setVisible(false);
     
 
@@ -36,10 +36,10 @@ export default function IMieiAppuntamenti({navigation}) {
     var listaslot = [];
     console.log(list[0].piattaforma);
     for(i=0;i<list.length;i++){
-      var chiaveslot= list[0].chiaveslot;
-      console.log(chiaveslot);
-      console.log("id uguale"+id);
-      var slot= await db.getSlot(chiaveslot);
+      var chiave= list[0].idslot;
+      console.log(chiave);
+      console.log("id uguale"+ids);
+      var slot= await db.getSlot(chiave);
       const datajs = slot.dataorainizio.toDate();
       var dataoggi= new Date(Date.now()+(10*60*1000));
       console.log(slot.documentID);

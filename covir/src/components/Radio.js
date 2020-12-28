@@ -6,10 +6,11 @@ import FormInput from '../components/FormInput';
 
 class Radio extends React.Component {
 	
-	
+
 	
 	constructor(props) {
-        super(props);
+		super(props);
+	
 		
         this.state = {
 				res: {},
@@ -32,12 +33,11 @@ class Radio extends React.Component {
 		];
 		
 		this._renderRadioBtn = this._renderRadioBtn.bind(this);
-		
 	}
 
 	_renderRadioBtn() {
 		let { example } = this.state;
-		const info=''
+		const info='';
 			return (
 				<View>
 				<RadioButtonRN

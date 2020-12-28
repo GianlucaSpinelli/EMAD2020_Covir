@@ -1,30 +1,46 @@
 import React, { useState, useContext } from 'react';
-import { Title, Checkbox } from 'react-native-paper';
-import { IconButton, List, Avatar } from 'react-native-paper';
+import { Portal,Paragraph,Dialog } from 'react-native-paper';
 import { View, Text, Image, StyleSheet, TouchableOpacity, ViewPropTypes  } from 'react-native'
 import RadioButton from '../components/Radio';
 import { Divider, Card, Button, Icon } from 'react-native-elements';
 import FormButton from '../components/FormButton3';
 import FormInput from '../components/FormInput';
 import { AuthContext } from '../navigation/AuthProvider';
- 
+import { db } from '../common/crud'; 
+
 
 export default function ConfermaPrenotazione({navigation,route}) { //non legge immagin
     const [checked, setChecked] = React.useState(false);
     const {user,setUser} = useContext(AuthContext);
-    const [id,setId] = useState("");
-    const [mailric,setMailRic] = useState("");
+    const id = route.params.idSlot;
+    const mailV = route.params.emailvolontario;
+    const mailric = user.email;
     const [mailVol,setMailVol] = useState("");
-    const [piatt,setPiatt] = useState("");
+    const piatt = "Skype";
+    console.log("piattaforma"+piatt);
+    const [visible, setVisible] = useState(false);
+    const app = {idslot:id, mailrichiedente:mailric, mailvolontario: mailV, piattaforma:piatt};
+    
 
-    setId(route.params.idSlot);
-    setMailRic(user.email);
-    setMailVol(route.params.emailvolontario);
-
-    const app = {idslot:id, mailrichiedente:mailric, mailvolontario: mailVol, piattaforma:piatt};
-
+    function showDialog(id){ setVisible(true);};                         
+    const confermaDialog = () => db.addAppuntamento(id,app);
+    const hideDialog = () => setVisible(false);
+    
+    
     return (
     <View>
+     <Portal>
+  <Dialog visible={visible}  onDismiss={hideDialog}>
+    <Dialog.Title>CONFERMA</Dialog.Title>
+    <Dialog.Content>
+      <Paragraph>Sei sicuro di voler prenotare questo appuntamento?</Paragraph>
+    </Dialog.Content>
+    <Dialog.Actions>
+      <Button buttonStyle ={styles.botton} onPress={hideDialog}>No</Button>
+      <Button style={styles.botton} onPress={ () => {confermaDialog(); {hideDialog};}}>Sì</Button>
+    </Dialog.Actions>
+  </Dialog>
+</Portal>   
     <View containerStyle={styles.container}>
         <Text  style={styles.scelta}>SCEGLI LA PIATTAFORMA</Text>
         <Card containerStyle={styles.card}>
@@ -37,7 +53,7 @@ export default function ConfermaPrenotazione({navigation,route}) { //non legge i
           title='Conferma'
           modeValue='contained'
           labelStyle={styles.loginButtonLabel}
-          onPress={() => navigation.navigate('HomeTab')}  //{() => login(email, password)}
+          onPress={() => showDialog()}  //{() => login(email, password)}
         />
     </View>
     </View>
