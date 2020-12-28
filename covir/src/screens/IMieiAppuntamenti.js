@@ -17,7 +17,7 @@ export default function IMieiAppuntamenti({navigation}) {
   const [chiave,setChiave] = useState("");
   const [visible, setVisible] = useState(false);
   const [ids,setid] = useState("");
-  function showDialog(id){ setVisible(true); setid(ids);};                         
+  function showDialog(id){ setVisible(true); setid(id);};                         
   const confermaDialog = () => db.removeAppuntamento(ids);
   const hideDialog = () => setVisible(false);
     
