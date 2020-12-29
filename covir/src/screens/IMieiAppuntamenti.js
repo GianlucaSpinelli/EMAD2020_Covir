@@ -18,8 +18,8 @@ export default function IMieiAppuntamenti({navigation}) {
   const [visible, setVisible] = useState(false);
   const [ids,setid] = useState("");
   function showDialog(id){ setVisible(true); setid(id);};                         
-  const confermaDialog = () => db.removeAppuntamento(ids);
-  const hideDialog = () => setVisible(false);
+  function confermaDialog(){ hideDialog(); db.removeAppuntamento(ids);};
+  function hideDialog(){ setVisible(false)};
     
 
 
@@ -32,11 +32,11 @@ export default function IMieiAppuntamenti({navigation}) {
     console.log(user.email); 
  
     var list = await db.getAllAppuntamentiByUtente(user.email);
-    console.log(list);
+    console.log("lista app:" +list);
     var listaslot = [];
     console.log(list[0].piattaforma);
     for(i=0;i<list.length;i++){
-      var chiave= list[0].idslot;
+      var chiave= list[i].idslot;
       console.log(chiave);
       console.log("id uguale"+ids);
       var slot= await db.getSlot(chiave);
@@ -78,7 +78,7 @@ export default function IMieiAppuntamenti({navigation}) {
     </Dialog.Content>
     <Dialog.Actions>
       <Button buttonStyle ={styles.botton} onPress={hideDialog}>No</Button>
-      <Button style={styles.botton} onPress={ () => {confermaDialog(); {hideDialog};}}>Sì</Button>
+      <Button style={styles.botton} onPress={ () => {confermaDialog();}}>Sì</Button>
     </Dialog.Actions>
   </Dialog>
 </Portal>

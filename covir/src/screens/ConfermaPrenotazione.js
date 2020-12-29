@@ -23,8 +23,8 @@ export default function ConfermaPrenotazione({navigation,route}) { //non legge i
     
 
     function showDialog(id){ setVisible(true);};                         
-    const confermaDialog = () => db.addAppuntamento(id,app);
-    const hideDialog = () => setVisible(false);
+    function confermaDialog(){hideDialog(); db.addAppuntamento(id,app);};
+    function hideDialog(){setVisible(false);};
     
     
     return (
@@ -37,7 +37,7 @@ export default function ConfermaPrenotazione({navigation,route}) { //non legge i
     </Dialog.Content>
     <Dialog.Actions>
       <Button buttonStyle ={styles.botton} onPress={hideDialog}>No</Button>
-      <Button style={styles.botton} onPress={ () => {confermaDialog(); {hideDialog};}}>Sì</Button>
+      <Button style={styles.botton} onPress={ () => {confermaDialog(); navigation.navigate('ImieiAppuntamenti');}}>Sì</Button>
     </Dialog.Actions>
   </Dialog>
 </Portal>   

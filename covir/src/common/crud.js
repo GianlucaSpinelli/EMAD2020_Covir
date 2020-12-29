@@ -61,7 +61,7 @@ const manage={
                 querySnapshot.forEach(doc => {
                    console.log("eleminato"+docref); 
                    doc.ref.delete();
-                   window.location.reload(false);
+                
                })
             });
           try {
