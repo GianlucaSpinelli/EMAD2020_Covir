@@ -11,6 +11,7 @@ import { AuthContext } from '../navigation/AuthProvider';
 import { set } from 'react-native-reanimated';
 
 export default function IMieiAppuntamenti({navigation}) {
+  
   const [loading,setLoading] = useState(true);
   const [result,setResult] = useState([]);
   const { user, setUser } = useContext(AuthContext); 
@@ -18,14 +19,13 @@ export default function IMieiAppuntamenti({navigation}) {
   const [visible, setVisible] = useState(false);
   const [ids,setid] = useState("");
   function showDialog(id){ setVisible(true); setid(id);};                         
-  function confermaDialog(){ hideDialog(); db.removeAppuntamento(ids);};
-  function hideDialog(){ setVisible(false)};
-    
-
+  function confermaDialog(){ hideDialog(); db.removeAppuntamento(ids); caricaDati();};
+  function hideDialog(){ setVisible(false)};    
 
   useEffect(() => {
+    const f = navigation.addListener("focus",() => {caricaDati()});
     setVisible(false);     //per far partire la fetch appena viene creato lo screen, senno la chiamavo sull on press di un button la getWallet
-    caricaDati();
+    //caricaDati();
   }, []);
 
    async function caricaDati(){

@@ -37,7 +37,7 @@ export default function ConfermaPrenotazione({navigation,route}) { //non legge i
     </Dialog.Content>
     <Dialog.Actions>
       <Button buttonStyle ={styles.botton} onPress={hideDialog}>No</Button>
-      <Button style={styles.botton} onPress={ () => {confermaDialog(); navigation.navigate('ImieiAppuntamenti');}}>Sì</Button>
+      <Button style={styles.botton} onPress={ () => {confermaDialog(); navigation.navigate('Il mio Profilo');}}>Sì</Button>
     </Dialog.Actions>
   </Dialog>
 </Portal>   
