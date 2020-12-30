@@ -36,7 +36,7 @@ export default function ConfermaPrenotazione({navigation,route}) { //non legge i
       <Paragraph>Sei sicuro di voler prenotare questo appuntamento?</Paragraph>
     </Dialog.Content>
     <Dialog.Actions>
-      <Button buttonStyle ={styles.botton} onPress={hideDialog}>No</Button>
+      <Button style ={styles.botton} onPress={hideDialog}>No</Button>
       <Button style={styles.botton} onPress={ () => {confermaDialog(); navigation.navigate('Il mio Profilo');}}>Sì</Button>
     </Dialog.Actions>
   </Dialog>
@@ -93,6 +93,11 @@ const styles = StyleSheet.create({
     },
     container1: {
         flex:1
+    },
+    botton:  {
+        backgroundColor:'#1979a9',
+        width: 10,
+        height:10
     }
         
 });
