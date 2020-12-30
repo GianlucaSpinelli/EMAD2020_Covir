@@ -15,12 +15,12 @@ export default function IMieiAppuntamenti({navigation}) {
   const [loading,setLoading] = useState(true);
   const [result,setResult] = useState([]);
   const { user, setUser } = useContext(AuthContext); 
-  const [chiave,setChiave] = useState("");
   const [visible, setVisible] = useState(false);
   const [ids,setid] = useState("");
   function showDialog(id){ setVisible(true); setid(id);};                         
-  function confermaDialog(){ hideDialog(); db.removeAppuntamento(ids); caricaDati();};
+  function confermaDialog(){ hideDialog(); db.removeAppuntamento(chiaveSlot,ids); caricaDati();};
   function hideDialog(){ setVisible(false)};    
+  const [chiaveSlot, setChiaveSlot] = useState("");
 
   useEffect(() => {
     const f = navigation.addListener("focus",() => {caricaDati()});
@@ -40,10 +40,11 @@ export default function IMieiAppuntamenti({navigation}) {
       console.log(chiave);
       console.log("id uguale"+ids);
       var slot= await db.getSlot(chiave);
+      var x = await db.getSlotObj(chiave);
+      setChiaveSlot(x.id);
       const datajs = slot.dataorainizio.toDate();
       var dataoggi= new Date(Date.now()+(10*60*1000));
       console.log(slot.documentID);
-      setChiave(slot.documentID);
       console.log(dataoggi);
       if(datajs>dataoggi){
         listaslot.push(slot); 

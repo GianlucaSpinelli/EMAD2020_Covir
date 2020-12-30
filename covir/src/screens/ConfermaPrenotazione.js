@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Portal,Paragraph,Dialog } from 'react-native-paper';
 import { View, Text, Image, StyleSheet, TouchableOpacity, ViewPropTypes  } from 'react-native'
 import RadioButton from '../components/Radio';
@@ -20,10 +20,20 @@ export default function ConfermaPrenotazione({navigation,route}) { //non legge i
     console.log("piattaforma"+piatt);
     const [visible, setVisible] = useState(false);
     const app = {idslot:id, mailrichiedente:mailric, mailvolontario: mailV, piattaforma:piatt};
+    const [slot, setSlot] = useState("");
+
+    useEffect(() => {
+        prelevaSlot();
+      }, []);
     
+    async function prelevaSlot(){
+        var x = await db.getSlotObj(id);
+        console.log(x.id);
+        setSlot(x);
+    };
 
     function showDialog(id){ setVisible(true);};                         
-    function confermaDialog(){hideDialog(); db.addAppuntamento(id,app);};
+    function confermaDialog(){hideDialog(); db.addAppuntamento(slot.id,app);};
     function hideDialog(){setVisible(false);};
     
     

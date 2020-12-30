@@ -46,16 +46,9 @@ const manage={
             console.error("Error removing document: ", error);
         });
     },
-    removeAppuntamento: async function(idslot){
-        /*
-        ref.collection("richiedenti").doc(chiaveapp).delete()
-        .then(function() {
-            console.log("Document successfully deleted!");
-            //mettere a "libero" lo slot a cui fa riferimento e togliergli da lì la chiave esterna
-        }).catch(function(error) {
-            console.error("Error removing document: ", error);
-        });
-        */
+    removeAppuntamento: async function(chiave,idslot){
+        
+            this.setSlotNOTOccupato(chiave);
             console.log("id"+idslot);
             var docref = ref.collection("appuntamenti").where("idslot","==",idslot).get().then(querySnapshot => {
                 querySnapshot.forEach(doc => {
@@ -92,6 +85,27 @@ const manage={
             querySnapshot.forEach(doc => {
                 console.log("app:"+doc.data());
                 lista.push(doc.data());
+                
+           })
+        });
+        try {
+            await n;
+            return lista[0];
+        } catch (error) {
+            
+        } 
+    }
+    else return lista[0];
+    },
+
+    getSlotObj:async function(chiave){
+        var slot;
+        var lista = [];
+        if (chiave != null) {
+        const n = ref.collection("slot").where("id","==",chiave).get().then(querySnapshot  => {
+            querySnapshot.forEach(doc => {
+                console.log("app:"+doc.data());
+                lista.push(doc);
                 
            })
         });
@@ -248,7 +262,10 @@ const manage={
         ref.collection("volontari").doc(chiavevolontario).update({numeroslot: nuovonumero});
     },
     setSlotOccupato: function(ids) {
-        ref.collection("slot").doc(ids).update({numeroslot: nuovonumero});
+        ref.collection("slot").doc(ids).update({occupato: true});
+    },
+    setSlotNOTOccupato: function(id) {
+        ref.collection("slot").doc(id).update({occupato: false});
     }
 }
 
