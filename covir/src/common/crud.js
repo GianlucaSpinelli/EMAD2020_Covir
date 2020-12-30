@@ -1,5 +1,5 @@
 // './firebase.js';
-import { ref } from './firebase.js';
+import { ref,dbref } from './firebase.js';
 
 const manage={
     addUtente:function(utenteobj){
@@ -19,7 +19,7 @@ const manage={
             });
     },
     addAppuntamento:function(id,appuntamentoobj){
-        //this.setSlotOccupato(id);
+        this.setSlotOccupato(id);
         ref.collection("appuntamenti").add(appuntamentoobj)
            .then(function(docRef) {
                //prenotare lo slot
@@ -248,7 +248,7 @@ const manage={
         ref.collection("volontari").doc(chiavevolontario).update({numeroslot: nuovonumero});
     },
     setSlotOccupato: function(ids) {
-        ref.collection("slot").where("id","==",ids).get().update({oppucato:true});
+        ref.collection("slot").doc(ids).update({numeroslot: nuovonumero});
     }
 }
 

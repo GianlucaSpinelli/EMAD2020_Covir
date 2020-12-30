@@ -84,7 +84,9 @@ export default function ScegliSlotTempo({navigation,route}) {
        var j;
        for(j=0;j<listaslot.length;j++){
         console.log("Chiavevol:"+listaslot[j]);
+        if(listaslot[j].occupato==false){
         listafinale.push(listaslot[j]);
+        }
         }
         
     }

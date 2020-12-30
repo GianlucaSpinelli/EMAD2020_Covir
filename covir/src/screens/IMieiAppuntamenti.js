@@ -82,7 +82,7 @@ export default function IMieiAppuntamenti({navigation}) {
     </Dialog.Actions>
   </Dialog>
 </Portal>
-              <Text style={styles.scelta}>APPUNTAMENTI DISPONIBILI:</Text>
+              <Text style={styles.scelta}>APPUNTAMENTI FISSATI:</Text>
               <FlatList
                   scrollEnabled={true}
                   title="APPUNTAMENTI DISPONIBILI"
