@@ -4,6 +4,7 @@ import { View, Text, Image, StyleSheet, TouchableOpacity, ViewPropTypes  } from 
 import RadioButton from '../components/Radio';
 import { Divider, Card, Button, Icon } from 'react-native-elements';
 import FormButton from '../components/FormButton3';
+import DialogButton from '../components/FormButton4';
 import FormInput from '../components/FormInput';
 import { AuthContext } from '../navigation/AuthProvider';
 import { db } from '../common/crud'; 
@@ -46,8 +47,8 @@ export default function ConfermaPrenotazione({navigation,route}) { //non legge i
       <Paragraph>Sei sicuro di voler prenotare questo appuntamento?</Paragraph>
     </Dialog.Content>
     <Dialog.Actions>
-      <Button style ={styles.botton} onPress={hideDialog}>No</Button>
-      <Button style={styles.botton} onPress={ () => {confermaDialog(); navigation.navigate('Il mio Profilo');}}>Sì</Button>
+      <DialogButton title=' No' modeValue='contained' labelStyle={styles.loginButtonLabel}  onPress={hideDialog}/>
+      <DialogButton title=' Si' modeValue='contained' labelStyle={styles.loginButtonLabel} onPress={ () => {confermaDialog(); navigation.navigate('Il mio Profilo');}}/>
     </Dialog.Actions>
   </Dialog>
 </Portal>   
@@ -81,6 +82,10 @@ const styles = StyleSheet.create({
         color:'#1979a9',
         fontWeight: "bold"
     },
+    loginButtonLabel: {
+        fontSize: 22,
+    
+      },
     card:{
         backgroundColor:'#1979a9',
         borderWidth:0,
@@ -93,7 +98,7 @@ const styles = StyleSheet.create({
             
     },
     loginButtonLabel: {
-        fontSize: 22,
+        fontSize: 15,
         marginLeft: '0%',
         textAlign: 'center',
         color: '#ffffff'

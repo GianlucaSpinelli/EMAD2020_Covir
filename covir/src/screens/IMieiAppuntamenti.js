@@ -7,6 +7,7 @@ import { FlatList, ScrollView } from 'react-native-gesture-handler';
 import TouchableScale from 'react-native-touchable-scale'; // https://github.com/kohver/react-native-touchable-scale
 import { LinearGradient } from 'expo-linear-gradient';
 import { db } from '../common/crud'; 
+import DialogButton from '../components/FormButton4';
 import { AuthContext } from '../navigation/AuthProvider';
 import { set } from 'react-native-reanimated';
 
@@ -78,8 +79,8 @@ export default function IMieiAppuntamenti({navigation}) {
       <Paragraph>Sei sicuro di voler eliminare questo appuntamento?</Paragraph>
     </Dialog.Content>
     <Dialog.Actions>
-      <Button buttonStyle ={styles.botton} onPress={hideDialog}>No</Button>
-      <Button style={styles.botton} onPress={ () => {confermaDialog();}}>Sì</Button>
+    <DialogButton title=' No' modeValue='contained' labelStyle={styles.loginButtonLabel} onPress={hideDialog}/>
+      <DialogButton title=' Si' modeValue='contained' labelStyle={styles.loginButtonLabel}onPress={ () => {confermaDialog();}}/>
     </Dialog.Actions>
   </Dialog>
 </Portal>
@@ -120,7 +121,9 @@ const styles = StyleSheet.create({
         fontWeight: "bold"
 
     },
-
+    loginButtonLabel: {
+      fontSize: 17
+    },
     botton:{
       height: '10%',
       width: '10%',
