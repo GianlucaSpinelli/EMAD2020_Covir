@@ -17,7 +17,7 @@ import DonaTempo from '../screens/DonaTempo';
 import { HeaderBackground } from '@react-navigation/stack';
 import ScegliVol from '../screens/ScegliVolontario2';
 import HomeStack from './HomeStack';
-
+const{tipo,setTipo}= useContext(AuthContext); 
 
 
 const Tab = createBottomTabNavigator();
@@ -35,7 +35,7 @@ const renderContentOperatore = () => {
 };
 
 export default function HomeTabNavigator() {
-  const{tipo,setTipo}= useContext(AuthContext); 
+  
     return (          
           <Tab.Navigator 
             screenOptions={({ route }) => ({
