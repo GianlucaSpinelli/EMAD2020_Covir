@@ -141,7 +141,7 @@ const renderContentUtente = (navigation,logout) => {
               }
               buttonStyle={styles.bottone}
               title="  Log-out                       "
-              onPress={() => logout()}
+              onPress={() => {logout(); }}
             />
             </View>
         </View>
