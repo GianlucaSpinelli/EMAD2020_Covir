@@ -6,7 +6,7 @@ export const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
-  
+    const [tipo,setTipo] = useState("");  
     return (
       <AuthContext.Provider
         value={{
@@ -14,6 +14,11 @@ export const AuthProvider = ({ children }) => {
           setUser,
           login: async (email, password) => {
             try {
+              var vol= await db.getVolontarioByMail(email);
+              console.log("volontario:");
+              console.log(vol);
+              var ric= await db.getRichiedenteByMail(email);
+              if(vol==null) setTipo("1"); else if(ric=null) setTipo("2");
               await auth.signInWithEmailAndPassword(email, password);
             } catch (e) {
               console.log(e);
@@ -35,6 +40,7 @@ export const AuthProvider = ({ children }) => {
           },
           logout: async () => {
             try {
+              setTipo("");
               await auth.signOut();
             } catch (e) {
               console.error(e);

@@ -1,7 +1,8 @@
-import React  from 'react';
+import React, { useContext } from 'react';
+
 import { NavigationContainer } from '@react-navigation/native';
 import { View, StyleSheet, Text, Dimensions } from 'react-native';
-
+import { AuthContext, AuthProvider } from '../navigation/AuthProvider';
 import AuthStack from './AuthStack';
 import PrenotaStack from '../navigation/PrenotaStack';
 import DonaStack from '../navigation/DonaStack';
@@ -18,8 +19,8 @@ import ScegliVol from '../screens/ScegliVolontario2';
 import HomeStack from './HomeStack';
 
 
+
 const Tab = createBottomTabNavigator();
-const utente=1;
 
 const renderContentUtente = () => {
   return (
@@ -34,6 +35,7 @@ const renderContentOperatore = () => {
 };
 
 export default function HomeTabNavigator() {
+  const{tipo,setTipo}= useContext(AuthContext); 
     return (          
           <Tab.Navigator 
             screenOptions={({ route }) => ({
@@ -60,9 +62,9 @@ export default function HomeTabNavigator() {
               activeBackgroundColor: '#1979a9'
               
             }}>
-              <Tab.Screen name="Home" component={HomeStack} />
-              {utente==1 ? renderContentUtente() : renderContentOperatore() } 
-              <Tab.Screen name="Il mio Profilo" component={ProfiloStack} />
+              <Tab.Screen name="Home" component={HomeStack}/>
+              {tipo=="1" ? renderContentUtente() : renderContentOperatore()} 
+              <Tab.Screen name="Il mio Profilo" component={ProfiloStack}/>
           </Tab.Navigator>         
         
       );                         
