@@ -10,6 +10,7 @@ const manage={
                 console.error("Error writing document: ", error);
             });
     },
+    
     addVolontario:function(utenteobj){
          ref.collection("volontari").add(utenteobj)
             .then(function(docRef) {
@@ -37,15 +38,7 @@ const manage={
            console.error("Error writing document: ", error);
        });
     },
-    removeSlot:function(chiaveslot){
-        ref.collection("slot").doc(chiaveslot).delete()
-        .then(function() {
-            console.log("Document successfully deleted!");
-            //rimuovere l'appuntamento a cui fa riferimento
-        }).catch(function(error) {
-            console.error("Error removing document: ", error);
-        });
-    },
+   
     removeAppuntamento: async function(chiave,idslot){
         
             this.setSlotNOTOccupato(chiave);
@@ -63,6 +56,21 @@ const manage={
             console.log(error);
           }
     },
+    removeSlot: async function(idslot){
+        
+        console.log("id"+idslot);
+        var docref = ref.collection("slot").where("id","==",idslot).get().then(querySnapshot => {
+            querySnapshot.forEach(doc => {
+               console.log("eleminato"+docref); 
+               doc.ref.delete();
+           })
+        });
+      try {
+        await docref;
+      } catch (error) {
+        console.log(error);
+      }
+},
     //AGGIUNGERE I RETURN AI GET
     getAppuntamento:function(chiaveappuntamento){
         var docRef = ref.collection("appuntamenti").doc(chiaveappuntamento);
@@ -82,6 +90,26 @@ const manage={
         var lista = [];
         if (chiave != null) {
         const n = ref.collection("slot").where("id","==",chiave).get().then(querySnapshot  => {
+            querySnapshot.forEach(doc => {
+                console.log("app:"+doc.data());
+                lista.push(doc.data());
+                
+           })
+        });
+        try {
+            await n;
+            return lista[0];
+        } catch (error) {
+            
+        } 
+    }
+    else return lista[0];
+    },
+    getAppBySlot:async function(chiave){
+
+        var lista = [];
+        if (chiave != null) {
+        const n = ref.collection("appuntamenti").where("idslot","==",chiave).get().then(querySnapshot  => {
             querySnapshot.forEach(doc => {
                 console.log("app:"+doc.data());
                 lista.push(doc.data());
@@ -139,6 +167,27 @@ const manage={
            
        }       
    },
+   getAllAppuntamentiByVol: async   function(emailutente){ //FUNONZ
+    //return await ref.collection("appuntamenti").where("mailrichiedente", "==", emailutente)
+   //.get();
+   var lista = [];
+   const n =  ref.collection("appuntamenti").where("mailvolontario", "==",emailutente).get().then(querySnapshot => {
+    
+    querySnapshot.forEach(doc => {
+            console.log("app:"+doc.data());
+            lista.push(doc.data());
+            
+       })
+       
+   });
+   try {
+       await n;
+       return lista;
+   } catch (error) {
+       
+   }       
+},
+   
     
 
    /* getAllAppuntamentiByUtente:async function(emailutente){ //FUNONZ
