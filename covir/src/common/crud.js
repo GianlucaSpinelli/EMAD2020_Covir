@@ -221,36 +221,30 @@ const manage={
        }    
     },
     getVolontarioByMail:function(mail){
-        var list = [];
-        const x = ref.collection("volontari").where("email", "==", mail)
+        return ref.collection("volontari").where("email", "==", mail)
         .get()
         .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
             // doc.data() is never undefined for query doc snapshots
-            list.push(doc.data());
             console.log(doc.id, " => ", doc.data());
         });
         })
         .catch(function(error) {
         console.log("Error getting documents: ", error);
         });
-        return list[0];
     },
     getRichiedenteByMail:function(mail){
-        var list = [];
-        const x = ref.collection("richiedenti").where("email", "==", mail)
+        return ref.collection("richiedenti").where("email", "==", mail)
         .get()
         .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
             // doc.data() is never undefined for query doc snapshots
-            list.push(doc.data());
             console.log(doc.id, " => ", doc.data());
         });
         })
         .catch(function(error) {
         console.log("Error getting documents: ", error);
         });
-        return list[0];
     },
     modificaPasswordUtente:function(chiaveutente,nuovapassword){
         ref.collection("richiedenti").doc(chiaveutente).update({password: nuovapassword});

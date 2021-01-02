@@ -14,15 +14,11 @@ export const AuthProvider = ({ children }) => {
           setUser,
           login: async (email, password) => {
             try {
-              var vol= null;
-              var ric= null;
-              vol = await db.getVolontarioByMail(email);
+              var vol= await db.getVolontarioByMail(email);
               console.log("volontario:");
               console.log(vol);
-              ric = await db.getRichiedenteByMail(email);
-              console.log("richiedente:");
-              console.log(ric);
-              if(vol==null && ric != null) setTipo("1"); else if(ric==null && vol!= null) setTipo("2");
+              var ric= await db.getRichiedenteByMail(email);
+              if(vol==null) setTipo("1"); else if(ric=null) setTipo("2");
               await auth.signInWithEmailAndPassword(email, password);
             } catch (e) {
               console.log(e);
@@ -44,7 +40,7 @@ export const AuthProvider = ({ children }) => {
           },
           logout: async () => {
             try {
-              setUser(null);
+              setTipo("");
               await auth.signOut();
             } catch (e) {
               console.error(e);
