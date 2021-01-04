@@ -31,7 +31,7 @@ export default function Registrazione({navigation}) {
     const {register} = useContext(AuthContext);
     const [nome, setnome] = useState('');
     const [cognome, setcognome] = useState('');
-    const [descrizione, setDescrizione] = useState('');
+    const [cellulare, setCellulare] = useState('');
     const [DNascita, setDNascita] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -63,10 +63,10 @@ export default function Registrazione({navigation}) {
           onChangeText={userDNascita => setDNascita(userDNascita)}
         />
         <FormInput
-          labelName='Descrizione'
-          value={descrizione}
+          labelName='Cellulare'
+          value={cellulare}
           autoCapitalize='none'
-          onChangeText={userDescr => setDescrizione(userDescr)}
+          onChangeText={userCel => setCellulare(userCel)}
         />
         <FormInput
           labelName='Email'
@@ -94,7 +94,7 @@ export default function Registrazione({navigation}) {
           title='Registrati'
           modeValue='contained'
           labelStyle={styles.loginButtonLabel}
-          onPress={() =>{register({email:email, nome:nome, cognome:cognome, datanascita:DNascita, descrizione:descrizione, password:password, associazione:associazione},isSelected);}} //navigation.navigate('HomeTab')}  //deve andare alla schermata del documento
+          onPress={() =>{register({email:email, nome:nome, cognome:cognome, datanascita:DNascita, cellulare:cellulare, password:password, associazione:associazione},isSelected);}} //navigation.navigate('HomeTab')}  //deve andare alla schermata del documento
           //onPress={() =>{ registrazione({email:email, nome:nome, cognome:cognome, datanascita:DNascita, descrizione:descrizione, password:password, associazione:associazione},isSelected ); register(email, password);}} //navigation.navigate('HomeTab')}  //deve andare alla schermata del documento
           //onPress={() =>{ registrazione({email:email, nome:nome, cognome:cognome, datanascita:DNascita, descrizione:descrizione, password:password, associazione:associazione},isSelected ); register(email, password);}} //navigation.navigate('HomeTab')}  //deve andare alla schermata del documento
 

@@ -3,7 +3,7 @@ import { ref,dbref } from './firebase.js';
 
 const manage={
     addUtente:function(utenteobj){
-         ref.collection("richiedenti").add(utenteobj)      //.doc("spinelli@gmail.it").set(obj)
+         ref.collection("utenti").add(utenteobj)      //.doc("spinelli@gmail.it").set(obj)
             .then(function(docRef) {
                 console.log('User id',docRef.id);
             }).catch(function(error) {

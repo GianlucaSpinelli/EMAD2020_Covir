@@ -27,10 +27,10 @@ export const AuthProvider = ({ children }) => {
           register: async (utenteobj,isSelected) => {
             try {
               if(isSelected==true){
-                db.addVolontario(utenteobj);
+                db.addUtente(utenteobj);
               }
               else{
-                const utenteric={email:utenteobj.email, nome:utenteobj.nome, cognome:utenteobj.cognome, datanascita:utenteobj.datanascita, descrizione:utenteobj.descrizione, password:utenteobj.password};
+                const utenteric={email:utenteobj.email, nome:utenteobj.nome, cognome:utenteobj.cognome, datanascita:utenteobj.datanascita, cellulare:utenteobj.cellulare, password:utenteobj.password};
                 db.addUtente(utenteric);
               }
               await auth.createUserWithEmailAndPassword(utenteobj.email, utenteobj.password);
