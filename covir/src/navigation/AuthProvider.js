@@ -14,11 +14,10 @@ export const AuthProvider = ({ children }) => {
           setUser,
           login: async (email, password) => {
             try {
-              var vol= await db.getVolontarioByMail(email);
-              console.log("volontario:");
+              var user= await db.getUtenteByMail(email);
+              console.log("user:");
               console.log(vol);
-              var ric= await db.getRichiedenteByMail(email);
-              if(vol==null) setTipo("1"); else if(ric=null) setTipo("2");
+              if(user != null && user.data().tipo == false) setTipo("1"); else if(user.data().tipo == true) setTipo("2");
               await auth.signInWithEmailAndPassword(email, password);
             } catch (e) {
               console.log(e);

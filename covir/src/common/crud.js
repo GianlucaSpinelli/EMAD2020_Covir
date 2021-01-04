@@ -269,8 +269,8 @@ const manage={
            
        }    
     },
-    getVolontarioByMail:function(mail){
-        return ref.collection("volontari").where("email", "==", mail)
+    getUtenteByMail:function(mail){
+        return ref.collection("utente").where("email", "==", mail)
         .get()
         .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
