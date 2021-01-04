@@ -18,7 +18,7 @@ import { HeaderBackground } from '@react-navigation/stack';
 import ScegliVol from '../screens/ScegliVolontario2';
 import HomeStack from './HomeStack';
 
-
+var utentetipo = 1;
 
 const Tab = createBottomTabNavigator();
 
@@ -63,7 +63,7 @@ export default function HomeTabNavigator() {
               
             }}>
               <Tab.Screen name="Home" component={HomeStack}/>
-              {tipo=="1" ? renderContentUtente() : renderContentOperatore()} 
+              {utentetipo==1 ? renderContentUtente() : renderContentOperatore()} 
               <Tab.Screen name="Il mio Profilo" component={ProfiloStack}/>
           </Tab.Navigator>         
         

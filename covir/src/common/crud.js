@@ -3,7 +3,7 @@ import { ref,dbref } from './firebase.js';
 
 const manage={
     addUtente:function(utenteobj){
-         ref.collection("utenti").add(utenteobj)      //.doc("spinelli@gmail.it").set(obj)
+         ref.collection("utente").add(utenteobj)      //.doc("spinelli@gmail.it").set(obj)
             .then(function(docRef) {
                 console.log('User id',docRef.id);
             }).catch(function(error) {
@@ -275,7 +275,7 @@ const manage={
         .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
             // doc.data() is never undefined for query doc snapshots
-            console.log(doc.id, " => ", doc.data());
+            console.log(doc.id, " => CIAO ", doc.data());
         });
         })
         .catch(function(error) {

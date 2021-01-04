@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { View, StyleSheet, Image } from 'react-native';
 import { Title } from 'react-native-paper';
 import { AuthContext, AuthProvider } from '../navigation/AuthProvider';
 import FormButton from '../components/FormButton';
 import { Divider } from 'react-native-elements';
-
+import { db } from '../common/crud'; 
 
 const renderContentUtente = (navigation) => {
   return (
@@ -62,11 +62,19 @@ const renderContentOperatore = (navigation) => {
 
 export default function HomeScreen({ navigation }) {
   const { user, logout } = useContext(AuthContext);
-  const { tipo, setTipo } = useContext(AuthContext);
+  const [ tipo, setTipo ] = useState(false);
   console.log(" tipo utente: " + tipo);
+  
+  function getTipo(){
+    var tempo = db.getUtenteByMail(user.email);
+    console.log(tempo);
+    //setTipo(tempo);
+  };
+
   return (
     <View style={styles.container}>
-      {tipo == "1" ? renderContentUtente(navigation) : renderContentOperatore(navigation)}
+      {getTipo()}
+      { tipo == false ? renderContentUtente(navigation) : renderContentOperatore(navigation)}
     </View>
   ); // {{user.uid}}
 }
