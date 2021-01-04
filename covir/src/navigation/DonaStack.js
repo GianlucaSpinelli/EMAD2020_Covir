@@ -9,30 +9,30 @@ import ConfermaPrenot from '../screens/ConfermaPrenotazione';
 import ScegliVolontario2 from '../screens/ScegliVolontario2'
 import Appuntamenti from '../screens/IMieiAppuntamenti';
 import MieiSlot from '../screens/MieiSlot';
-import AggiuntaSlot2 from '../screens/AggiuntaSlot2';
+import AggiuntaSlot from '../screens/AggiuntaSlot';
 import { View, Text, Image } from 'react-native';
 
 
 const Stack = createStackNavigator();
 
 function Header() {
-  return(
-    <Image style={{ width: 50, height: 50}} 
-    source= { require('../images/logo.png')}/>
+  return (
+    <Image style={{ width: 50, height: 50 }}
+      source={require('../images/logo.png')} />
   )
 }
 
 export default function DonaStack() {
-    return (
-      <Stack.Navigator initialRouteName='AggiuntaSlot'>
-        <Stack.Screen name='AggiuntaSlot' component={AggiuntaSlot2} options={{
-          title: 'Nuovo slot',
-          headerStyle: {
-            backgroundColor: '#1979a9',
-          },
-          headerTintColor: '#fff',
-        }} />
-        <Stack.Screen name='MieiSlot' component={MieiSlot} 
+  return (
+    <Stack.Navigator initialRouteName='AggiuntaSlot'>
+      <Stack.Screen name='AggiuntaSlot' component={AggiuntaSlot} options={{
+        title: 'Nuovo slot',
+        headerStyle: {
+          backgroundColor: '#1979a9',
+        },
+        headerTintColor: '#fff',
+      }} />
+      <Stack.Screen name='MieiSlot' component={MieiSlot}
         options={{
           title: 'Miei slot',
           headerStyle: {
@@ -40,9 +40,9 @@ export default function DonaStack() {
           },
           headerTintColor: '#fff',
         }} />
-        
-        
 
-      </Stack.Navigator>
-    );
-  }
+
+
+    </Stack.Navigator>
+  );
+}
