@@ -7,19 +7,29 @@ export const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
-    const [tipo,setTipo] = useState("");  
+    const [tipo,setTipo] = useState("");
+    const [nome,setNome] = useState(null);  
+    const [cognome,setCognome] = useState(null); 
+    const [emailU,setEmailU] = useState(null); 
+    const [dataN,setDataN] = useState(null); 
+    const [associazione,setAssociazione] = useState(null); 
     return (
       <AuthContext.Provider
         value={{
-          user,tipo,
-          setUser,setTipo,
+          user,tipo,nome,cognome,emailU,dataN,associazione,
+          setUser,setTipo,setNome,setCognome,setEmailU,setDataN,setAssociazione,
           login: async (email, password) => {
             try {
               var temp = await db.getUtenteByMail(email);
               console.log("user login");
               console.log(temp);
               console.log(temp.tipo);
-              setTipo(temp.tipo);             
+              setTipo(temp.tipo);
+              setNome(temp.nome);
+              setCognome(temp.cognome);
+              setEmailU(temp.email);
+              setDataN(temp.datanascita);
+              setAssociazione(temp.associazione);
               await auth.signInWithEmailAndPassword(email, password);
             } catch (e) {
               console.log(e);

@@ -7,6 +7,8 @@ import { Divider } from 'react-native-elements';
 import { db } from '../common/crud'; 
 
 const renderContentUtente = (navigation) => {
+  const { nome, setNome } = useContext(AuthContext);
+  console.log(nome);
   return (
     <View style={styles.container}>
       <View style={styles.container}>
@@ -14,7 +16,7 @@ const renderContentUtente = (navigation) => {
           style={{ width: 200, height: 200, borderRadius: 100, marginBottom: 30, marginTop: 70 }}
           source={require('../images/anziano1.jpg')}
         />
-        <Title style={styles.titolo}>Ciao { }</Title>
+        <Title style={styles.titolo}>Ciao {nome}!</Title>
         <Title style={styles.frase}>Prenota il tuo incontro</Title>
       </View>
       <Divider style={{ backgroundColor: '#6b7070', height: 2, width: 310, marginTop: 80 }} />
@@ -33,6 +35,7 @@ const renderContentUtente = (navigation) => {
 };
 
 const renderContentOperatore = (navigation) => {
+  const { nome, setNome } = useContext(AuthContext);
   return (
     <View style={styles.container}>
       <View style={styles.container}>
@@ -40,7 +43,7 @@ const renderContentOperatore = (navigation) => {
           style={{ width: 200, height: 200, borderRadius: 100, marginBottom: 30, marginTop: 70 }}
           source={require('../images/anziano2.jpg')}
         />
-        <Title style={styles.titolo}>Ciao Vincenzo!</Title>
+        <Title style={styles.titolo}>Ciao {nome}!</Title>
         <Title style={styles.frase}>Dona il tuo tempo per aiutare</Title>
         <Title style={styles.frasesotto}>chi cerca compagnia</Title>
       </View>
@@ -63,6 +66,12 @@ const renderContentOperatore = (navigation) => {
 export default function HomeScreen({ navigation }) {
   const { user, logout } = useContext(AuthContext);
   const { tipo, setTipo } = useContext(AuthContext);
+  const { nome, setNome } = useContext(AuthContext);
+  const { cognome, setCognome } = useContext(AuthContext);
+  const { email, setEmail } = useContext(AuthContext);
+  const { dataN, setDataN } = useContext(AuthContext);
+  const { associazione, setAssociazione } = useContext(AuthContext);
+
   console.log(" tipo utente: " + tipo);
   
 
