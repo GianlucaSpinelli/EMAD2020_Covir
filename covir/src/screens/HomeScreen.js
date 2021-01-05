@@ -62,19 +62,13 @@ const renderContentOperatore = (navigation) => {
 
 export default function HomeScreen({ navigation }) {
   const { user, logout } = useContext(AuthContext);
-  const [ tipo, setTipo ] = useState(false);
+  const { tipo, setTipo } = useContext(AuthContext);
   console.log(" tipo utente: " + tipo);
   
-  function getTipo(){
-    var tempo = db.getUtenteByMail(user.email);
-    console.log(tempo);
-    //setTipo(tempo);
-  };
 
   return (
     <View style={styles.container}>
-      {getTipo()}
-      { tipo == false ? renderContentUtente(navigation) : renderContentOperatore(navigation)}
+      { tipo != "volontario" ? renderContentUtente(navigation) : renderContentOperatore(navigation)}
     </View>
   ); // {{user.uid}}
 }
