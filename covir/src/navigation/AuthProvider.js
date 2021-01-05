@@ -11,8 +11,8 @@ export const AuthProvider = ({ children }) => {
     return (
       <AuthContext.Provider
         value={{
-          user,
-          setUser,
+          user,tipo,
+          setUser,setTipo,
           login: async (email, password) => {
             try {
               var temp = await db.getUtenteByMail(email);
