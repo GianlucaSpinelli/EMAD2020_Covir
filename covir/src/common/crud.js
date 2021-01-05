@@ -12,7 +12,7 @@ const manage={
     },
     
     addVolontario:function(utenteobj){
-         ref.collection("volontari").add(utenteobj)
+         ref.collection("utente").add(utenteobj)
             .then(function(docRef) {
                 console.log('User id',docRef.id);
             }).catch(function(error) {
@@ -227,7 +227,7 @@ const manage={
     else return lista;  
     },
     getUtente:async function(chiaveutente){  //FUNONZ
-        return await ref.collection("richiedenti").doc(chiaveutente).get().then(function(doc) {
+        return await ref.collection("utente").doc(chiaveutente).get().then(function(doc) {
             if (doc.exists) {
                 console.log("Document data:", doc.data());
             } else {
@@ -239,7 +239,7 @@ const manage={
         });        
     },
     getVolontario:function(chiavevolontario){
-        var docRef = ref.collection("volontari").doc(chiavevolontario);
+        var docRef = ref.collection("utente").doc(chiavevolontario);
         return docRef.get().then(function(doc) {
             if (doc.exists) {
                 console.log("Document data:", doc.data());
@@ -253,7 +253,7 @@ const manage={
     },
     getAllVolontari:async function(){
        var listaVolo = [];
-       const m =  ref.collection("volontari").get().then(querySnapshot => {
+       const m =  ref.collection("utente").where("tipo","==","volontario").get().then(querySnapshot => {
         
         querySnapshot.forEach(doc => {
                 console.log("appVolo:"+doc.data());
@@ -289,33 +289,30 @@ const manage={
     }
     else return null;
     },
-    getRichiedenteByMail:function(mail){
-        return ref.collection("richiedenti").where("email", "==", mail)
-        .get()
-        .then(function(querySnapshot) {
-        querySnapshot.forEach(function(doc) {
-            // doc.data() is never undefined for query doc snapshots
-            console.log(doc.id, " => ", doc.data());
+    getRichiedenteByMail:async function(mail){
+        var lista = [];
+        if (mail != null) {
+        const n = ref.collection("utente").bwhere("email","==",mail).get().then(querySnapshot  => {
+            
+            querySnapshot.forEach(doc => {
+                console.log("utente trovato:"+doc.data());
+                lista.push(doc.data());
+           })
         });
-        })
-        .catch(function(error) {
-        console.log("Error getting documents: ", error);
-        });
+        try {
+            await n;
+            return lista[0];
+        } catch (error) {
+            
+        } 
+    }
+    else return null;
     },
     modificaPasswordUtente:function(chiaveutente,nuovapassword){
-        ref.collection("richiedenti").doc(chiaveutente).update({password: nuovapassword});
+        ref.collection("utente").doc(chiaveutente).update({password: nuovapassword});
     },
     modificaPasswordVolontario:function(chiavevolontario,nuovapassword){
-        ref.collection("volontari").doc(chiavevolontario).update({password: nuovapassword});
-    },
-    modificaNumAppuntamentiUtente:function(chiaveutente,nuovonumero){//piu 1 o meno 1 passato
-        ref.collection("richiedenti").doc(chiaveutente).update({numeroappuntamenti: nuovonumero});
-    },
-    modificaNumAppuntamentiVolontario:function(chiavevolontario, nuovonumero){//piu 1 o meno 1 passato
-        ref.collection("volontari").doc(chiavevolontario).update({numeroappuntamenti: nuovonumero});
-    },
-    modificaNumSlotVolontario:function(chiavevolontario, nuovonumero){
-        ref.collection("volontari").doc(chiavevolontario).update({numeroslot: nuovonumero});
+        ref.collection("utente").doc(chiavevolontario).update({password: nuovapassword});
     },
     setSlotOccupato: function(ids) {
         ref.collection("slot").doc(ids).update({occupato: true});

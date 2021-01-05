@@ -11,7 +11,7 @@ import { AuthContext } from '../navigation/AuthProvider';
 import { set } from 'react-native-reanimated';
 import DialogButton from '../components/FormButton4';
 
-export default function IMieiAppuntamenti({navigation}) {
+export default function MieiSlot({navigation}) {
   
   const [loading,setLoading] = useState(true);
   const [result,setResult] = useState([]);
@@ -21,6 +21,7 @@ export default function IMieiAppuntamenti({navigation}) {
   const [visible1, setVisible1] = useState(false);
   const [appuntamento, setAppuntamento] = useState(null);
   const [ids,setid] = useState("");
+  const { emailU, setEmailU } = useContext(AuthContext);
   function showDialog(id){ setVisible(true); setid(id);};  
   function showDialog1(id){ setVisible1(true); setid(id);};                         
   function confermaDialog(){ hideDialog(); db.removeAppuntamento(ids); db.removeSlot(ids); caricaDati();};
@@ -34,9 +35,7 @@ export default function IMieiAppuntamenti({navigation}) {
   }, []);
 
    async function caricaDati(){
-    console.log(user.email); 
- 
-    var list = await db.getAllAppuntamentiByVol(user.email);
+    var list = await db.getAllAppuntamentiByVol(emailU);
     console.log("lista app:" +list);
     var listaslot = [];
     console.log(list[0].piattaforma);
@@ -68,6 +67,8 @@ export default function IMieiAppuntamenti({navigation}) {
 
   
   const renderContent =()=>{
+    
+
   if(loading){
     return (
       <ActivityIndicator size="small" color={"#000000"}/>
@@ -84,23 +85,11 @@ export default function IMieiAppuntamenti({navigation}) {
     </Dialog.Content>
     <Dialog.Actions>
     <DialogButton title=' No' modeValue='contained' labelStyle={styles.loginButtonLabel} onPress={hideDialog}/>
-    <DialogButton title=' Si' modeValue='contained' labelStyle={styles.loginButtonLabel}onPress={ () => {confermaDialog();}}/>
+      <DialogButton title=' Si' modeValue='contained' labelStyle={styles.loginButtonLabel}onPress={ () => {confermaDialog();}}/>
     </Dialog.Actions>
   </Dialog>
 </Portal>
-<Portal>
-  <Dialog visible={visible1}  onDismiss={hideDialog1}>
-    <Dialog.Title>DATI UTILI PER L'APPUNTAMENTO</Dialog.Title>
-    <Dialog.Content>
-      {setAppuntamento(db.getAppBySlot(ids))}
-      <Paragraph>richiedente: {appuntamento.mailrichiedente}</Paragraph>
-      <Paragraph>piattaforma: {appuntamento.piattaforma}</Paragraph>
-    </Dialog.Content>
-    <Dialog.Actions>
-    <DialogButton title=' Torna a tutti gli slot' modeValue='contained' labelStyle={styles.loginButtonLabel} onPress={hideDialog}/>
-    </Dialog.Actions>
-  </Dialog>
-</Portal>
+
               <Text style={styles.scelta}>SLOT MESSI A DISPOSIZIONE:</Text>
               <FlatList
                   scrollEnabled={true}
@@ -112,7 +101,7 @@ export default function IMieiAppuntamenti({navigation}) {
                       title={item.dataorainizio.toDate().toDateString()}
                       titleStyle={styles.testo}
                       subtitle={"occupato: "+item.occupato}
-                      left={(props) => <Avatar.Icon icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/date.png' }} style={styles.icona} onPress={() => showDialog1(item.id)} />} />} 
+                      left={(props) => <IconButton icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/date.png' }} style={styles.icona} onPress={() => showDialog1(item.id)} />} />} 
                       leftStyle={styles.bottoneLeft}
                       right={(props) => <IconButton icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/trash.png' }} style={styles.bottoneRight} onPress={() => showDialog(item.id)} />}  />
           </View>

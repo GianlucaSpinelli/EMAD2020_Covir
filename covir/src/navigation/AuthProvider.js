@@ -13,11 +13,12 @@ export const AuthProvider = ({ children }) => {
     const [emailU,setEmailU] = useState(null); 
     const [dataN,setDataN] = useState(null); 
     const [associazione,setAssociazione] = useState(null); 
+    const [cellulare,setCellulare] = useState(null);
     return (
       <AuthContext.Provider
         value={{
-          user,tipo,nome,cognome,emailU,dataN,associazione,
-          setUser,setTipo,setNome,setCognome,setEmailU,setDataN,setAssociazione,
+          user,tipo,nome,cognome,emailU,dataN,associazione,cellulare,
+          setUser,setTipo,setNome,setCognome,setEmailU,setDataN,setAssociazione,setCellulare,
           login: async (email, password) => {
             try {
               var temp = await db.getUtenteByMail(email);
@@ -29,6 +30,7 @@ export const AuthProvider = ({ children }) => {
               setCognome(temp.cognome);
               setEmailU(temp.email);
               setDataN(temp.datanascita);
+              setCellulare(temp.cellulare);
               setAssociazione(temp.associazione);
               await auth.signInWithEmailAndPassword(email, password);
             } catch (e) {

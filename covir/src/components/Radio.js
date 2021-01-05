@@ -54,11 +54,6 @@ class Radio extends React.Component {
 						/>
 					}
 				/>
-				<FormInput style={{marginTop:10,backgroundColor:'#ffffff'}}
-          			labelName='Info contatto relativo alla piattaforma scelta'
-          			value={info}
-          			onChangeText={(testo) => this.setState({ info: testo })}
-        		/>
 				</View>
 				
 			)

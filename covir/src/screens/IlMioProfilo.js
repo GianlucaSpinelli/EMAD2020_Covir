@@ -8,12 +8,17 @@ import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { BaseRouter } from '@react-navigation/native';
 
-var utente=1;
-
-
 const renderContentOperatore = (navigation,logout) => {
   
-
+  const { user, setUser } = useContext(AuthContext); 
+  const { tipo, setTipo } = useContext(AuthContext);
+  const { nome, setNome } = useContext(AuthContext);
+  const { cognome, setCognome } = useContext(AuthContext);
+  const { email, setEmail } = useContext(AuthContext);
+  const { dataN, setDataN } = useContext(AuthContext);
+  const { associazione, setAssociazione } = useContext(AuthContext);
+  const {cellulare,setCellulare} = useContext(AuthContext);
+  console.log(cognome+" RENDER CONTENT OPERATORE");
   return (
     <View style={styles.container}>
         <View style={styles.welcome}>
@@ -24,14 +29,10 @@ const renderContentOperatore = (navigation,logout) => {
                 />
             </View>
             <View style={styles.welcome2}>
-                <Title style={styles.frase}>Vincenzo Pecoraro</Title> 
-                <Title style={styles.frase2}>vpec998@gmail.com</Title> 
-                <Title style={styles.frase2}>+39/3206613981</Title> 
+                <Title style={styles.frase}>{nome+" "+cognome}</Title> 
+                <Title style={styles.frase2}>{user.email}</Title> 
+                <Title style={styles.frase2}>{cellulare}</Title> 
             </View>
-        </View>
-           
-        <View style={styles.welcome3}>
-            <Title style={styles.frasesotto2}>Ciao, mi chiamo Vincenzo Pecoraro e ho 22 anni. Lavoro per l'associazione MAI SOLI, la quale si occupa di tenere compagnia agli anziani sul territori di Salerno.</Title> 
         </View>
         <View style={styles.welcome4}>
           <View style={styles.welcome5}>
@@ -82,6 +83,16 @@ const renderContentOperatore = (navigation,logout) => {
 };
 
 const renderContentUtente = (navigation,logout) => {
+  const { user, setUser } = useContext(AuthContext); 
+  const { tipo, setTipo } = useContext(AuthContext);
+  const { nome, setNome } = useContext(AuthContext);
+  const { cognome, setCognome } = useContext(AuthContext);
+  const { email, setEmail } = useContext(AuthContext);
+  const { dataN, setDataN } = useContext(AuthContext);
+  const { associazione, setAssociazione } = useContext(AuthContext);
+  const {cellulare,setCellulare} = useContext(AuthContext);
+  console.log(cognome+" RENDER CONTENT UTENTE");
+
   return (
     <View style={styles.container}>
         <View style={styles.welcome}>
@@ -92,14 +103,10 @@ const renderContentUtente = (navigation,logout) => {
                 />
             </View>
             <View style={styles.welcome2}>
-                <Title style={styles.frase}>Gaetano Ansanelli</Title> 
-                <Title style={styles.frase2}>g.ansanelli@gmail.com</Title> 
-                <Title style={styles.frase2}>+39/3318095598</Title> 
+                <Title style={styles.frase}>{nome+" "+cognome}</Title> 
+                <Title style={styles.frase2}>{user.email}</Title> 
+                <Title style={styles.frase2}>{cellulare}</Title> 
             </View>
-        </View>
-           
-        <View style={styles.welcome3}>
-            <Title style={styles.frasesotto2}>Ciao, mi chiamo Gaetano Ansanelli e ho 64 anni, vivo a Baronissi, un piccolo paesino in provincia di Salerno. In questo periodo per via della pandemia mi sento spesso molto solo, mi piacerebbe che qualuno ogni tanto potesse tenermi compagnia.</Title> 
         </View>
         <View style={styles.welcome4}>
           <View style={styles.welcome5}>
@@ -152,9 +159,20 @@ const renderContentUtente = (navigation,logout) => {
 
 export default function IlMioProfilo({navigation}) {
     const { logout } = useContext(AuthContext);
+    const { user, setUser } = useContext(AuthContext); 
+  const { tipo, setTipo } = useContext(AuthContext);
+  const { nome, setNome } = useContext(AuthContext);
+  const { cognome, setCognome } = useContext(AuthContext);
+  const { email, setEmail } = useContext(AuthContext);
+  const { dataN, setDataN } = useContext(AuthContext);
+  const { associazione, setAssociazione } = useContext(AuthContext);
+  const {cellulare,setCellulare} = useContext(AuthContext);
+    console.log(cognome);
+
+    console.log(user);
     return (
      <View style={styles.container}>
-      {utente==1 ? renderContentUtente(navigation,logout) : renderContentOperatore(navigation,logout) }
+      {tipo=="richiedente" ? renderContentUtente(navigation,logout) : renderContentOperatore(navigation,logout) }
       </View> 
     );
   }

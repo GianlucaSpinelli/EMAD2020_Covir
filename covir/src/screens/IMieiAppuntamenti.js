@@ -12,10 +12,11 @@ import { AuthContext } from '../navigation/AuthProvider';
 import { set } from 'react-native-reanimated';
 
 export default function IMieiAppuntamenti({navigation}) {
+  console.log("ENTR NELLA PAGE");
   
+  const { emailU, setEmailU } = useContext(AuthContext);
   const [loading,setLoading] = useState(true);
   const [result,setResult] = useState([]);
-  const { user, setUser } = useContext(AuthContext); 
   const [visible, setVisible] = useState(false);
   const [ids,setid] = useState("");
   function showDialog(id){ setVisible(true); setid(id);};                         
@@ -30,9 +31,12 @@ export default function IMieiAppuntamenti({navigation}) {
   }, []);
 
    async function caricaDati(){
-    console.log(user.email); 
- 
-    var list = await db.getAllAppuntamentiByUtente(user.email);
+    console.log("ENTRO NELLA FUNZIONE CARICA DATI");
+    
+
+    console.log(emailU);
+    var list = await db.getAllAppuntamentiByUtente(emailU);
+    console.log("11111111111111");
     console.log("lista app:" +list);
     var listaslot = [];
     console.log(list[0].piattaforma);
@@ -41,7 +45,9 @@ export default function IMieiAppuntamenti({navigation}) {
       console.log(chiave);
       console.log("id uguale"+ids);
       var slot= await db.getSlot(chiave);
+      console.log("222222222");
       var x = await db.getSlotObj(chiave);
+      console.log("3333333");
       setChiaveSlot(x.id);
       const datajs = slot.dataorainizio.toDate();
       var dataoggi= new Date(Date.now()+(10*60*1000));

@@ -20,8 +20,11 @@ export default function ConfermaPrenotazione({navigation,route}) { //non legge i
     const piatt = "Skype";
     console.log("piattaforma"+piatt);
     const [visible, setVisible] = useState(false);
-    const app = {idslot:id, mailrichiedente:mailric, mailvolontario: mailV, piattaforma:piatt};
+    const [info, setInfo] = useState('la tua informazione');
+    const app = {idslot:id, mailrichiedente:mailric, mailvolontario: mailV, piattaforma:piatt,informazione:info};
     const [slot, setSlot] = useState("");
+    
+
 
     useEffect(() => {
         prelevaSlot();
@@ -57,6 +60,12 @@ export default function ConfermaPrenotazione({navigation,route}) { //non legge i
         <Card containerStyle={styles.card}>
         </Card>
         <RadioButton></RadioButton>
+        <FormInput style={{marginTop:10,backgroundColor:'#ffffff'}}
+          			labelName='Info contatto relativo alla piattaforma scelta'
+                value={info}
+                autoCapitalize='none'
+                onChangeText={userInfo => setInfo(userInfo)}
+        		/>
     </View>
     <View containerStyle={styles.container1}>
         <FormButton

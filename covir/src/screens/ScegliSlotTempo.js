@@ -37,8 +37,10 @@ export default function ScegliSlotTempo({navigation,route}) {
     };
 
     async function caricaDati(eta){
-        
+        console.log("DAVIDEEEEEEEEEEEEEEEEEE");
         var list = await db.getAllVolontari();
+        console.log(list[0].cognome);
+        console.log("GIANLUCAAAAAAAAAAAAAAAAA");
         
         for(i=0;i<list.length;i++){
           const datajs = list[i].datanascita.toDate();
