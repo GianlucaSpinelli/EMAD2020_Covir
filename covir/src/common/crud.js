@@ -269,18 +269,25 @@ const manage={
            
        }    
     },
-    getUtenteByMail:function(mail){
-        return ref.collection("utente").where("email", "==", mail)
-        .get()
-        .then(function(querySnapshot) {
-        querySnapshot.forEach(function(doc) {
-            // doc.data() is never undefined for query doc snapshots
-            console.log(doc.id, " => CIAO ", doc.data());
+    getUtenteByMail:async function(mail){
+        var lista = [];
+        if (mail != null) {
+        const n = ref.collection("utente").where("email","==",mail).get().then(querySnapshot  => {
+            
+            querySnapshot.forEach(doc => {
+                console.log("utente trovato:"+doc.data());
+                lista.push(doc.data());
+                
+           })
         });
-        })
-        .catch(function(error) {
-        console.log("Error getting documents: ", error);
-        });
+        try {
+            await n;
+            return lista[0];
+        } catch (error) {
+            
+        } 
+    }
+    else return null;
     },
     getRichiedenteByMail:function(mail){
         return ref.collection("richiedenti").where("email", "==", mail)

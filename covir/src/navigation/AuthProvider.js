@@ -15,10 +15,11 @@ export const AuthProvider = ({ children }) => {
           setUser,
           login: async (email, password) => {
             try {
-              var temp = db.getUtenteByMail(email);
+              var temp = await db.getUtenteByMail(email);
               console.log("user login");
               console.log(temp);
-              setTipo(temp[0].data().tipo);             
+              console.log(temp.tipo);
+              setTipo(temp.tipo);             
               await auth.signInWithEmailAndPassword(email, password);
             } catch (e) {
               console.log(e);
