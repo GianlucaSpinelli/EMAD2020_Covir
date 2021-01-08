@@ -35,7 +35,7 @@ export default function MieiSlot({navigation}) {
   }, []);
 
    async function caricaDati(){
-    var list = await db.getAllAppuntamentiByVol(emailU);
+    var list = await db.getAllAppuntamentiByVol(user.email);
     console.log("lista app:" +list);
     var listaslot = [];
     console.log(list[0].piattaforma);
@@ -101,9 +101,9 @@ export default function MieiSlot({navigation}) {
                       title={item.dataorainizio.toDate().toDateString()}
                       titleStyle={styles.testo}
                       subtitle={"occupato: "+item.occupato}
-                      left={(props) => <IconButton icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/date.png' }} style={styles.icona} onPress={() => showDialog1(item.id)} />} />} 
+                      left={(props) => <Avatar.Icon icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/date.png' }} style={styles.icona} onPress={() => showDialog1(item.id)} />} 
                       leftStyle={styles.bottoneLeft}
-                      right={(props) => <IconButton icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/trash.png' }} style={styles.bottoneRight} onPress={() => showDialog(item.id)} />}  />
+                      right={(props) => <IconButton icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/trash.png' }} style={styles.bottoneRight} onPress={() => showDialog(item.id)} />} />} />
           </View>
 </View>
     )
