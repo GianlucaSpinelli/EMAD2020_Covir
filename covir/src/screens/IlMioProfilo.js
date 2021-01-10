@@ -1,4 +1,4 @@
-import React , { useContext } from 'react';
+import React , { useContext,useState } from 'react';
 import { View, StyleSheet,Image } from 'react-native';
 import { Title } from 'react-native-paper';
 import { AuthContext } from '../navigation/AuthProvider';
@@ -7,9 +7,11 @@ import { Divider } from 'react-native-elements';
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { BaseRouter } from '@react-navigation/native';
+import FormInput from '../components/FormInput';
 
 const renderContentOperatore = (navigation,logout) => {
   
+  const [descrizione, setDescrizione] = useState(" ");
   const { user, setUser } = useContext(AuthContext); 
   const { tipo, setTipo } = useContext(AuthContext);
   const { nome, setNome } = useContext(AuthContext);
@@ -35,6 +37,27 @@ const renderContentOperatore = (navigation,logout) => {
             </View>
         </View>
         <View style={styles.welcome4}>
+        <View style={styles.welcome8}>
+          <FormInput
+          style={styles.descri}
+          labelName='Dicci qualcosa su di te...'
+          value={descrizione}
+          autoCapitalize='none'
+          onChangeText={userDescrizione => setDescrizione(userDescrizione)}
+          />
+          <Button
+              icon={
+                <Icon
+                  name="arrow-right"
+                  size={10}
+                  color="white"
+                />
+              }
+              title="  Conferma descrizione              "
+              buttonStyle={styles.bottone1}
+              onPress={() => navigation.navigate('CambioPass')}
+            />
+        </View>
           <View style={styles.welcome5}>
            <Button
               icon={
@@ -83,6 +106,7 @@ const renderContentOperatore = (navigation,logout) => {
 };
 
 const renderContentUtente = (navigation,logout) => {
+  const [descrizione, setDescrizione] = useState(" ");
   const { user, setUser } = useContext(AuthContext); 
   const { tipo, setTipo } = useContext(AuthContext);
   const { nome, setNome } = useContext(AuthContext);
@@ -92,6 +116,10 @@ const renderContentUtente = (navigation,logout) => {
   const { associazione, setAssociazione } = useContext(AuthContext);
   const {cellulare,setCellulare} = useContext(AuthContext);
   console.log(cognome+" RENDER CONTENT UTENTE");
+
+  function aggiornaDescrizione(desc){
+    
+  }
 
   return (
     <View style={styles.container}>
@@ -109,6 +137,27 @@ const renderContentUtente = (navigation,logout) => {
             </View>
         </View>
         <View style={styles.welcome4}>
+        <View style={styles.welcome8}>
+          <FormInput
+          style={styles.descri}
+          labelName='Dicci qualcosa su di te...'
+          value={descrizione}
+          autoCapitalize='none'
+          onChangeText={userDescrizione => setDescrizione(userDescrizione)}
+          />
+          <Button
+              icon={
+                <Icon
+                  name="arrow-right"
+                  size={10}
+                  color="white"
+                />
+              }
+              title="  Conferma descrizione              "
+              buttonStyle={styles.bottone1}
+              onPress={() => aggiornaDescrizione(descrizione)}
+            />
+        </View>
           <View style={styles.welcome5}>
            <Button
               icon={
@@ -187,10 +236,15 @@ export default function IlMioProfilo({navigation}) {
       backgroundColor:'rgb(172,213,211)',
       fontWeight: "bold" 
     },
+    bottone1: {
+      borderRadius: 10,
+      backgroundColor:'#1979a9',
+      fontWeight: "bold"
+    },
     welcome: {
       flex: 1,
       margin: 10,
-      marginTop: -10,
+      marginTop: 0,
       textAlign: 'center',
       flexDirection: 'row',
     },
@@ -262,5 +316,18 @@ export default function IlMioProfilo({navigation}) {
         marginTop: '-5%',
         marginLeft: '3%',
         width: '94%'
-    }
+    },
+      welcome8:{
+        flex: 1,
+        marginBottom: '20%',
+        marginLeft: '3%',
+        marginTop: -110,
+        width: '94%'
+    },
+    descri:{
+      marginBottom: 5,
+      height: 100,
+      backgroundColor: '#a6dbed',
+      color: '#FFFFFF'
+  }
   });

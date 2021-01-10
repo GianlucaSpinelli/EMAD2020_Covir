@@ -319,6 +319,9 @@ const manage={
     },
     setSlotNOTOccupato: function(id) {
         ref.collection("slot").doc(id).update({occupato: false});
+    },
+    setDescrizione: function(id,desc) {
+        ref.collection("utente").doc(id).update({descrizioneUtente: desc});
     }
 }
 
