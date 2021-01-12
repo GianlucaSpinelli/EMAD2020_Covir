@@ -8,6 +8,7 @@ export const AuthContext = createContext({});
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [tipo,setTipo] = useState("");
+    const [descrizioneUtente,setDescrizioneUtente] = useState("");
     const [nome,setNome] = useState(null);  
     const [cognome,setCognome] = useState(null); 
     const [emailU,setEmailU] = useState(null); 
@@ -17,8 +18,8 @@ export const AuthProvider = ({ children }) => {
     return (
       <AuthContext.Provider
         value={{
-          user,tipo,nome,cognome,emailU,dataN,associazione,cellulare,
-          setUser,setTipo,setNome,setCognome,setEmailU,setDataN,setAssociazione,setCellulare,
+          user,tipo,nome,cognome,emailU,dataN,associazione,cellulare,descrizioneUtente,
+          setUser,setTipo,setNome,setCognome,setEmailU,setDataN,setAssociazione,setCellulare,setDescrizioneUtente,
           login: async (email, password) => {
             try {
               var temp = await db.getUtenteByMail(email);
@@ -32,6 +33,7 @@ export const AuthProvider = ({ children }) => {
               setDataN(temp.datanascita);
               setCellulare(temp.cellulare);
               setAssociazione(temp.associazione);
+              setDescrizioneUtente(temp.descrizioneUtente);
               await auth.signInWithEmailAndPassword(email, password);
             } catch (e) {
               console.log(e);
@@ -40,11 +42,11 @@ export const AuthProvider = ({ children }) => {
           register: async (utenteobj,isSelected) => {
             try {
               if(isSelected==true){
-                const utentevol={email:utenteobj.email, nome:utenteobj.nome, cognome:utenteobj.cognome, datanascita:utenteobj.datanascita, cellulare:utenteobj.cellulare, password:utenteobj.password, associazione:utenteobj.associazione, tipo:"volontario"};
+                const utentevol={descrizioneUtente:utenteobj.descrizioneUtente,email:utenteobj.email, nome:utenteobj.nome, cognome:utenteobj.cognome, datanascita:utenteobj.datanascita, cellulare:utenteobj.cellulare, password:utenteobj.password, associazione:utenteobj.associazione, tipo:"volontario"};
                 db.addUtente(utentevol);
               }
               else{
-                const utenteric={email:utenteobj.email, nome:utenteobj.nome, cognome:utenteobj.cognome, datanascita:utenteobj.datanascita, cellulare:utenteobj.cellulare, password:utenteobj.password, tipo:"richiedente"};
+                const utenteric={descrizioneUtente:utenteobj.descrizioneUtente,email:utenteobj.email, nome:utenteobj.nome, cognome:utenteobj.cognome, datanascita:utenteobj.datanascita, cellulare:utenteobj.cellulare, password:utenteobj.password, tipo:"richiedente"};
                 db.addUtente(utenteric);
               }
               await auth.createUserWithEmailAndPassword(utenteobj.email, utenteobj.password);

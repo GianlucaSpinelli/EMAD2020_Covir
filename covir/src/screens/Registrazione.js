@@ -94,7 +94,7 @@ export default function Registrazione({navigation}) {
           title='Registrati'
           modeValue='contained'
           labelStyle={styles.loginButtonLabel}
-          onPress={() =>{register({email:email, nome:nome, cognome:cognome, datanascita:DNascita, cellulare:cellulare, password:password, associazione:associazione},isSelected);}} //navigation.navigate('HomeTab')}  //deve andare alla schermata del documento
+          onPress={() =>{register({descrizioneUtente:"",email:email, nome:nome, cognome:cognome, datanascita:DNascita, cellulare:cellulare, password:password, associazione:associazione},isSelected);}} //navigation.navigate('HomeTab')}  //deve andare alla schermata del documento
           //onPress={() =>{ registrazione({email:email, nome:nome, cognome:cognome, datanascita:DNascita, descrizione:descrizione, password:password, associazione:associazione},isSelected ); register(email, password);}} //navigation.navigate('HomeTab')}  //deve andare alla schermata del documento
           //onPress={() =>{ registrazione({email:email, nome:nome, cognome:cognome, datanascita:DNascita, descrizione:descrizione, password:password, associazione:associazione},isSelected ); register(email, password);}} //navigation.navigate('HomeTab')}  //deve andare alla schermata del documento
 

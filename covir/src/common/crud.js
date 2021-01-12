@@ -146,6 +146,26 @@ const manage={
     }
     else return lista[0];
     },
+    getUtenteObj:async function(chiave){
+        var slot;
+        var lista = [];
+        if (chiave != null) {
+        const n = ref.collection("utente").where("email","==",chiave).get().then(querySnapshot  => {
+            querySnapshot.forEach(doc => {
+                console.log("app:"+doc.data());
+                lista.push(doc);
+                
+           })
+        });
+        try {
+            await n;
+            return lista[0];
+        } catch (error) {
+            
+        } 
+    }
+    else return lista[0];
+    },
     
     getAllAppuntamentiByUtente: async   function(emailutente){ //FUNONZ
         //return await ref.collection("appuntamenti").where("mailrichiedente", "==", emailutente)

@@ -8,6 +8,7 @@ import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { BaseRouter } from '@react-navigation/native';
 import FormInput from '../components/FormInput';
+import { db } from '../common/crud';
 
 const renderContentOperatore = (navigation,logout) => {
   
@@ -15,12 +16,26 @@ const renderContentOperatore = (navigation,logout) => {
   const { user, setUser } = useContext(AuthContext); 
   const { tipo, setTipo } = useContext(AuthContext);
   const { nome, setNome } = useContext(AuthContext);
+  const { descrizioneUtente, setDescrizioneUtente } = useContext(AuthContext);
   const { cognome, setCognome } = useContext(AuthContext);
-  const { email, setEmail } = useContext(AuthContext);
+  const { emailU, setEmailU } = useContext(AuthContext);
   const { dataN, setDataN } = useContext(AuthContext);
   const { associazione, setAssociazione } = useContext(AuthContext);
   const {cellulare,setCellulare} = useContext(AuthContext);
   console.log(cognome+" RENDER CONTENT OPERATORE");
+  
+  async function confermaDescrizione(){
+     console.log("email");
+     console.log(emailU);
+     console.log(descrizioneUtente);
+     console.log("email");
+     const ut = await db.getUtenteObj(emailU);
+     console.log(ut);
+     db.setDescrizione(ut.id,descrizione);
+     setDescrizioneUtente(descrizione);
+     setDescrizione("");
+  }
+
   return (
     <View style={styles.container}>
         <View style={styles.welcome}>
@@ -38,9 +53,10 @@ const renderContentOperatore = (navigation,logout) => {
         </View>
         <View style={styles.welcome4}>
         <View style={styles.welcome8}>
+          <Title style={styles.frase10}>{descrizioneUtente}</Title> 
           <FormInput
           style={styles.descri}
-          labelName='Dicci qualcosa su di te...'
+          labelName='Aggiorna le informazioni su di te...'
           value={descrizione}
           autoCapitalize='none'
           onChangeText={userDescrizione => setDescrizione(userDescrizione)}
@@ -55,7 +71,7 @@ const renderContentOperatore = (navigation,logout) => {
               }
               title="  Conferma descrizione              "
               buttonStyle={styles.bottone1}
-              onPress={() => navigation.navigate('CambioPass')}
+              onPress={ () => {confermaDescrizione();}}
             />
         </View>
           <View style={styles.welcome5}>
@@ -106,20 +122,30 @@ const renderContentOperatore = (navigation,logout) => {
 };
 
 const renderContentUtente = (navigation,logout) => {
+
+  const { descrizioneUtente, setDescrizioneUtente } = useContext(AuthContext);
   const [descrizione, setDescrizione] = useState(" ");
   const { user, setUser } = useContext(AuthContext); 
   const { tipo, setTipo } = useContext(AuthContext);
   const { nome, setNome } = useContext(AuthContext);
   const { cognome, setCognome } = useContext(AuthContext);
-  const { email, setEmail } = useContext(AuthContext);
+  const { emailU, setEmailU } = useContext(AuthContext);
   const { dataN, setDataN } = useContext(AuthContext);
   const { associazione, setAssociazione } = useContext(AuthContext);
   const {cellulare,setCellulare} = useContext(AuthContext);
   console.log(cognome+" RENDER CONTENT UTENTE");
 
-  function aggiornaDescrizione(desc){
-    
-  }
+  async function confermaDescrizione(){
+    console.log("email");
+    console.log(emailU);
+    console.log(descrizioneUtente);
+    console.log("email");
+    const ut = await db.getUtenteObj(emailU);
+    console.log(ut);
+    db.setDescrizione(ut.id,descrizione);
+    setDescrizioneUtente(descrizione);
+    setDescrizione("");
+ }
 
   return (
     <View style={styles.container}>
@@ -138,9 +164,10 @@ const renderContentUtente = (navigation,logout) => {
         </View>
         <View style={styles.welcome4}>
         <View style={styles.welcome8}>
+          <Title style={styles.frase10}>{descrizioneUtente}</Title> 
           <FormInput
           style={styles.descri}
-          labelName='Dicci qualcosa su di te...'
+          labelName='Aggiorna le informazioni su di te...'
           value={descrizione}
           autoCapitalize='none'
           onChangeText={userDescrizione => setDescrizione(userDescrizione)}
@@ -155,7 +182,7 @@ const renderContentUtente = (navigation,logout) => {
               }
               title="  Conferma descrizione              "
               buttonStyle={styles.bottone1}
-              onPress={() => aggiornaDescrizione(descrizione)}
+              onPress={ () => {confermaDescrizione();}}
             />
         </View>
           <View style={styles.welcome5}>
@@ -277,6 +304,11 @@ export default function IlMioProfilo({navigation}) {
         color: '#4d5354',
         marginTop: 2,
         marginLeft: '-6%'
+     },
+     frase10:{
+      fontSize: 14,
+      color: '#4d5354',
+      marginTop: -25
      },
      frasesotto:{
       fontSize: 22,
