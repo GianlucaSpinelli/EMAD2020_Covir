@@ -101,7 +101,7 @@ export default function MieiSlot({navigation}) {
                       title={item.dataorainizio.toDate().toDateString()}
                       titleStyle={styles.testo}
                       subtitle={"occupato: "+item.occupato}
-                      left={(props) => <IconButton icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/visual.jpg' }} style={styles.icona} onPress={() => showDialog1(item.id)} />} 
+                      left={(props) => <IconButton icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/visual.png' }} style={styles.icona} onPress={() => showDialog1(item.id)} />} 
                       leftStyle={styles.bottoneLeft}
                       right={(props) => <IconButton icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/trash.png' }} style={styles.bottoneRight} onPress={() => showDialog(item.id)} />
                       } />} />
