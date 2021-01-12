@@ -34,36 +34,34 @@ export default function MieiSlot({navigation}) {
     //caricaDati();
   }, []);
 
-   async function caricaDati(){
-    var list = await db.getAllAppuntamentiByVol(user.email);
-    console.log("lista app:" +list);
-    var listaslot = [];
-    console.log(list[0].piattaforma);
-    for(i=0;i<list.length;i++){
-      var chiave= list[i].idslot;
-      console.log(chiave);
-      console.log("id uguale"+ids);
-      var slot= await db.getSlot(chiave);
-      const datajs = slot.dataorainizio.toDate();
-      var dataoggi= new Date(Date.now()+(10*60*1000));
-      console.log(slot.documentID);
-      setChiave(slot.documentID);
-      console.log(dataoggi);
-      if(datajs>dataoggi){
-        listaslot.push(slot); 
-      }  
-      /*
-      const datajs = slot.dataorainizio.toDate().toDateString();
-      const inizio = slot.inizio;
-      const fine = slot.fine;
+  async function caricaDati(){
+    
+    var listaslot=[];
+    var slot= await db.getAllSlotByVol(user.email);
+    console.log(slot);
+    var i=0;
+    var dataoggi= new Date(Date.now()+(10*60*1000));
+    for(i=0;i<slot.length;i++){
+      const datajs = slot[i].dataorainizio.toDate();
+      console.log("dataaaaaaa");
       console.log(datajs);
-      console.log(inizio);
-      console.log(fine);
-      */
+      if(datajs>dataoggi){
+          listaslot.push(slot[i]); 
     }
-    setLoading(false);
-    setResult( listaslot)
-   };
+    }
+    /*
+    const datajs = slot.dataorainizio.toDate().toDateString();
+    const inizio = slot.inizio;
+    const fine = slot.fine;
+    console.log(datajs);
+    console.log(inizio);
+    console.log(fine);
+    */
+  setLoading(false);
+  console.log("listaslot");
+  console.log(listaslot);
+  setResult( listaslot)
+ };
 
   
   const renderContent =()=>{
