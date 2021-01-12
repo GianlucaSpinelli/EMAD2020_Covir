@@ -101,9 +101,10 @@ export default function MieiSlot({navigation}) {
                       title={item.dataorainizio.toDate().toDateString()}
                       titleStyle={styles.testo}
                       subtitle={"occupato: "+item.occupato}
-                      left={(props) => <Avatar.Icon icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/date.png' }} style={styles.icona} onPress={() => showDialog1(item.id)} />} 
+                      left={(props) => <IconButton icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/visual.png' }} style={styles.icona} onPress={() => {alert('You tapped the button!');}} />} 
                       leftStyle={styles.bottoneLeft}
-                      right={(props) => <IconButton icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/trash.png' }} style={styles.bottoneRight} onPress={() => showDialog(item.id)} />} />} />
+                      right={(props) => <IconButton icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/trash.png' }} style={styles.bottoneRight} onPress={() => showDialog(item.id)} />
+                      } />} />
           </View>
 </View>
     )
@@ -137,10 +138,11 @@ const styles = StyleSheet.create({
       padding: '10%'
     },
     icona:{
-        backgroundColor: 'rgba(172, 213, 211, 1)',
-        borderRadius:0,
+      backgroundColor: 'rgba(172, 213, 211, 1)',
+      borderRadius:0,
         marginLeft: '-40%',
-        height: '177%'
+        height: '200%',
+        width:'140%'
 
     },
     app:{
