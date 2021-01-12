@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Portal,Paragraph,Dialog } from 'react-native-paper';
-import { View, Text, Image, StyleSheet, TouchableOpacity, ViewPropTypes  } from 'react-native'
-import RadioButton from '../components/Radio';
+import { View, Text, Image, StyleSheet, TouchableOpacity, ViewPropTypes  } from 'react-native';
+import { RadioButton } from 'react-native-paper';
 import { Divider, Card, Button, Icon } from 'react-native-elements';
 import FormButton from '../components/FormButton3';
 import DialogButton from '../components/FormButton4';
@@ -11,18 +11,17 @@ import { db } from '../common/crud';
 
 
 export default function ConfermaPrenotazione({navigation,route}) { //non legge immagin
-    const [checked, setChecked] = React.useState(false);
     const {user,setUser} = useContext(AuthContext);
     const id = route.params.idSlot;
     const mailV = route.params.emailvolontario;
     const mailric = user.email;
     const [mailVol,setMailVol] = useState("");
-    const piatt = "Skype";
-    console.log("piattaforma"+piatt);
     const [visible, setVisible] = useState(false);
     const [info, setInfo] = useState('la tua informazione');
-    const app = {idslot:id, mailrichiedente:mailric, mailvolontario: mailV, piattaforma:piatt,informazione:info};
+    const [value, setValue] = React.useState('Cellulare');
+    const app = {idslot:id, mailrichiedente:mailric, mailvolontario: mailV, piattaforma:value,informazione:info};
     const [slot, setSlot] = useState("");
+    const [checked, setChecked] = useState('first');
     
 
 
@@ -57,15 +56,35 @@ export default function ConfermaPrenotazione({navigation,route}) { //non legge i
 </Portal>   
     <View containerStyle={styles.container}>
         <Text  style={styles.scelta}>SCEGLI LA PIATTAFORMA</Text>
-        <Card containerStyle={styles.card}>
-        </Card>
-        <RadioButton></RadioButton>
-        <FormInput style={{marginTop:10,backgroundColor:'#ffffff'}}
-          			labelName='Info contatto relativo alla piattaforma scelta'
-                value={info}
-                autoCapitalize='none'
-                onChangeText={userInfo => setInfo(userInfo)}
-        		/>
+
+        <RadioButton.Group onValueChange={newValue => setValue(newValue)} value={value}>
+        <View>
+        <Text style={styles.piat}>Cellulare</Text>
+        <RadioButton style={styles.bot}
+            color='#1979a9'
+        />
+        </View>
+        <View>
+        <Text style={styles.piat}>Whatsapp</Text>
+        <RadioButton value="Whatsapp"
+             color='#1979a9'
+        />
+        </View>
+        <View>
+        <Text style={styles.piat}>Skype</Text>
+        <RadioButton value="Skype" 
+             color='#1979a9'
+        />
+        </View>
+        <View>
+        <Text style={styles.piat}>E-mail</Text>
+        <RadioButton value="E-mail" 
+            color='#1979a9'
+        />
+        </View>
+        </RadioButton.Group>
+
+        
     </View>
     <View containerStyle={styles.container1}>
         <FormButton
@@ -122,6 +141,18 @@ const styles = StyleSheet.create({
         backgroundColor:'#1979a9',
         width: 10,
         height:10
+    },
+    rad:{
+        marginLeft: 40,
+    },
+    piat:{
+      fontSize: 20,
+      marginBottom: 2,
+      marginLeft: 40,
+      fontWeight: "bold"
+    },
+    bot: {
+      marginLeft:100
     }
         
 });

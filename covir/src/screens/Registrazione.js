@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import {View, StyleSheet, Text, Dimensions, Keyboard, TouchableWithoutFeedback } from 'react-native';
+import {View, StyleSheet, Text, Dimensions, Keyboard, TouchableWithoutFeedback,Button } from 'react-native';
 import { Title } from 'react-native-paper';
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
@@ -9,6 +9,8 @@ import Swiper from 'react-native-swiper';
 import { BorderlessButton } from 'react-native-gesture-handler';
 import { AuthContext, AuthProvider } from '../navigation/AuthProvider';
 import { db } from '../common/crud';
+import DateTimePicker from '@react-native-community/datetimepicker';
+import moment from 'moment';
 
 function Volontario(props){
 return <FormInput labelName='Associazione' value= {props[0]} autoCapitalize='none' onChangeText={associazione => props[1](associazione)}></FormInput>;
@@ -37,6 +39,30 @@ export default function Registrazione({navigation}) {
     const [password, setPassword] = useState('');
     const [isSelected, setSelection] = useState(false);
     const [associazione, setAssociazione] = useState('');
+
+    const [dateG, setDateG] = useState(new Date());
+    const [dateDO, setDateDO] = useState(new Date());
+    const [dateAO, setDateAO] = useState(new Date());
+    const [mode, setMode] = useState('date');
+    const [showG, setShowG] = useState(false);
+    const [showDO, setShowDO] = useState(false);
+    const [showAO, setShowAO] = useState(false);
+  
+    const onChangeG = (event, selectedDate) => {
+      const currentDate = selectedDate || dateG;
+      setDateG(currentDate);
+      setShowG(false);
+      };
+
+    const showMode = (currentMode) => {
+      setMode(currentMode);
+    };
+  
+    const showDatepickerG = () => {
+      setShowG(true);
+      showMode('date');
+    };
+  
     
   
     return (
@@ -56,12 +82,23 @@ export default function Registrazione({navigation}) {
           autoCapitalize='none'
           onChangeText={userCognome => setcognome(userCognome)}
         />
-        <FormInput
-          labelName='Data di nascita'
-          value={DNascita}
-          autoCapitalize='none'
-          onChangeText={userDNascita => setDNascita(userDNascita)}
+        <Button onPress={showDatepickerG} title="Data di nascita:" />
+        <Text testID="Giorno">
+          {dateG !== undefined ? moment(dateG).format('DD/MM/YYYY') : moment.format('DD/MM/YYYY')}
+        </Text>
+        <View>
+        {showG && (
+        <DateTimePicker
+          testID="dateTimePickerG"
+          value={dateG}
+          mode={mode}
+          is24Hour={true}
+          display="spinner"
+          onChange={onChangeG}
+          minuteInterval={30}
         />
+      )}
+        </View>
         <FormInput
           labelName='Cellulare'
           value={cellulare}
