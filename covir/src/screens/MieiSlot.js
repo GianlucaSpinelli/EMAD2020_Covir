@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
       backgroundColor: 'rgba(172, 213, 211, 1)',
       borderRadius:0,
         marginLeft: '-40%',
-        height: '177%',
+        height: '200%',
         width:'140%'
 
     },
