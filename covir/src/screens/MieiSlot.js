@@ -35,22 +35,19 @@ export default function MieiSlot({navigation}) {
   }, []);
 
    async function caricaDati(){
-    var list = await db.getAllAppuntamentiByVol(user.email);
-    console.log("lista app:" +list);
-    var listaslot = [];
-    console.log(list[0].piattaforma);
-    for(i=0;i<list.length;i++){
-      var chiave= list[i].idslot;
-      console.log(chiave);
-      console.log("id uguale"+ids);
-      var slot= await db.getSlot(chiave);
-      const datajs = slot.dataorainizio.toDate();
+    
+      var listaslot=[];
+      var slot= await db.getAllSlotByVol(user.email);
+      console.log(slot);
+      var i=0;
       var dataoggi= new Date(Date.now()+(10*60*1000));
-      console.log(slot.documentID);
-      setChiave(slot.documentID);
-      console.log(dataoggi);
-      if(datajs>dataoggi){
-        listaslot.push(slot); 
+      for(i=0;i<slot.length;i++){
+        const datajs = slot[i].dataorainizio.toDate();
+        console.log("dataaaaaaa");
+        console.log(datajs);
+        if(datajs>dataoggi){
+            listaslot.push(slot[i]); 
+      }
       }  
       /*
       const datajs = slot.dataorainizio.toDate().toDateString();
@@ -60,8 +57,9 @@ export default function MieiSlot({navigation}) {
       console.log(inizio);
       console.log(fine);
       */
-    }
     setLoading(false);
+    console.log("listaslot");
+    console.log(listaslot);
     setResult( listaslot)
    };
 

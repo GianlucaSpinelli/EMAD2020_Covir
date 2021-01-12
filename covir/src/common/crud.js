@@ -32,7 +32,6 @@ const manage={
    addSlot:function(slotobj){
     ref.collection("slot").add(slotobj)
        .then(function(docRef) {
-           //aggiornare il numero di slot messi a disposzione dal volontario di quello slot
            console.log('slot id',docRef.id);
        }).catch(function(error) {
            console.error("Error writing document: ", error);
@@ -125,6 +124,22 @@ const manage={
     }
     else return lista[0];
     },
+    getAllSlot:async function(){
+        var lista = [];
+        const n = ref.collection("slot").get().then(querySnapshot  => {
+            querySnapshot.forEach(doc => {
+                console.log("slot spinelliiiiiiiiiiiiii:"+doc.data());
+                lista.push(doc.data());
+                
+           })
+        });
+        try {
+            await n;
+            return lista;
+        } catch (error) {
+            
+        } 
+    },
 
     getSlotObj:async function(chiave){
         var slot;
@@ -192,6 +207,26 @@ const manage={
    //.get();
    var lista = [];
    const n =  ref.collection("appuntamenti").where("mailvolontario", "==",emailutente).get().then(querySnapshot => {
+    
+    querySnapshot.forEach(doc => {
+            console.log("app:"+doc.data());
+            lista.push(doc.data());
+            
+       })
+       
+   });
+   try {
+       await n;
+       return lista;
+   } catch (error) {
+       
+   }       
+},
+getAllSlotByVol: async   function(emailutente){ //FUNONZ
+    //return await ref.collection("appuntamenti").where("mailrichiedente", "==", emailutente)
+   //.get();
+   var lista = [];
+   const n =  ref.collection("slot").where("chiavevolontario", "==",emailutente).get().then(querySnapshot => {
     
     querySnapshot.forEach(doc => {
             console.log("app:"+doc.data());

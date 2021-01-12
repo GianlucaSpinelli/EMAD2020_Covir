@@ -2,8 +2,9 @@
 // https://aboutreact.com/react-native-timepicker/
 
 // import React in our code
-import React, { useState } from 'react';
-
+import React, { useState,useContext,useEffect } from 'react';
+import { AuthContext } from '../navigation/AuthProvider';
+import FormButton from '../components/FormButton';
 // import all the components we are going to use
 import { SafeAreaView, StyleSheet, Text, View, Dimensions, Platform, Button } from 'react-native';
 
@@ -11,6 +12,7 @@ import { SafeAreaView, StyleSheet, Text, View, Dimensions, Platform, Button } fr
 import DateTimePicker from '@react-native-community/datetimepicker';
 import moment from 'moment';
 import { Card, Icon } from 'react-native-elements'; import { color } from 'react-native-reanimated';
+import { db } from '../common/crud';
 const { width, height } = Dimensions.get('screen');
 
 
@@ -25,6 +27,9 @@ export default function AggiuntaSlot({ navigation }) {
   const [showG, setShowG] = useState(false);
   const [showDO, setShowDO] = useState(false);
   const [showAO, setShowAO] = useState(false);
+  const {user,setUser} = useContext(AuthContext);
+ 
+
 
   const onChangeG = (event, selectedDate) => {
     const currentDate = selectedDate || dateG;
@@ -34,14 +39,28 @@ export default function AggiuntaSlot({ navigation }) {
   };
 
   const onChangeDO = (event, selectedDate) => {
-    const currentDate = selectedDate || dateDO;
+    const anno = dateG.getFullYear();
+    const mese = dateG.getMonth();
+    const giorno = dateG.getDate();
+    const ora = selectedDate.getHours();
+    const min =selectedDate.getMinutes();
+    const sec = selectedDate.getSeconds();
+    const databuona = new Date(anno,mese,giorno,ora,min,sec,0);
+    const currentDate = databuona;
     setDateDO(currentDate);
     setShowDO(false);
     console.log("DALLE ORE " + dateDO + " showDO " + showDO);
   };
 
   const onChangeAO = (event, selectedDate) => {
-    const currentDate = selectedDate || dateAO;
+    const anno = dateG.getFullYear();
+    const mese = dateG.getMonth();
+    const giorno = dateG.getDate();
+    const ora = selectedDate.getHours();
+    const min =selectedDate.getMinutes();
+    const sec = selectedDate.getSeconds();
+    const databuona = new Date(anno,mese,giorno,ora,min,sec,0);
+    const currentDate = databuona;
     setDateAO(currentDate);
     setShowAO(false);
     console.log("ALLE ORE " + dateAO + " showAO " + showAO);
@@ -66,10 +85,17 @@ export default function AggiuntaSlot({ navigation }) {
     showMode('time');
   };
 
+  async function confermadonatempo(){
+       const list = await db.getAllSlot();
+       var num = list.length+1;
+       const slot = {chiavevolontario:user.email, dataorainizio:dateG, fine:dateAO , id:num,inizio:dateDO,occupato:false};
+       db.addSlot(slot);
+  }
+
   return (
     <View style={styles.container}>
       <View containerStyle={styles.container1}>
-        <Text style={styles.scelta}>SCEGLI LA PIATTAFORMA</Text>
+        <Text style={styles.scelta}>Selezione data e ora</Text>
         <Card containerStyle={styles.card}>
         </Card>
       </View>
@@ -120,6 +146,13 @@ export default function AggiuntaSlot({ navigation }) {
           minuteInterval={30}
         />
       )}
+      <FormButton
+          containerStyle={styles.bottone}
+          title='Conferma'
+          modeValue='contained'
+          labelStyle={styles.loginButtonLabel}
+          onPress={() => confermadonatempo()}  //{() => login(email, password)}
+        />
     </View>
   );
 };

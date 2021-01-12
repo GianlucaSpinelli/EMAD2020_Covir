@@ -52,6 +52,7 @@ export default function Registrazione({navigation}) {
       const currentDate = selectedDate || dateG;
       setDateG(currentDate);
       setShowG(false);
+      setDNascita(selectedDate);
       };
 
     const showMode = (currentMode) => {
