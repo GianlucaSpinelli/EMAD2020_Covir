@@ -99,21 +99,28 @@ export default function AggiuntaSlot({ navigation }) {
         <Card containerStyle={styles.card}>
         </Card>
       </View>
-      <View >
-        <Button onPress={showDatepickerG} title="Giorno:" />
-        <Text testID="Giorno">
+      <View>
+      <View style ={styles.mnng}>
+        <Button color='#1979a9' onPress={showDatepickerG} title="Giorno:" />
+        <Text style={styles.centrato} testID="Giorno">
           {dateG !== undefined ? moment(dateG).format('DD/MM/YYYY') : moment.format('DD/MM/YYYY')}
         </Text>
-        <Button onPress={showTimepickerDO} title="Dalle ore:" />
-        <Text testID="DalleOre">
+        </View>
+        <View style={styles.mnng}>
+        <Button color='#1979a9'onPress={showTimepickerDO} title="Dalle ore:" />
+        <Text style={styles.centrato} testID="DalleOre">
           {dateDO !== undefined ? moment(dateDO).format('HH:mm') : moment.format('HH:mm')}
         </Text>
-        <Button onPress={showTimepickerAO} title="Alle ore:" />
-        <Text testID="AlleOre">
+        </View>
+        <View style={styles.mnng}>
+        <Button color='#1979a9' onPress={showTimepickerAO} title="Alle ore:" />
+        <Text style={styles.centrato} testID="AlleOre">
           {dateAO !== undefined ? moment(dateAO).format('HH:mm') : moment.format('HH:mm')}
         </Text>
+        </View>
       </View>
       {showG && (
+        
         <DateTimePicker
           testID="dateTimePickerG"
           value={dateG}
@@ -123,8 +130,10 @@ export default function AggiuntaSlot({ navigation }) {
           onChange={onChangeG}
           minuteInterval={30}
         />
+        
       )}
       {showDO && (
+        
         <DateTimePicker
           testID="dateTimePickerDO"
           value={dateDO}
@@ -134,6 +143,7 @@ export default function AggiuntaSlot({ navigation }) {
           onChange={onChangeDO}
           minuteInterval={30}
         />
+        
       )}
       {showAO && (
         <DateTimePicker
@@ -146,6 +156,7 @@ export default function AggiuntaSlot({ navigation }) {
           minuteInterval={30}
         />
       )}
+      <View style={styles.container300}>
       <FormButton
           containerStyle={styles.bottone}
           title='Conferma'
@@ -153,6 +164,7 @@ export default function AggiuntaSlot({ navigation }) {
           labelStyle={styles.loginButtonLabel}
           onPress={() => confermadonatempo()}  //{() => login(email, password)}
         />
+        </View>
     </View>
   );
 };
@@ -169,6 +181,12 @@ const styles = StyleSheet.create({
     marginRight: '10%',
     color: '#1979a9',
     fontWeight: "bold"
+  },
+  centrato:{
+    fontWeight: 'bold',
+    fontSize: 19,
+    marginLeft: '0%',
+    textAlign: 'center'
   },
   card: {
     backgroundColor: '#1979a9',
@@ -194,12 +212,31 @@ const styles = StyleSheet.create({
   },
   container1: {
     marginTop: '20%',
+    marginBottom: '10%',
     flex: 1
   },
   container2: {
     flex: 2,
     width: '70%',
 
+  },
+  container300: {
+    marginTop:'16%',
+    marginLeft:'25%',
+    marginLeft:'25%',
+    width: '50%',
+
+  },
+
+  mnng: {
+    marginTop:'12%',
+    marginLeft:'25%',
+    marginLeft:'25%',
+    width: '50%',
+  },
+  bttn:{
+    borderRadius: 15,
+    backgroundColor: '#1979a9'
   },
   coloreBott: {
     marginTop: 20,

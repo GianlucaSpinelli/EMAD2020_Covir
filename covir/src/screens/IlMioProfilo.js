@@ -308,7 +308,8 @@ export default function IlMioProfilo({navigation}) {
      frase10:{
       fontSize: 14,
       color: '#4d5354',
-      marginTop: -25
+      marginTop: -25,
+      marginBottom: -25
      },
      frasesotto:{
       fontSize: 22,
@@ -333,7 +334,7 @@ export default function IlMioProfilo({navigation}) {
       },
       welcome5:{
         flex: 1,
-        marginTop: '3%',
+        marginTop: '15%',
         marginLeft: '3%',
         width: '94%'
     },
@@ -351,9 +352,9 @@ export default function IlMioProfilo({navigation}) {
     },
       welcome8:{
         flex: 1,
-        marginBottom: '20%',
+        marginBottom: '23%',
         marginLeft: '3%',
-        marginTop: -110,
+        marginTop: -90,
         width: '94%'
     },
     descri:{

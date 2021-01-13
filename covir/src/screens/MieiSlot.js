@@ -99,7 +99,23 @@ export default function MieiSlot({navigation}) {
                       title={item.dataorainizio.toDate().toDateString()}
                       titleStyle={styles.testo}
                       subtitle={"occupato: "+item.occupato}
-                      left={(props) => <IconButton icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/visual.png' }} style={styles.icona} onPress={() => {alert('You tapped the button!');}} />} 
+                      left={(props) => <IconButton icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/visual.png' }} style={styles.icona} onPress={() =>
+                      {var mesi = new Array(12);
+                        mesi[0] = "Gennaio";
+                        mesi[1] = "Febbraio";
+                        mesi[2] = "Marzo";
+                        mesi[3] = "Aprile";
+                        mesi[4] = "Maggio";
+                        mesi[5] = "Giugno";
+                        mesi[6] = "Luglio";
+                        mesi[7] = "Agosto";
+                        mesi[8] = "Settembre";
+                        mesi[9] = "Ottobre";
+                        mesi[10] = "Novembre";
+                        mesi[11] = "Dicembre";      
+                        var n = mesi[item.inizio.toDate().getMonth()];
+                        alert('Sarai impegnato il '+item.inizio.toDate().getDate()+' '+n+' dalle ore '+ item.inizio.toDate().getHours() +' fino a '+item.fine.toDate().getHours());
+                      }} />} 
                       leftStyle={styles.bottoneLeft}
                       right={(props) => <IconButton icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/trash.png' }} style={styles.bottoneRight} onPress={() => showDialog(item.id)} />
                       } />} />
