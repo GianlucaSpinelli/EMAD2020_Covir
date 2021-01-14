@@ -10,6 +10,7 @@ import { db } from '../common/crud';
 import { AuthContext } from '../navigation/AuthProvider';
 import { set } from 'react-native-reanimated';
 import DialogButton from '../components/FormButton4';
+import { app } from 'firebase';
 
 export default function MieiSlot({navigation}) {
   
@@ -98,9 +99,17 @@ export default function MieiSlot({navigation}) {
                       style={styles.card}
                       title={item.dataorainizio.toDate().toDateString()}
                       titleStyle={styles.testo}
-                      subtitle={"occupato: "+item.occupato}
-                      left={(props) => <IconButton icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/visual.png' }} style={styles.icona} onPress={() =>
-                      {var mesi = new Array(12);
+                      subtitle={item.inizio.toDate().getHours()+":"+item.inizio.toDate().getMinutes()+" - "+item.fine.toDate().getHours()+":"+item.fine.toDate().getMinutes() + (item.occupato != true ? " libero" : " occupato")}
+                      left={(props) => <IconButton icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/visual.png' }} style={styles.icona} onPress={ async () => 
+                      { var appuntamento;
+                        var utentebyApp;
+                        appuntamento = await db.getAppBySlot(item.id);
+                        console.log("sono qui dopo l'app");
+                        console.log(appuntamento);
+                        if(appuntamento != null) {
+                        var piatt = appuntamento.piattaforma;
+                        utentebyApp = await db.getUtenteByMail(appuntamento.mailrichiedente);
+                        var mesi = new Array(12);
                         mesi[0] = "Gennaio";
                         mesi[1] = "Febbraio";
                         mesi[2] = "Marzo";
@@ -114,7 +123,10 @@ export default function MieiSlot({navigation}) {
                         mesi[10] = "Novembre";
                         mesi[11] = "Dicembre";      
                         var n = mesi[item.inizio.toDate().getMonth()];
-                        alert('Sarai impegnato il '+item.inizio.toDate().getDate()+' '+n+' dalle ore '+ item.inizio.toDate().getHours() +' fino a '+item.fine.toDate().getHours());
+                        alert('Sarai impegnato il '+item.inizio.toDate().getDate()+' '+n+' dalle ore '+ item.inizio.toDate().getHours() +' fino a '+item.fine.toDate().getHours()+ " con: \n"+ "Nome: "+ utentebyApp.nome+"\n"+ "Cognome: "+ utentebyApp.cognome+"\n"+"Email: "+utentebyApp.email+"\n"+"Cellulare: "+utentebyApp.cellulare); 
+                      } else {
+                        alert('Questo slot ancora non è stato prenotato!'); 
+                      }
                       }} />} 
                       leftStyle={styles.bottoneLeft}
                       right={(props) => <IconButton icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/trash.png' }} style={styles.bottoneRight} onPress={() => showDialog(item.id)} />

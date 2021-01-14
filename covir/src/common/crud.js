@@ -117,6 +117,7 @@ const manage={
         });
         try {
             await n;
+            console.log(lista[0]);
             return lista[0];
         } catch (error) {
             
