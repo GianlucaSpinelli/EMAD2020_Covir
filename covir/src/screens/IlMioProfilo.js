@@ -1,4 +1,4 @@
-import React , { useContext,useState } from 'react';
+import React , { useContext,useState,useEffect } from 'react';
 import { View, StyleSheet,Image } from 'react-native';
 import { Title } from 'react-native-paper';
 import { AuthContext } from '../navigation/AuthProvider';
@@ -10,29 +10,18 @@ import { BaseRouter } from '@react-navigation/native';
 import FormInput from '../components/FormInput';
 import { db } from '../common/crud';
 
-const renderContentOperatore = (navigation,logout) => {
+const renderContentOperatore = (navigation,logout,tipo,nome,cognome,emailU,dataN,cellulare,associazione,descrizioneUtente) => {
   
+  console.log(cellulare);
+  console.log("ENTRO IN RENDER CONTENT OPERATORE");
   const [descrizione, setDescrizione] = useState(" ");
-  const { user, setUser } = useContext(AuthContext); 
-  const { tipo, setTipo } = useContext(AuthContext);
-  const { nome, setNome } = useContext(AuthContext);
-  const { descrizioneUtente, setDescrizioneUtente } = useContext(AuthContext);
-  const { cognome, setCognome } = useContext(AuthContext);
-  const { emailU, setEmailU } = useContext(AuthContext);
-  const { dataN, setDataN } = useContext(AuthContext);
-  const { associazione, setAssociazione } = useContext(AuthContext);
-  const {cellulare,setCellulare} = useContext(AuthContext);
-  console.log(cognome+" RENDER CONTENT OPERATORE");
-  
+
+
+
   async function confermaDescrizione(){
-     console.log("email");
-     console.log(emailU);
-     console.log(descrizioneUtente);
-     console.log("email");
      const ut = await db.getUtenteObj(emailU);
-     console.log(ut);
      db.setDescrizione(ut.id,descrizione);
-     setDescrizioneUtente(descrizione);
+     descrizioneUtente=descrizione;
      setDescrizione("");
   }
 
@@ -47,7 +36,7 @@ const renderContentOperatore = (navigation,logout) => {
             </View>
             <View style={styles.welcome2}>
                 <Title style={styles.frase}>{nome+" "+cognome}</Title> 
-                <Title style={styles.frase2}>{user.email}</Title> 
+                <Title style={styles.frase2}>{emailU}</Title> 
                 <Title style={styles.frase2}>{cellulare}</Title> 
             </View>
         </View>
@@ -121,29 +110,16 @@ const renderContentOperatore = (navigation,logout) => {
   );
 };
 
-const renderContentUtente = (navigation,logout) => {
-
-  const { descrizioneUtente, setDescrizioneUtente } = useContext(AuthContext);
+const renderContentUtente = (navigation,logout,tipo,nome,cognome,emailU,dataN,cellulare,descrizioneUtente) => {
+  console.log("ENTRO IN RENDER CONTENT UTENTE");
   const [descrizione, setDescrizione] = useState(" ");
-  const { user, setUser } = useContext(AuthContext); 
-  const { tipo, setTipo } = useContext(AuthContext);
-  const { nome, setNome } = useContext(AuthContext);
-  const { cognome, setCognome } = useContext(AuthContext);
-  const { emailU, setEmailU } = useContext(AuthContext);
-  const { dataN, setDataN } = useContext(AuthContext);
-  const { associazione, setAssociazione } = useContext(AuthContext);
-  const {cellulare,setCellulare} = useContext(AuthContext);
-  console.log(cognome+" RENDER CONTENT UTENTE");
+
 
   async function confermaDescrizione(){
-    console.log("email");
-    console.log(emailU);
-    console.log(descrizioneUtente);
-    console.log("email");
+
     const ut = await db.getUtenteObj(emailU);
-    console.log(ut);
     db.setDescrizione(ut.id,descrizione);
-    setDescrizioneUtente(descrizione);
+    descrizioneUtente=descrizione;
     setDescrizione("");
  }
 
@@ -158,7 +134,7 @@ const renderContentUtente = (navigation,logout) => {
             </View>
             <View style={styles.welcome2}>
                 <Title style={styles.frase}>{nome+" "+cognome}</Title> 
-                <Title style={styles.frase2}>{user.email}</Title> 
+                <Title style={styles.frase2}>{emailU}</Title> 
                 <Title style={styles.frase2}>{cellulare}</Title> 
             </View>
         </View>
@@ -234,21 +210,41 @@ const renderContentUtente = (navigation,logout) => {
 
 
 export default function IlMioProfilo({navigation}) {
-    const { logout } = useContext(AuthContext);
-    const { user, setUser } = useContext(AuthContext); 
+  const { logout } = useContext(AuthContext);
   const { tipo, setTipo } = useContext(AuthContext);
   const { nome, setNome } = useContext(AuthContext);
+  const { descrizioneUtente, setDescrizioneUtente } = useContext(AuthContext);
   const { cognome, setCognome } = useContext(AuthContext);
-  const { email, setEmail } = useContext(AuthContext);
+  const { emailU, setEmailU } = useContext(AuthContext);
   const { dataN, setDataN } = useContext(AuthContext);
   const { associazione, setAssociazione } = useContext(AuthContext);
   const {cellulare,setCellulare} = useContext(AuthContext);
-    console.log(cognome);
+  const { user, setUser } = useContext(AuthContext); 
 
-    console.log(user);
+  useEffect(() => {
+    console.log("ENTRO NELLA USE EFFECT DI IL MIO PROFILO");
+    caricaDati();
+  }, []);
+
+  async function caricaDati(){
+    console.log(emailU);
+    var temp = await db.getUtenteByMail(user.email);
+    console.log("STAMPO L'UTENTE");
+    console.log(temp);
+    setTipo(temp.tipo);
+    setNome(temp.nome);
+    setCognome(temp.cognome);
+    setEmailU(temp.email);
+    setDataN(temp.datanascita);
+    setCellulare(temp.cellulare);
+    setAssociazione(temp.associazione);
+    console.log("111111111"+temp.descrizioneUtente);
+    setDescrizioneUtente(temp.descrizioneUtente);
+    console.log("333333333333"+descrizioneUtente);
+    }
     return (
      <View style={styles.container}>
-      {tipo=="richiedente" ? renderContentUtente(navigation,logout) : renderContentOperatore(navigation,logout) }
+      {tipo=="richiedente" ? renderContentUtente(navigation,logout,tipo,nome,cognome,emailU,dataN,cellulare,descrizioneUtente) : renderContentOperatore(navigation,logout,tipo,nome,cognome,emailU,dataN,cellulare,associazione,descrizioneUtente) }
       </View> 
     );
   }
