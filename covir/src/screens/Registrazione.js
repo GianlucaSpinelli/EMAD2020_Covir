@@ -82,9 +82,9 @@ export default function Registrazione({navigation}) {
           value={cognome}
           autoCapitalize='none'
           onChangeText={userCognome => setcognome(userCognome)}
-        />
-        <Button onPress={showDatepickerG} title="Data di nascita:" />
-        <Text testID="Giorno">
+        /><View style={styles.part}>
+        <Button color="#1979a9" onPress={showDatepickerG} title="Data di nascita:" /></View>
+        <Text style= {styles.giornotesto} testID="Giorno">
           {dateG !== undefined ? moment(dateG).format('DD/MM/YYYY') : moment.format('DD/MM/YYYY')}
         </Text>
         <View>
@@ -150,6 +150,17 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
     },
+    part: {
+      marginTop:'4%',
+    },
+    giornotesto: {
+      fontSize: 17,
+      marginBottom: 10,
+      marginTop: 15,
+      textAlign: 'center',
+      fontWeight: "bold"
+    },
+
     containerView:{
       flexDirection: 'row',
       alignItems: 'center',
