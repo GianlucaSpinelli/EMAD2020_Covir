@@ -6,7 +6,7 @@ import FormButton from '../components/FormButton';
 import { Divider } from 'react-native-elements';
 import { db } from '../common/crud'; 
 
-const renderContentUtente = (navigation) => {
+const renderContentUtente = (navigation,n,s) => {
   const { nome, setNome } = useContext(AuthContext);
   console.log(nome);
   return (
@@ -16,13 +16,13 @@ const renderContentUtente = (navigation) => {
           style={{ width: 200, height: 200, borderRadius: 100, marginBottom: 30, marginTop: 70 }}
           source={require('../images/anziano1.jpg')}
         />
-        <Title style={styles.titolo}>Ciao {nome}!</Title>
+        <Title style={styles.titolo}>Ciao {n}!</Title>
         <Title style={styles.frase}>Prenota il tuo incontro</Title>
       </View>
       <Divider style={{ backgroundColor: '#6b7070', height: 2, width: 310, marginTop: 80 }} />
       <View style={styles.container}>
         <Title style={styles.frase2}>Sono disponibili:</Title>
-        <Title style={styles.titolo}>34 slot</Title>
+        <Title style={styles.titolo}>{s} slot</Title>
         <FormButton
           backgroundColor='#2196F3'
           modeValue='contained'
@@ -34,7 +34,7 @@ const renderContentUtente = (navigation) => {
   );
 };
 
-const renderContentOperatore = (navigation) => {
+const renderContentOperatore = (navigation,n,s) => {
   const { nome, setNome } = useContext(AuthContext);
   return (
     <View style={styles.container}>
@@ -43,14 +43,14 @@ const renderContentOperatore = (navigation) => {
           style={{ width: 200, height: 200, borderRadius: 100, marginBottom: 30, marginTop: 70 }}
           source={require('../images/anziano2.jpg')}
         />
-        <Title style={styles.titolo}>Ciao {nome}!</Title>
+        <Title style={styles.titolo}>Ciao {n}!</Title>
         <Title style={styles.frase}>Dona il tuo tempo per aiutare</Title>
         <Title style={styles.frasesotto}>chi cerca compagnia</Title>
       </View>
       <Divider style={{ backgroundColor: '#6b7070', height: 2, width: 310, marginTop: 80 }} />
       <View style={styles.container}>
         <Title style={styles.frase2}>Hai messo a disposzione:</Title>
-        <Title style={styles.titolo}>4 slot</Title>
+        <Title style={styles.titolo}>{s} slot</Title>
         <FormButton
           backgroundColor='#2196F3'
           modeValue='contained'
@@ -65,19 +65,31 @@ const renderContentOperatore = (navigation) => {
 
 export default function HomeScreen({ navigation }) {
   const { user, logout } = useContext(AuthContext);
-  const { tipo, setTipo } = useContext(AuthContext);
-  const { nome, setNome } = useContext(AuthContext);
-  const { cognome, setCognome } = useContext(AuthContext);
-  const { email, setEmail } = useContext(AuthContext);
-  const { dataN, setDataN } = useContext(AuthContext);
-  const { associazione, setAssociazione } = useContext(AuthContext);
+  const [ tipo, setTipo ] = useState("");
+  const [ nome, setNome ] = useState("");
+  const [ numSlot, setNumSlot ] = useState("");
+  const [ numSlotTotali, setNumSlotTotali ] = useState("");
+
 
   console.log(" tipo utente: " + tipo);
-  
 
+  useEffect(() => {
+    console.log("ENTRO NELLA USE EFFECT DI IL MIO PROFILO");
+    caricaDati();
+  }, []);
+
+  async function caricaDati(){
+    var temp = await db.getUtenteByMail(user.email);
+    var nS = await db.getAllSlotByVolontario(user.email);
+    var nST = await db.getAllSlot();
+    setNumSlot(nS.length);
+    setNumSlotTotali(nST.length);
+    setTipo(temp.tipo);
+    setNome(temp.nome);
+    }
   return (
     <View style={styles.container}>
-      { tipo != "volontario" ? renderContentUtente(navigation) : renderContentOperatore(navigation)}
+      { tipo != "volontario" ? renderContentUtente(navigation, nome, numSlotTotali) : renderContentOperatore(navigation, nome, numSlot)}
     </View>
   ); // {{user.uid}}
 }

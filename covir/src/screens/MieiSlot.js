@@ -40,6 +40,9 @@ export default function MieiSlot({navigation}) {
     var listaslot=[];
     var slot= await db.getAllSlotByVol(user.email);
     console.log(slot);
+    if (slot != null && slot.length != 0){
+
+    
     var i=0;
     var dataoggi= new Date(Date.now()+(10*60*1000));
     for(i=0;i<slot.length;i++){
@@ -50,6 +53,7 @@ export default function MieiSlot({navigation}) {
           listaslot.push(slot[i]); 
     }
     }
+  }
     /*
     const datajs = slot.dataorainizio.toDate().toDateString();
     const inizio = slot.inizio;
@@ -72,7 +76,7 @@ export default function MieiSlot({navigation}) {
     return (
       <ActivityIndicator size="small" color={"#000000"}/>
     )
-  }else{
+  }else if (result != null){
     return(
       <View> 
       <View>
@@ -89,7 +93,7 @@ export default function MieiSlot({navigation}) {
   </Dialog>
 </Portal>
 
-              <Text style={styles.scelta}>SLOT MESSI A DISPOSIZIONE:</Text>
+              <Text style={styles.scelta}>SLOT MESSI A DISPOSIZIONE</Text>
               <FlatList
                   scrollEnabled={true}
                   title="SLOT MESSI A DISPOSIZIONE"
@@ -133,6 +137,11 @@ export default function MieiSlot({navigation}) {
                       } />} />
           </View>
 </View>
+    )
+  } else {
+    return(
+      <Text style={styles.scelta}>NON HAI MESSO A DISPOSIZIONE NESSUNO SLOT</Text>
+
     )
   }
 }
