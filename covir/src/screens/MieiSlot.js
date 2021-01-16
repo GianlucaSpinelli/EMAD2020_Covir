@@ -25,7 +25,7 @@ export default function MieiSlot({navigation}) {
   const { emailU, setEmailU } = useContext(AuthContext);
   function showDialog(id){ setVisible(true); setid(id);};  
   function showDialog1(id){ setVisible1(true); setid(id);};                         
-  function confermaDialog(){ hideDialog(); db.removeAppuntamento(ids); db.removeSlot(ids); caricaDati();};
+  function confermaDialog(){ hideDialog(); db.removeAppuntamentoBS(ids); db.removeSlot(ids); caricaDati();};
   function hideDialog(){ setVisible(false)};    
   function hideDialog1(){ setVisible1(false)};  
 
@@ -76,7 +76,7 @@ export default function MieiSlot({navigation}) {
     return (
       <ActivityIndicator size="small" color={"#000000"}/>
     )
-  }else if (result != null){
+  }else if (result != null && result.length != 0){
     return(
       <View> 
       <View>
@@ -88,7 +88,7 @@ export default function MieiSlot({navigation}) {
     </Dialog.Content>
     <Dialog.Actions>
     <DialogButton title=' No' modeValue='contained' labelStyle={styles.loginButtonLabel} onPress={hideDialog}/>
-      <DialogButton title=' Si' modeValue='contained' labelStyle={styles.loginButtonLabel}onPress={ () => {confermaDialog();  navigation.navigate('MieiSlot');}}/>
+      <DialogButton title=' Si' modeValue='contained' labelStyle={styles.loginButtonLabel}onPress={ () => {confermaDialog(); navigation.navigate('MieiSlot')}}/>
     </Dialog.Actions>
   </Dialog>
 </Portal>

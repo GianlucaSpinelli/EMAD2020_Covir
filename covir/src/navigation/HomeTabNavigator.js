@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { View, StyleSheet, Text, Dimensions } from 'react-native';
@@ -17,6 +17,7 @@ import DonaTempo from '../screens/DonaTempo';
 import { HeaderBackground } from '@react-navigation/stack';
 import ScegliVol from '../screens/ScegliVolontario2';
 import HomeStack from './HomeStack';
+import { db } from '../common/crud'; 
 
 
 
@@ -34,8 +35,19 @@ const renderContentOperatore = () => {
   );
 };
 
-export default function HomeTabNavigator() {
-  const { tipo, setTipo } = useContext(AuthContext);
+export default function HomeTabNavigator({navigation}) {
+  const [ tipo, setTipo ] = useState("");
+  const { user, logout } = useContext(AuthContext);
+
+  useEffect(() => {
+    caricaDati();
+  }, []);
+
+  async function caricaDati(){
+    var temp = await db.getUtenteByMail(user.email);
+    setTipo(temp.tipo);
+ };
+
     return (          
           <Tab.Navigator 
             screenOptions={({ route }) => ({

@@ -24,6 +24,7 @@ export default function IMieiAppuntamenti({navigation}) {
   async function confermaDialog(){ hideDialog(); await db.removeAppuntamento(chiaveSlot,ids);  caricaDati();};
   function hideDialog(){ setVisible(false)};    
   const [chiaveSlot, setChiaveSlot] = useState("");
+  const { user, setUser } = useContext(AuthContext); 
 
   useEffect(() => {
     const f = navigation.addListener("focus",() => {caricaDati()});
@@ -36,7 +37,7 @@ export default function IMieiAppuntamenti({navigation}) {
     
 
     console.log(emailU);
-    var list = await db.getAllAppuntamentiByUtente(emailU);
+    var list = await db.getAllAppuntamentiByUtente(user.email);
     console.log("11111111111111");
     console.log("lista app:" +list);
     if (list != null && list.length != 0 ) {

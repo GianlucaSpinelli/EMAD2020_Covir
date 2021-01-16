@@ -38,11 +38,27 @@ const manage={
        });
     },
    
+    removeAppuntamentoBS:  async function(idslot){
+            
+        var docref = ref.collection("appuntamenti").where("idslot","==",idslot).get().then(querySnapshot => {
+                querySnapshot.forEach(doc => {
+                   console.log("eleminato"+docref); 
+                   doc.ref.delete();
+                
+               })
+            });
+          try {
+            await docref;
+          } catch (error) {
+            console.log(error);
+          }
+    },
+
     removeAppuntamento: async function(chiave,idslot){
-        
-            this.setSlotNOTOccupato(chiave);
-            console.log("id"+idslot);
-            var docref = ref.collection("appuntamenti").where("idslot","==",idslot).get().then(querySnapshot => {
+        this.setSlotNOTOccupato(chiave);
+            
+        console.log("id"+idslot);
+        var docref = ref.collection("appuntamenti").where("idslot","==",idslot).get().then(querySnapshot => {
                 querySnapshot.forEach(doc => {
                    console.log("eleminato"+docref); 
                    doc.ref.delete();
