@@ -10,6 +10,7 @@ import { db } from '../common/crud';
 import DialogButton from '../components/FormButton4';
 import { AuthContext } from '../navigation/AuthProvider';
 import { set } from 'react-native-reanimated';
+import { RefreshControl } from 'react-native';
 
 export default function IMieiAppuntamenti({navigation}) {
   console.log("ENTR NELLA PAGE");
@@ -20,7 +21,7 @@ export default function IMieiAppuntamenti({navigation}) {
   const [visible, setVisible] = useState(false);
   const [ids,setid] = useState("");
   function showDialog(id){ setVisible(true); setid(id);};                         
-  function confermaDialog(){ hideDialog(); db.removeAppuntamento(chiaveSlot,ids); caricaDati();};
+  async function confermaDialog(){ hideDialog(); await db.removeAppuntamento(chiaveSlot,ids);  caricaDati();};
   function hideDialog(){ setVisible(false)};    
   const [chiaveSlot, setChiaveSlot] = useState("");
 
@@ -38,6 +39,8 @@ export default function IMieiAppuntamenti({navigation}) {
     var list = await db.getAllAppuntamentiByUtente(emailU);
     console.log("11111111111111");
     console.log("lista app:" +list);
+    if (list != null && list.length != 0 ) {
+
     var listaslot = [];
     console.log(list[0].piattaforma);
     for(i=0;i<list.length;i++){
@@ -65,8 +68,10 @@ export default function IMieiAppuntamenti({navigation}) {
       console.log(fine);
       */
     }
+  } 
     setLoading(false);
-    setResult( listaslot)};
+    setResult( listaslot)
+  };
 
   
   const renderContent =()=>{
@@ -74,7 +79,7 @@ export default function IMieiAppuntamenti({navigation}) {
     return (
       <ActivityIndicator size="small" color={"#000000"}/>
     )
-  }else{
+  }else if (result != null){
     return(
       <View> 
       <View>
@@ -86,11 +91,11 @@ export default function IMieiAppuntamenti({navigation}) {
     </Dialog.Content>
     <Dialog.Actions>
     <DialogButton title=' No' modeValue='contained' labelStyle={styles.loginButtonLabel} onPress={hideDialog}/>
-      <DialogButton title=' Si' modeValue='contained' labelStyle={styles.loginButtonLabel}onPress={ () => {confermaDialog();}}/>
+      <DialogButton title=' Si' modeValue='contained' labelStyle={styles.loginButtonLabel}onPress={ () => {confermaDialog();  navigation.navigate('Home');}}/>
     </Dialog.Actions>
   </Dialog>
 </Portal>
-              <Text style={styles.scelta}>APPUNTAMENTI FISSATI:</Text>
+              <Text style={styles.scelta}>APPUNTAMENTI FISSATI</Text>
               <FlatList
                   scrollEnabled={true}
                   title="APPUNTAMENTI DISPONIBILI"
@@ -106,6 +111,10 @@ export default function IMieiAppuntamenti({navigation}) {
                       right={(props) => <IconButton icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/trash.png' }} style={styles.bottoneRight} onPress={() => showDialog(item.id)} />} />} />
           </View>
 </View>
+    )
+  } else {
+    return(
+      <Text style={styles.scelta}>NON HAI NESSUN APPUNTAMENTO FISSATO</Text>
     )
   }
 }

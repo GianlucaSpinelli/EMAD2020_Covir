@@ -110,11 +110,8 @@ const renderContentOperatore = (navigation,logout,tipo,nome,cognome,emailU,dataN
   );
 };
 
-const renderContentUtente = (navigation,logout,tipo,nome,cognome,emailU,dataN,cellulare,descrizioneUtente) => {
-  console.log("ENTRO IN RENDER CONTENT UTENTE");
-  const [descrizione, setDescrizione] = useState(" ");
-
-
+const renderContentUtente = (navigation,logout,tipo,nome,cognome,emailU,dataN,cellulare,descrizioneU) => {
+  const [descrizione, setDescrizione] = useState("");
   async function confermaDescrizione(){
 
     const ut = await db.getUtenteObj(emailU);
@@ -140,10 +137,10 @@ const renderContentUtente = (navigation,logout,tipo,nome,cognome,emailU,dataN,ce
         </View>
         <View style={styles.welcome4}>
         <View style={styles.welcome8}>
-          <Title style={styles.frase10}>{descrizioneUtente}</Title> 
+          <Title style={styles.frase10}>{descrizioneU}</Title> 
           <FormInput
           style={styles.descri}
-          labelName='Aggiorna le informazioni su di te...'
+          labelName='Dicci un po di te...'
           value={descrizione}
           autoCapitalize='none'
           onChangeText={userDescrizione => setDescrizione(userDescrizione)}
@@ -211,14 +208,14 @@ const renderContentUtente = (navigation,logout,tipo,nome,cognome,emailU,dataN,ce
 
 export default function IlMioProfilo({navigation}) {
   const { logout } = useContext(AuthContext);
-  const { tipo, setTipo } = useContext(AuthContext);
-  const { nome, setNome } = useContext(AuthContext);
-  const { descrizioneUtente, setDescrizioneUtente } = useContext(AuthContext);
-  const { cognome, setCognome } = useContext(AuthContext);
-  const { emailU, setEmailU } = useContext(AuthContext);
-  const { dataN, setDataN } = useContext(AuthContext);
-  const { associazione, setAssociazione } = useContext(AuthContext);
-  const {cellulare,setCellulare} = useContext(AuthContext);
+  const [ tipo, setTipo ] = useState("");
+  const [ nome, setNome ] = useState("");
+  const [ descrizioneU, setDescrizioneU ] = useState("");
+  const [ cognome, setCognome ] = useState("");
+  const [ emailU, setEmailU ] = useState("");
+  const [ dataN, setDataN ] = useState("");
+  const [ associazione, setAssociazione ] = useState("");
+  const [ cellulare,setCellulare ] = useState("");
   const { user, setUser } = useContext(AuthContext); 
 
   useEffect(() => {
@@ -238,13 +235,12 @@ export default function IlMioProfilo({navigation}) {
     setDataN(temp.datanascita);
     setCellulare(temp.cellulare);
     setAssociazione(temp.associazione);
-    console.log("111111111"+temp.descrizioneUtente);
-    setDescrizioneUtente(temp.descrizioneUtente);
-    console.log("333333333333"+descrizioneUtente);
+    setDescrizioneU(temp.descrizioneUtente);
+    console.log("333333333333 "+descrizioneU);
     }
     return (
      <View style={styles.container}>
-      {tipo=="richiedente" ? renderContentUtente(navigation,logout,tipo,nome,cognome,emailU,dataN,cellulare,descrizioneUtente) : renderContentOperatore(navigation,logout,tipo,nome,cognome,emailU,dataN,cellulare,associazione,descrizioneUtente) }
+      {tipo=="richiedente" ? renderContentUtente(navigation,logout,tipo,nome,cognome,emailU,dataN,cellulare,descrizioneU) : renderContentOperatore(navigation,logout,tipo,nome,cognome,emailU,dataN,cellulare,associazione,descrizioneU) }
       </View> 
     );
   }
