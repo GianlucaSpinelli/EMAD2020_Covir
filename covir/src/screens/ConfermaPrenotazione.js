@@ -56,41 +56,53 @@ export default function ConfermaPrenotazione({navigation,route}) { //non legge i
 </Portal>   
     <View style={styles.container}>
         <Text  style={styles.scelta}>SCEGLI LA PIATTAFORMA</Text>
-
+        
         <RadioButton.Group onValueChange={newValue => setValue(newValue)} value={value}>
         <View style={{ flexDirection: 'row'}}>
         <View>
-        <IconButton icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/cellulare.png' }}/>
+        <Image
+                style={{ width: 45, height: 45, marginLeft:'15%'}}
+                source={require('../images/phone.png')}
+                />
       </View>
         <View >
         <Text style={styles.piat}>Cellulare</Text></View>
-        <View style={{marginLeft:'41%', marginBottom:'10%'}}><RadioButton value="Cellulare"
+        <View style={{marginLeft:'25%', marginBottom:'10%'}}><RadioButton value="Cellulare"
             color='#1979a9'
         /></View>
         </View>
         <View style={{ flexDirection: 'row'}}>
         <View>
-        <IconButton icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/whatsapp.png' }}/>
+        <Image
+                style={{ width: 45, height: 45, marginLeft:'10%', marginRight:'4%'}}
+                source={require('../images/whatsapp.png')}
+                />
       </View>
         <View><Text style={styles.piat}>Whatsapp</Text></View>
-        <View style={{marginLeft:'38%', marginBottom:'10%'}}><RadioButton value="Whatsapp"
+        <View style={{marginLeft:'22%', marginBottom:'10%'}}><RadioButton value="Whatsapp"
              color='#1979a9'
         />
         </View></View><View style={{ flexDirection: 'row'}}>
         <View>
-        <IconButton icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/email.png' }}/>
+        <Image
+                style={{ width: 40, height: 40, marginLeft:'15%', marginRight:'3%'}}
+                source={require('../images/email.png')}
+                />
       </View>
         <View><Text style={styles.piat}>E-mail</Text></View>
-        <View style={{marginLeft:'46%', marginBottom:'10%'}}><RadioButton value="E-mail" 
+        <View style={{marginLeft:'28%', marginBottom:'10%'}}><RadioButton value="E-mail" 
             color='#1979a9'
         />
         </View></View>
         <View style={{ flexDirection: 'row'}}>
         <View>
-        <IconButton icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/skype.png' }}/>
+        <Image
+                style={{ width: 40, height: 40, marginLeft:'15%', marginRight:'3%'}}
+                source={require('../images/skype.png')}
+                /> 
       </View>
         <View><Text style={styles.piat}>Skype</Text></View>
-        <View style={{marginLeft:'47%', marginBottom:'10%'}}><RadioButton value="Skype" 
+        <View style={{marginLeft:'28%', marginBottom:'10%'}}><RadioButton value="Skype" 
              color='#1979a9'
         /></View>
         </View>
@@ -161,7 +173,7 @@ const styles = StyleSheet.create({
     piat:{
       fontSize: 20,
       marginBottom: 10,
-      marginLeft: 50,
+      marginLeft: '10%',
       fontWeight: "bold"
     },
     bot: {
