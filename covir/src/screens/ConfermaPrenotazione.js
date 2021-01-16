@@ -90,7 +90,7 @@ export default function ConfermaPrenotazione({navigation,route}) { //non legge i
                 />
       </View>
         <View><Text style={styles.piat}>E-mail</Text></View>
-        <View style={{marginLeft:'28%', marginBottom:'10%'}}><RadioButton value="E-mail" 
+        <View style={{marginLeft:'29%', marginBottom:'10%'}}><RadioButton value="E-mail" 
             color='#1979a9'
         />
         </View></View>
@@ -102,7 +102,7 @@ export default function ConfermaPrenotazione({navigation,route}) { //non legge i
                 /> 
       </View>
         <View><Text style={styles.piat}>Skype</Text></View>
-        <View style={{marginLeft:'28%', marginBottom:'10%'}}><RadioButton value="Skype" 
+        <View style={{marginLeft:'30%', marginBottom:'10%'}}><RadioButton value="Skype" 
              color='#1979a9'
         /></View>
         </View>
@@ -155,8 +155,10 @@ const styles = StyleSheet.create({
         color: '#ffffff'
     },
     container: {
-        marginBottom:'-15%'
-        
+        marginBottom:'-15%',
+        marginRight:'5%',
+        marginLeft:'5%',
+        marginTop:'7%'
     },
     container1: {
         flex:1
