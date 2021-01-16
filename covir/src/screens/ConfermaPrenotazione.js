@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { Portal,Paragraph,Dialog } from 'react-native-paper';
+import { Portal,IconButton,Paragraph,Dialog } from 'react-native-paper';
 import { View, Text, Image, StyleSheet, TouchableOpacity, ViewPropTypes  } from 'react-native';
 import { RadioButton } from 'react-native-paper';
 import { Divider, Card, Button, Icon } from 'react-native-elements';
@@ -59,6 +59,9 @@ export default function ConfermaPrenotazione({navigation,route}) { //non legge i
 
         <RadioButton.Group onValueChange={newValue => setValue(newValue)} value={value}>
         <View style={{ flexDirection: 'row'}}>
+        <View>
+        <IconButton icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/cellulare.png' }}/>
+      </View>
         <View >
         <Text style={styles.piat}>Cellulare</Text></View>
         <View style={{marginLeft:'41%', marginBottom:'10%'}}><RadioButton value="Cellulare"
@@ -66,17 +69,26 @@ export default function ConfermaPrenotazione({navigation,route}) { //non legge i
         /></View>
         </View>
         <View style={{ flexDirection: 'row'}}>
+        <View>
+        <IconButton icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/calendar.png' }}/>
+      </View>
         <View><Text style={styles.piat}>Whatsapp</Text></View>
         <View style={{marginLeft:'38%', marginBottom:'10%'}}><RadioButton value="Whatsapp"
              color='#1979a9'
         />
         </View></View><View style={{ flexDirection: 'row'}}>
+        <View>
+        <IconButton icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/email.png' }}/>
+      </View>
         <View><Text style={styles.piat}>E-mail</Text></View>
         <View style={{marginLeft:'46%', marginBottom:'10%'}}><RadioButton value="E-mail" 
             color='#1979a9'
         />
         </View></View>
         <View style={{ flexDirection: 'row'}}>
+        <View>
+        <IconButton icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/skype.png' }}/>
+      </View>
         <View><Text style={styles.piat}>Skype</Text></View>
         <View style={{marginLeft:'47%', marginBottom:'10%'}}><RadioButton value="Skype" 
              color='#1979a9'
@@ -149,7 +161,7 @@ const styles = StyleSheet.create({
     piat:{
       fontSize: 20,
       marginBottom: 10,
-      marginLeft: 40,
+      marginLeft: 50,
       fontWeight: "bold"
     },
     bot: {
