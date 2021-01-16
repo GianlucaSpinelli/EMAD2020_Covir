@@ -88,7 +88,7 @@ export default function MieiSlot({navigation}) {
     </Dialog.Content>
     <Dialog.Actions>
     <DialogButton title=' No' modeValue='contained' labelStyle={styles.loginButtonLabel} onPress={hideDialog}/>
-      <DialogButton title=' Si' modeValue='contained' labelStyle={styles.loginButtonLabel}onPress={ () => {confermaDialog();}}/>
+      <DialogButton title=' Si' modeValue='contained' labelStyle={styles.loginButtonLabel}onPress={ () => {confermaDialog();  navigation.navigate('MieiSlot');}}/>
     </Dialog.Actions>
   </Dialog>
 </Portal>

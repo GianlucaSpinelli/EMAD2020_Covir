@@ -91,7 +91,7 @@ export default function IMieiAppuntamenti({navigation}) {
     </Dialog.Content>
     <Dialog.Actions>
     <DialogButton title=' No' modeValue='contained' labelStyle={styles.loginButtonLabel} onPress={hideDialog}/>
-      <DialogButton title=' Si' modeValue='contained' labelStyle={styles.loginButtonLabel}onPress={ () => {confermaDialog();  navigation.navigate('Home');}}/>
+      <DialogButton title=' Si' modeValue='contained' labelStyle={styles.loginButtonLabel}onPress={ () => {confermaDialog();  navigation.navigate('ImieiAppuntamenti');}}/>
     </Dialog.Actions>
   </Dialog>
 </Portal>
