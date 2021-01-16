@@ -70,7 +70,7 @@ export default function ConfermaPrenotazione({navigation,route}) { //non legge i
         </View>
         <View style={{ flexDirection: 'row'}}>
         <View>
-        <IconButton icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/calendar.png' }}/>
+        <IconButton icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/whatsapp.png' }}/>
       </View>
         <View><Text style={styles.piat}>Whatsapp</Text></View>
         <View style={{marginLeft:'38%', marginBottom:'10%'}}><RadioButton value="Whatsapp"
