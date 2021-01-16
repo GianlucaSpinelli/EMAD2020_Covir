@@ -54,39 +54,38 @@ export default function ConfermaPrenotazione({navigation,route}) { //non legge i
     </Dialog.Actions>
   </Dialog>
 </Portal>   
-    <View containerStyle={styles.container}>
+    <View style={styles.container}>
         <Text  style={styles.scelta}>SCEGLI LA PIATTAFORMA</Text>
 
         <RadioButton.Group onValueChange={newValue => setValue(newValue)} value={value}>
-        <View>
-        <Text style={styles.piat}>Cellulare</Text>
-        <RadioButton style={styles.bot}
+        <View style={{ flexDirection: 'row'}}>
+        <View >
+        <Text style={styles.piat}>Cellulare</Text></View>
+        <View style={{marginLeft:'41%', marginBottom:'10%'}}><RadioButton value="Cellulare"
             color='#1979a9'
-        />
+        /></View>
         </View>
-        <View>
-        <Text style={styles.piat}>Whatsapp</Text>
-        <RadioButton value="Whatsapp"
+        <View style={{ flexDirection: 'row'}}>
+        <View><Text style={styles.piat}>Whatsapp</Text></View>
+        <View style={{marginLeft:'38%', marginBottom:'10%'}}><RadioButton value="Whatsapp"
              color='#1979a9'
         />
-        </View>
-        <View>
-        <Text style={styles.piat}>Skype</Text>
-        <RadioButton value="Skype" 
-             color='#1979a9'
-        />
-        </View>
-        <View>
-        <Text style={styles.piat}>E-mail</Text>
-        <RadioButton value="E-mail" 
+        </View></View><View style={{ flexDirection: 'row'}}>
+        <View><Text style={styles.piat}>E-mail</Text></View>
+        <View style={{marginLeft:'46%', marginBottom:'10%'}}><RadioButton value="E-mail" 
             color='#1979a9'
         />
+        </View></View>
+        <View style={{ flexDirection: 'row'}}>
+        <View><Text style={styles.piat}>Skype</Text></View>
+        <View style={{marginLeft:'47%', marginBottom:'10%'}}><RadioButton value="Skype" 
+             color='#1979a9'
+        /></View>
         </View>
-        </RadioButton.Group>
-
         
+        </RadioButton.Group>
     </View>
-    <View containerStyle={styles.container1}>
+    <View tyle={styles.container1}>
         <FormButton
           containerStyle={styles.bottone}
           title='Conferma'
@@ -104,7 +103,7 @@ const styles = StyleSheet.create({
         fontSize: 26,
         textAlign: "center",
         marginTop: 30,
-        marginBottom: 20,
+        marginBottom: 60,
         marginLeft: '10%',
         marginRight: '10%',
         color:'#1979a9',
@@ -132,12 +131,14 @@ const styles = StyleSheet.create({
         color: '#ffffff'
     },
     container: {
-        flex:1
+        marginBottom:'-15%'
+        
     },
     container1: {
         flex:1
+        
     },
-    botton:  {
+    bottone:  {
         backgroundColor:'#1979a9',
         width: 10,
         height:10
@@ -147,7 +148,7 @@ const styles = StyleSheet.create({
     },
     piat:{
       fontSize: 20,
-      marginBottom: 2,
+      marginBottom: 10,
       marginLeft: 40,
       fontWeight: "bold"
     },
