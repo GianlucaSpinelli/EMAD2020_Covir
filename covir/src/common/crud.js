@@ -100,6 +100,11 @@ const manage={
             console.log("Error getting document:", error);
         });        
     },
+
+    addCallLink: async function (ids,link) {
+        ref.collection("appuntamenti").doc(ids).update({linkCall: link});
+    },
+
     getSlot:async function(chiave){
         var slot;
         var lista = [];
@@ -123,6 +128,7 @@ const manage={
     getAppBySlot:async function(chiave){
 
         var lista = [];
+        console.log("SONO IN GET APPOBJ"+chiave);
         if (chiave != null) {
         const n = ref.collection("appuntamenti").where("idslot","==",chiave).get().then(querySnapshot  => {
             querySnapshot.forEach(doc => {
@@ -141,9 +147,32 @@ const manage={
     }
     else return lista[0];
     },
+
+    getAppBySlotOBJ:async function(chiave){
+
+        var slot;
+        var lista = [];
+        if (chiave != null) {
+        const n = ref.collection("appuntamenti").where("idslot","==",chiave).get().then(querySnapshot  => {
+            querySnapshot.forEach(doc => {
+                console.log("app:"+doc.data());
+                lista.push(doc);
+                
+           })
+        });
+        try {
+            await n;
+            return lista[0];
+        } catch (error) {
+            
+        } 
+    }
+    else return lista[0];
+    },
+
     getAllSlot:async function(){
         var lista = [];
-        const n = ref.collection("slot").get().then(querySnapshot  => {
+        const n = ref.collection("slot").orderBy('id','desc').get().then(querySnapshot  => {
             querySnapshot.forEach(doc => {
                 console.log("slot spinelliiiiiiiiiiiiii:"+doc.data());
                 lista.push(doc.data());

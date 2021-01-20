@@ -11,6 +11,10 @@ import { AuthContext } from '../navigation/AuthProvider';
 import { set } from 'react-native-reanimated';
 import DialogButton from '../components/FormButton4';
 import { app } from 'firebase';
+import { Linking } from 'react-native';
+import FormButton2 from '../components/FormButton2';
+import FormInput from '../components/FormInput';
+
 
 export default function MieiSlot({navigation}) {
   
@@ -23,8 +27,19 @@ export default function MieiSlot({navigation}) {
   const [appuntamento, setAppuntamento] = useState(null);
   const [ids,setid] = useState("");
   const { emailU, setEmailU } = useContext(AuthContext);
+  const [giorno, setGiorno] = useState(null);
+  const [mese, setMese] = useState(null);
+  const [da, setDa] = useState(null);
+  const [a, setA] = useState(null);
+  const [conN, setConN] = useState(null);
+  const [conC, setConC] = useState(null);
+  const [conE, setConE] = useState(null);
+  const [conCell, setConCEll] = useState(null);
+  const [p, setP] = useState(null);
+  const [link, setLink] = useState(null);  
+
   function showDialog(id){ setVisible(true); setid(id);};  
-  function showDialog1(id){ setVisible1(true); setid(id);};                         
+  function showDialog1(id){ setVisible1(true);setid(id);};                         
   function confermaDialog(){ hideDialog(); db.removeAppuntamentoBS(ids); db.removeSlot(ids); caricaDati();};
   function hideDialog(){ setVisible(false)};    
   function hideDialog1(){ setVisible1(false)};  
@@ -85,10 +100,40 @@ export default function MieiSlot({navigation}) {
     <Dialog.Title>CONFERMA</Dialog.Title>
     <Dialog.Content>
       <Paragraph>Sei sicuro di voler eliminare questo slot?</Paragraph>
+
     </Dialog.Content>
     <Dialog.Actions>
     <DialogButton title=' No' modeValue='contained' labelStyle={styles.loginButtonLabel} onPress={hideDialog}/>
       <DialogButton title=' Si' modeValue='contained' labelStyle={styles.loginButtonLabel}onPress={ () => {confermaDialog(); navigation.navigate('MieiSlot')}}/>
+    </Dialog.Actions>
+  </Dialog>
+</Portal>
+<Portal>
+  <Dialog visible={visible1}  onDismiss={hideDialog1}>
+    <Dialog.Title>INFORMAZIONI</Dialog.Title>
+    <Dialog.Content>
+      <Paragraph>Sarai impegnato il:{"\n"} Giorno: {giorno}/{mese}; {"\n"} Dalle: {da} alle: {a}; {"\n"} Nome: {conN};{"\n"} Cognome: {conC};{"\n"} Email: {conE};{"\n"} Cellulare: {conCell}; {"\n"} Piattaforma: {p} </Paragraph>
+      <FormButton2
+          title='START CALL'
+          modeValue='contained'
+          labelStyle={styles.loginButtonLabel}
+          onPress={() =>{Linking.openURL('http://meet.google.com/new')}} 
+        />
+        <FormInput
+          labelName='Link invito'
+          value={link}
+          autoCapitalize='none'
+          onChangeText={newLink => setLink(newLink)}
+        />
+        <FormButton2
+          title='Invia'
+          modeValue='contained'
+          labelStyle={styles.loginButtonLabel}
+          onPress={async() =>{ var chiave= await db.getAppBySlotOBJ(ids); await db.addCallLink(chiave.id,link); hideDialog1();}} 
+        />
+    </Dialog.Content>
+    <Dialog.Actions>
+    <DialogButton title='CHIUDI' modeValue='contained' labelStyle={styles.loginButtonLabel} onPress={hideDialog1}/>
     </Dialog.Actions>
   </Dialog>
 </Portal>
@@ -127,7 +172,17 @@ export default function MieiSlot({navigation}) {
                         mesi[10] = "Novembre";
                         mesi[11] = "Dicembre";      
                         var n = mesi[item.inizio.toDate().getMonth()];
-                        alert('Sarai impegnato il '+item.inizio.toDate().getDate()+' '+n+' dalle ore '+ item.inizio.toDate().getHours() +' fino a '+item.fine.toDate().getHours()+ " con: \n"+ "Nome: "+ utentebyApp.nome+"\n"+ "Cognome: "+ utentebyApp.cognome+"\n"+"Email: "+utentebyApp.email+"\n"+"Cellulare: "+utentebyApp.cellulare); 
+                        setGiorno(item.inizio.toDate().getDate());
+                        setMese(n);
+                        setDa(item.inizio.toDate().getHours());
+                        setA(item.fine.toDate().getHours());
+                        setConN(utentebyApp.nome);
+                        setConC(utentebyApp.cognome);
+                        setConE(utentebyApp.email);
+                        setConCEll(utentebyApp.cellulare);
+                        setP(piatt);
+                        showDialog1(item.id);
+                        //alert('Sarai impegnato il '+item.inizio.toDate().getDate()+' '+n+' dalle ore '+ item.inizio.toDate().getHours() +' fino a '+item.fine.toDate().getHours()+ " con: \n"+ "Nome: "+ utentebyApp.nome+"\n"+ "Cognome: "+ utentebyApp.cognome+"\n"+"Email: "+utentebyApp.email+"\n"+"Cellulare: "+utentebyApp.cellulare+"\n"+"Piattaforma: "+ piatt+"\n"); 
                       } else {
                         alert('Questo slot ancora non è stato prenotato!'); 
                       }

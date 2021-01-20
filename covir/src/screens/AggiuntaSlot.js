@@ -87,7 +87,7 @@ export default function AggiuntaSlot({ navigation }) {
 
   async function confermadonatempo(){
        const list = await db.getAllSlot();
-       var num = list.length+1;
+       var num = list[0].id+1;
        const slot = {chiavevolontario:user.email, dataorainizio:dateG, fine:dateAO , id:num,inizio:dateDO,occupato:false};
        db.addSlot(slot);
   }
@@ -162,7 +162,7 @@ export default function AggiuntaSlot({ navigation }) {
           title='Conferma'
           modeValue='contained'
           labelStyle={styles.loginButtonLabel}
-          onPress={() => confermadonatempo()}  //{() => login(email, password)}
+          onPress={() => {confermadonatempo(); navigation.navigate('MieiSlot');}}  //{() => login(email, password)}
         />
         </View>
     </View>

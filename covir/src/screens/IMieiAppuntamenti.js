@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Title } from 'react-native-paper';
 import { IconButton,Portal,Paragraph,Dialog, Card, Avatar } from 'react-native-paper';
-import { View, Text, Image, StyleSheet, VirtualizedList,ActivityIndicator } from 'react-native'
+import { View, Text, Image, StyleSheet, VirtualizedList,ActivityIndicator, Linking } from 'react-native'
 import {ListItem, Button, Icon, SocialIcon } from 'react-native-elements'
 import { FlatList, ScrollView } from 'react-native-gesture-handler';
 import TouchableScale from 'react-native-touchable-scale'; // https://github.com/kohver/react-native-touchable-scale
@@ -11,6 +11,7 @@ import DialogButton from '../components/FormButton4';
 import { AuthContext } from '../navigation/AuthProvider';
 import { set } from 'react-native-reanimated';
 import { RefreshControl } from 'react-native';
+import FormButton2 from '../components/FormButton2';
 
 export default function IMieiAppuntamenti({navigation}) {
   console.log("ENTR NELLA PAGE");
@@ -19,8 +20,18 @@ export default function IMieiAppuntamenti({navigation}) {
   const [loading,setLoading] = useState(true);
   const [result,setResult] = useState([]);
   const [visible, setVisible] = useState(false);
+  const [visible1, setVisible1] = useState(false);
+  const [visible2, setVisible2] = useState(false);
   const [ids,setid] = useState("");
-  function showDialog(id){ setVisible(true); setid(id);};                         
+  const [da, setDa] = useState(null);
+  const [a, setA] = useState(null);
+  const [p, setP] = useState(null);
+  const [link, setLink] = useState(null);
+  function showDialog(id){ setVisible(true); setid(id);};       
+  function showDialog1(id){ setVisible1(true);setid(id);};
+  function showDialog2(id){ setVisible2(true);setid(id);};                 
+  function hideDialog1(){ setVisible1(false)};     
+  function hideDialog2(){ setVisible2(false)};             
   async function confermaDialog(){ hideDialog(); await db.removeAppuntamento(chiaveSlot,ids);  caricaDati();};
   function hideDialog(){ setVisible(false)};    
   const [chiaveSlot, setChiaveSlot] = useState("");
@@ -96,6 +107,36 @@ export default function IMieiAppuntamenti({navigation}) {
     </Dialog.Actions>
   </Dialog>
 </Portal>
+
+<Portal>
+  <Dialog visible={visible1}  onDismiss={hideDialog1}>
+    <Dialog.Title>INFORMAZIONI APPUNTAMENTO</Dialog.Title>
+    <Dialog.Content>
+      <Paragraph>Dalle: {da} alle: {a}; {"\n"}Piattaforma: {p}; {"\n"}</Paragraph>
+      <FormButton2
+          title='START CALL'
+          modeValue='contained'
+          labelStyle={styles.loginButtonLabel}
+          onPress={() =>{if (link != null && link.length != "") Linking.openURL(link); else alert("Il volontario non ha ancora avviato la videochiamata, riprova tra un istante.");}} 
+        />
+    </Dialog.Content>
+    <Dialog.Actions>
+    <DialogButton title=' Chiudi' modeValue='contained' labelStyle={styles.loginButtonLabel} onPress={hideDialog1}/>
+    </Dialog.Actions>
+  </Dialog>
+</Portal>
+
+<Portal>
+  <Dialog visible={visible2}  onDismiss={hideDialog2}>
+    <Dialog.Title>INFORMAZIONI APPUNTAMENTO</Dialog.Title>
+    <Dialog.Content>
+      <Paragraph>Dalle: {da} alle: {a}; {"\n"}Piattaforma: {p}; {"\n"}</Paragraph>
+    </Dialog.Content>
+    <Dialog.Actions>
+    <DialogButton title=' Chiudi' modeValue='contained' labelStyle={styles.loginButtonLabel} onPress={hideDialog2}/>
+    </Dialog.Actions>
+  </Dialog>
+</Portal>
               <Text style={styles.scelta}>APPUNTAMENTI FISSATI</Text>
               <FlatList
                   scrollEnabled={true}
@@ -107,7 +148,28 @@ export default function IMieiAppuntamenti({navigation}) {
                       title={item.dataorainizio.toDate().toDateString()}
                       titleStyle={styles.testo}
                       subtitle={item.chiavevolontario}
-                      left={(props) => <Avatar.Icon icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/date.png' }} style={styles.icona} />} 
+                      left={(props) => <IconButton icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/date.png' }} style={styles.icona} onPress={ async () =>
+                      {
+                        var appuntamento;
+                        var utentebyApp;
+                        appuntamento = await db.getAppBySlot(item.id);
+                        console.log("sono qui dopo l'app");
+                        console.log(appuntamento);
+                        if(appuntamento != null) {
+                        var piatt = appuntamento.piattaforma;
+                        setDa(item.inizio.toDate().getHours()+":"+item.inizio.toDate().getMinutes());
+                        setA(item.fine.toDate().getHours()+":"+item.fine.toDate().getMinutes());
+                        setP(piatt);
+
+                        if (piatt =="Google Meet") {  
+                          setLink(appuntamento.linkCall);
+                          showDialog1();
+                          //alert("Piattaforma: "+ piatt+";\n"+"Link Videochiamata: "+ Linking.openURL(appuntamento.link)+ "\n"+ "Ore "++":"+item.inizio.toDate().getMinutes()+" - "+); 
+                        } else {
+                          showDialog2();
+                        }
+                      }
+                      }} />} 
                       leftStyle={styles.bottoneLeft}
                       right={(props) => <IconButton icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/trash.png' }} style={styles.bottoneRight} onPress={() => showDialog(item.id)} />} />} />
           </View>
