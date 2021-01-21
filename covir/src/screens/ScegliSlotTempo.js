@@ -116,7 +116,7 @@ export default function ScegliSlotTempo({navigation,route}) {
                                                 title={item.dataorainizio.toDate().toDateString()}
                                                 titleStyle={styles.testo}
                                                 subtitle={item.inizio.toDate().getHours()+":"+item.inizio.toDate().getMinutes()+" - "+item.fine.toDate().getHours()+":"+item.fine.toDate().getMinutes()}
-                                                left={(props) => <Avatar.Icon  icon={{ uri:'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/pencil.png'}} style={styles.icona} />}
+                                                left={(props) => <Avatar.Icon  icon={{ uri:'https://raw.githubusercontent.com/enzop9898/EMAD2020_Covir/main/covir/src/images/calendar1.png'}} style={styles.icona} />}
                                                 leftStyle={styles.bottoneLeft}
                                                 right={(props) => <IconButton icon={{uri:'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/logout.png'}} style={styles.bottoneRight} onPress={() => navigation.navigate('ConfermaAppuntamento',{"idSlot":item.id,"emailvolontario":item.chiavevolontario})} />}/> }/>      
          
