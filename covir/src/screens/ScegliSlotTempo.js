@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
 
     },
     icona:{
-        backgroundColor: 'rgba(172, 213, 211, 1)',
+        backgroundColor: '#009bd6',
         borderRadius:0,
         marginLeft: '-40%',
         height: '177%'
@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
         marginRight: '10%'
     },
     card: {
-        borderColor: 'rgba(172, 213, 211, 1)',
+        borderColor: '#009bd6',
         borderTopWidth: 4,
         borderBottomWidth: 4,
         marginTop: '0%'
