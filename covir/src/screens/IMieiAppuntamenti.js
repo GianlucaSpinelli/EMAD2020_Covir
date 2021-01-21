@@ -7,7 +7,7 @@ import { FlatList, ScrollView } from 'react-native-gesture-handler';
 import TouchableScale from 'react-native-touchable-scale'; // https://github.com/kohver/react-native-touchable-scale
 import { LinearGradient } from 'expo-linear-gradient';
 import { db } from '../common/crud'; 
-import DialogButton from '../components/FormButton4';
+import DialogButton from '../components/FormButton5';
 import { AuthContext } from '../navigation/AuthProvider';
 import { set } from 'react-native-reanimated';
 import { RefreshControl } from 'react-native';
@@ -113,15 +113,16 @@ export default function IMieiAppuntamenti({navigation}) {
     <Dialog.Title>INFORMAZIONI APPUNTAMENTO</Dialog.Title>
     <Dialog.Content>
       <Paragraph>Dalle: {da} alle: {a}; {"\n"}Piattaforma: {p}; {"\n"}</Paragraph>
+      <View style={ {width:'70%', marginRight:'25%', marginLeft:'15%'}}>
       <FormButton2
-          title='START CALL'
+          title='  START CALL'
           modeValue='contained'
           labelStyle={styles.loginButtonLabel}
           onPress={() =>{if (link != null && link.length != "") Linking.openURL(link); else alert("Il volontario non ha ancora avviato la videochiamata, riprova tra un istante.");}} 
-        />
+        /></View>
     </Dialog.Content>
     <Dialog.Actions>
-    <DialogButton title=' Chiudi' modeValue='contained' labelStyle={styles.loginButtonLabel} onPress={hideDialog1}/>
+    <DialogButton style={{height:'105%', width:'22%', backgroundColor: '#e2020e',borderRadius: 7,}} title=' Chiudi' modeValue='contained' labelStyle={{fontSize:10, fontWeight:'bold'}} onPress={hideDialog1}/>
     </Dialog.Actions>
   </Dialog>
 </Portal>
@@ -133,7 +134,9 @@ export default function IMieiAppuntamenti({navigation}) {
       <Paragraph>Dalle: {da} alle: {a}; {"\n"}Piattaforma: {p}; {"\n"}</Paragraph>
     </Dialog.Content>
     <Dialog.Actions>
-    <DialogButton title=' Chiudi' modeValue='contained' labelStyle={styles.loginButtonLabel} onPress={hideDialog2}/>
+     
+    <DialogButton style={{height:'105%', width:'22%', backgroundColor: '#e2020e',borderRadius: 7,}} title=' Chiudi' modeValue='contained' labelStyle={{fontSize:10, fontWeight:'bold'}} onPress={hideDialog2}/>
+    
     </Dialog.Actions>
   </Dialog>
 </Portal>
@@ -200,7 +203,8 @@ const styles = StyleSheet.create({
 
     },
     loginButtonLabel: {
-      fontSize: 17
+      fontSize: 17,
+      marginLeft:'-2%'
     },
     botton:{
       height: '10%',
@@ -211,7 +215,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#009bd6',
         borderRadius:0,
         marginLeft: '-40%',
-        height: '177%'
+        height: '177%',
+        width:'110%'
 
     },
     app:{

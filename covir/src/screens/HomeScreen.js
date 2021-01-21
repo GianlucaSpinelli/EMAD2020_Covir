@@ -21,7 +21,7 @@ const renderContentUtente = (navigation,n,s) => {
         <Title style={styles.titolo}>Ciao {n}!</Title>
         <Title style={styles.frase}>Prenota il tuo incontro</Title>
       </View>
-      <Divider style={{ backgroundColor: '#009bd6', height: 17, width: width , marginTop: 80 }} />
+      <Divider style={{ backgroundColor: '#009bd6', height: 10, width: width , marginTop: 80 }} />
       <View style={styles.container}>
         <Title style={styles.frase2}>Sono disponibili:</Title>
         <Title style={styles.titolo}>{s} slot</Title>
@@ -50,7 +50,7 @@ const renderContentOperatore = (navigation,n,s) => {
         <Title style={styles.frase}>Dona il tuo tempo per aiutare</Title>
         <Title style={styles.frasesotto}>chi cerca compagnia</Title>
       </View>
-      <Divider style={{ backgroundColor: '#009bd6', height: 17, width: width, marginTop: 80 }} />
+      <Divider style={{ backgroundColor: '#009bd6', height: 10, width: width, marginTop: 80 }} />
       <View style={styles.container}>
         <Title style={styles.frase2}>Hai messo a disposzione:</Title>
         <Title style={styles.titolo}>{s} slot</Title>

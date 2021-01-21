@@ -9,10 +9,10 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { db } from '../common/crud'; 
 import { AuthContext } from '../navigation/AuthProvider';
 import { set } from 'react-native-reanimated';
-import DialogButton from '../components/FormButton4';
+import DialogButton from '../components/FormButton5';
 import { app } from 'firebase';
 import { Linking } from 'react-native';
-import FormButton2 from '../components/FormButton2';
+import FormButton5 from '../components/FormButton2';
 import FormInput from '../components/FormInput';
 
 
@@ -113,19 +113,21 @@ export default function MieiSlot({navigation}) {
     <Dialog.Title>INFORMAZIONI</Dialog.Title>
     <Dialog.Content>
       <Paragraph>Sarai impegnato il:{"\n"} Giorno: {giorno}/{mese}; {"\n"} Dalle: {da} alle: {a}; {"\n"} Nome: {conN};{"\n"} Cognome: {conC};{"\n"} Email: {conE};{"\n"} Cellulare: {conCell}; {"\n"} Piattaforma: {p} </Paragraph>
-      <FormButton2
+      <FormButton5
+         
           title='START CALL'
           modeValue='contained'
           labelStyle={styles.loginButtonLabel}
           onPress={() =>{Linking.openURL('http://meet.google.com/new')}} 
         />
         <FormInput
+          
           labelName='Link invito'
           value={link}
           autoCapitalize='none'
           onChangeText={newLink => setLink(newLink)}
         />
-        <FormButton2
+        <FormButton5
           title='Invia'
           modeValue='contained'
           labelStyle={styles.loginButtonLabel}
@@ -133,7 +135,7 @@ export default function MieiSlot({navigation}) {
         />
     </Dialog.Content>
     <Dialog.Actions>
-    <DialogButton title='CHIUDI' modeValue='contained' labelStyle={styles.loginButtonLabel} onPress={hideDialog1}/>
+    <DialogButton style={{height:'105%', width:'22%', backgroundColor: '#e2020e',borderRadius: 7,}} title='CHIUDI' modeValue='contained' labelStyle={{fontSize:10, fontWeight:'bold'}} onPress={hideDialog1}/>
     </Dialog.Actions>
   </Dialog>
 </Portal>
