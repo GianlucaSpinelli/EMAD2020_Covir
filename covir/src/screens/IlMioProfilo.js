@@ -31,7 +31,7 @@ const renderContentOperatore = (navigation,logout,tipo,nome,cognome,emailU,dataN
             <View style={styles.welcome2}>
                 <Image
                 style={{ width: 150, height: 150, borderRadius: 100,marginTop: 15,marginLeft: 0}}
-                source={require('../images/user.png')}
+                source={require('../images/PROFILEMAN.png')}
                 />
             </View>
             <View style={styles.welcome2}>
@@ -126,7 +126,7 @@ const renderContentUtente = (navigation,logout,tipo,nome,cognome,emailU,dataN,ce
             <View style={styles.welcome2}>
                 <Image
                 style={{ width: 150, height: 150, borderRadius: 100,marginTop: 15,marginLeft: 0}}
-                source={require('../images/user.png')}
+                source={require('../images/PROFILEMAN.png')}
                 />
             </View>
             <View style={styles.welcome2}>
@@ -251,13 +251,13 @@ export default function IlMioProfilo({navigation}) {
       backgroundColor: '#F5FCFF',
     },
     bottone: {
-      borderRadius: 10,
-      backgroundColor:'rgb(172,213,211)',
+      borderRadius: 4,
+      backgroundColor:'#009bd6',
       fontWeight: "bold" 
     },
     bottone1: {
-      borderRadius: 10,
-      backgroundColor:'#1979a9',
+      borderRadius: 4,
+      backgroundColor:'#00719c',
       fontWeight: "bold"
     },
     welcome: {
@@ -277,9 +277,9 @@ export default function IlMioProfilo({navigation}) {
       },
       frase: {
          fontSize: 21,
-         color: '#4d5354',
+         fontWeight: '800',
+         color: '#00415a',
          marginTop: 35,
-         fontWeight: "bold",
          marginLeft: '-6%'
          
       },
@@ -293,6 +293,7 @@ export default function IlMioProfilo({navigation}) {
       },
       frase2: {
         fontSize: 15,
+        fontWeight: 'bold',
         color: '#4d5354',
         marginTop: 2,
         marginLeft: '-6%'

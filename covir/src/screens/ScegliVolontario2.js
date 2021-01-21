@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         width: '95%',
         marginTop: 10,
-        backgroundColor: 'rgb(172,213,211)'
+        backgroundColor: '#00b8ff'
                
     },
     card2:{
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         width: '95%',
         marginTop: 10,
-        backgroundColor: 'rgb(66,156,195)'
+        backgroundColor: '#009bd6'
                
     },
     card3:{
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         width: '95%',
         marginTop: 10,
-        backgroundColor: 'rgb(51,123,168)'
+        backgroundColor: '#00719c'
                
     },
     card4:{
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         width: '95%',
         marginTop: 10,
-        backgroundColor: 'rgb(33,82,114)'
+        backgroundColor: '#00415a'
                
     },
     immagine:{
