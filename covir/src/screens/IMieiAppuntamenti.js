@@ -148,7 +148,7 @@ export default function IMieiAppuntamenti({navigation}) {
                       title={item.dataorainizio.toDate().toDateString()}
                       titleStyle={styles.testo}
                       subtitle={item.chiavevolontario}
-                      left={(props) => <IconButton icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/date.png' }} style={styles.icona} onPress={ async () =>
+                      left={(props) => <IconButton icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/EMAD2020_Covir/main/covir/src/images/info.png' }} style={styles.icona} onPress={ async () =>
                       {
                         var appuntamento;
                         var utentebyApp;
