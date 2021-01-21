@@ -38,6 +38,7 @@ const renderContentUtente = (navigation,n,s) => {
 
 const renderContentOperatore = (navigation,n,s) => {
   const { nome, setNome } = useContext(AuthContext);
+  var width = Dimensions.get('window').width;
   return (
     <View style={styles.container}>
       <View style={styles.container}>
@@ -49,7 +50,7 @@ const renderContentOperatore = (navigation,n,s) => {
         <Title style={styles.frase}>Dona il tuo tempo per aiutare</Title>
         <Title style={styles.frasesotto}>chi cerca compagnia</Title>
       </View>
-      <Divider style={{ backgroundColor: '#6b7070', height: 2, width: width, marginTop: 80 }} />
+      <Divider style={{ backgroundColor: '#009bd6', height: 17, width: width, marginTop: 80 }} />
       <View style={styles.container}>
         <Title style={styles.frase2}>Hai messo a disposzione:</Title>
         <Title style={styles.titolo}>{s} slot</Title>
