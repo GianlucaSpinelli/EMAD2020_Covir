@@ -151,7 +151,7 @@ export default function MieiSlot({navigation}) {
                       title={item.dataorainizio.toDate().toDateString()}
                       titleStyle={styles.testo}
                       subtitle={item.inizio.toDate().getHours()+":"+item.inizio.toDate().getMinutes()+" - "+item.fine.toDate().getHours()+":"+item.fine.toDate().getMinutes() + (item.occupato != true ? " libero" : " occupato")}
-                      left={(props) => <IconButton icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/visual.png' }} style={styles.icona} onPress={ async () => 
+                      left={(props) => <IconButton icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/Covir/main/covir/src/images/trash.png' }} style={styles.icona} onPress={ async () => 
                       { var appuntamento;
                         var utentebyApp;
                         appuntamento = await db.getAppBySlot(item.id);
