@@ -23,13 +23,13 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: '#1979a9',
     borderRadius: 7,
-    marginLeft: 40,
-    marginRight: 2
+    marginRight:50,
+    marginTop:10
     
 
   },
   buttonContainer: {
-    width: width / 6,
+    width: width / 2,
     height: height / 22,
     
   }

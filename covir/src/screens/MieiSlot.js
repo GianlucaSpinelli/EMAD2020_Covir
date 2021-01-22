@@ -12,7 +12,7 @@ import { set } from 'react-native-reanimated';
 import DialogButton from '../components/FormButton5';
 import { app } from 'firebase';
 import { Linking } from 'react-native';
-import FormButton5 from '../components/FormButton2';
+import FormButton5 from '../components/FormButton6';
 import FormInput from '../components/FormInput';
 
 
@@ -117,7 +117,7 @@ export default function MieiSlot({navigation}) {
          
           title='START CALL'
           modeValue='contained'
-          labelStyle={styles.loginButtonLabel}
+          labelStyle={styles.loginButtonLabelStart}
           onPress={() =>{Linking.openURL('http://meet.google.com/new')}} 
         />
         <FormInput
@@ -130,7 +130,7 @@ export default function MieiSlot({navigation}) {
         <FormButton5
           title='Invia'
           modeValue='contained'
-          labelStyle={styles.loginButtonLabel}
+          labelStyle={styles.loginButtonLabelStart}
           onPress={async() =>{ var chiave= await db.getAppBySlotOBJ(ids); await db.addCallLink(chiave.id,link); hideDialog1();}} 
         />
     </Dialog.Content>
@@ -223,6 +223,9 @@ const styles = StyleSheet.create({
     loginButtonLabel: {
         fontSize: 17
       },
+    loginButtonLabelStart:{
+      fontSize:15
+    },
 
     botton:{
       height: '10%',
