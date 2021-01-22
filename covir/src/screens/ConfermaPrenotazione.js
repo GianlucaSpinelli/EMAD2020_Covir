@@ -59,6 +59,7 @@ export default function ConfermaPrenotazione({navigation,route}) { //non legge i
         
         <RadioButton.Group onValueChange={newValue => setValue(newValue)} value={value}>
         <View style={{ flexDirection: 'row'}}>
+        
         <View>
         <Image
                 style={{ width: 45, height: 45, marginLeft:'15%'}}
@@ -67,7 +68,7 @@ export default function ConfermaPrenotazione({navigation,route}) { //non legge i
       </View>
         <View >
         <Text style={styles.piat}>Cellulare</Text></View>
-        <View style={{marginLeft:'25%', marginBottom:'10%'}}><RadioButton value="Cellulare"
+        <View style={{ marginLeft:'23.2%', marginBottom:'10%'}}><RadioButton value="Cellulare"
             color='#1979a9'
         /></View>
         </View>
@@ -79,7 +80,7 @@ export default function ConfermaPrenotazione({navigation,route}) { //non legge i
                 />
       </View>
         <View><Text style={styles.piat}>Whatsapp</Text></View>
-        <View style={{marginLeft:'23%', marginBottom:'10%'}}><RadioButton value="Whatsapp"
+        <View style={{marginLeft:'21.5%', marginBottom:'10%'}}><RadioButton value="Whatsapp"
              color='#1979a9'
         />
         </View></View><View style={{ flexDirection: 'row'}}>
@@ -90,7 +91,7 @@ export default function ConfermaPrenotazione({navigation,route}) { //non legge i
                 />
       </View>
         <View><Text style={styles.piat}>E-mail</Text></View>
-        <View style={{marginLeft:'30%', marginBottom:'10%'}}><RadioButton value="E-mail" 
+        <View style={{marginLeft:'29.3%', marginBottom:'10%'}}><RadioButton value="E-mail" 
             color='#1979a9'
         />
         </View></View>
@@ -102,7 +103,7 @@ export default function ConfermaPrenotazione({navigation,route}) { //non legge i
                 /> 
       </View>
         <View><Text style={styles.piat}>Skype</Text></View>
-        <View style={{marginLeft:'31%', marginBottom:'10%'}}><RadioButton value="Skype" 
+        <View style={{marginLeft:'30.3%', marginBottom:'10%'}}><RadioButton value="Skype" 
              color='#1979a9'
         /></View>
         </View>
