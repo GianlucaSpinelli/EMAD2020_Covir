@@ -24,6 +24,7 @@ export default function MieiSlot({navigation}) {
   const [chiave,setChiave] = useState("");
   const [visible, setVisible] = useState(false);
   const [visible1, setVisible1] = useState(false);
+  const [visible2, setVisible2] = useState(false);
   const [appuntamento, setAppuntamento] = useState(null);
   const [ids,setid] = useState("");
   const { emailU, setEmailU } = useContext(AuthContext);
@@ -39,10 +40,13 @@ export default function MieiSlot({navigation}) {
   const [link, setLink] = useState(null);  
 
   function showDialog(id){ setVisible(true); setid(id);};  
-  function showDialog1(id){ setVisible1(true);setid(id);};                         
+  function showDialog1(id){ setVisible1(true);setid(id);};  
+  function showDialog2(id){ setVisible2(true);setid(id);};                                                
   function confermaDialog(){ hideDialog(); db.removeAppuntamentoBS(ids); db.removeSlot(ids); caricaDati();};
   function hideDialog(){ setVisible(false)};    
   function hideDialog1(){ setVisible1(false)};  
+  function hideDialog2(){ setVisible2(false)};  
+
 
   useEffect(() => {
     const f = navigation.addListener("focus",() => {caricaDati()});
@@ -140,6 +144,18 @@ export default function MieiSlot({navigation}) {
   </Dialog>
 </Portal>
 
+<Portal>
+  <Dialog visible={visible2}  onDismiss={hideDialog2}>
+    <Dialog.Title>INFORMAZIONI</Dialog.Title>
+    <Dialog.Content>
+      <Paragraph>Sarai impegnato il:{"\n"} Giorno: {giorno}/{mese}; {"\n"} Dalle: {da} alle: {a}; {"\n"} Nome: {conN};{"\n"} Cognome: {conC};{"\n"} Email: {conE};{"\n"} Cellulare: {conCell}; {"\n"} Piattaforma: {p} </Paragraph>
+    </Dialog.Content>
+    <Dialog.Actions>
+    <DialogButton style={{height:'105%', width:'22%', backgroundColor: '#e2020e',borderRadius: 7,}} title='CHIUDI' modeValue='contained' labelStyle={{fontSize:10, fontWeight:'bold'}} onPress={hideDialog2}/>
+    </Dialog.Actions>
+  </Dialog>
+</Portal>
+
               <Text style={styles.scelta}>SLOT MESSI A DISPOSIZIONE</Text>
               <FlatList
                   scrollEnabled={true}
@@ -183,8 +199,12 @@ export default function MieiSlot({navigation}) {
                         setConE(utentebyApp.email);
                         setConCEll(utentebyApp.cellulare);
                         setP(piatt);
-                        showDialog1(item.id);
+                        if (piatt =="GoogleMeet") {  
+                          showDialog1(item.id);
                         //alert('Sarai impegnato il '+item.inizio.toDate().getDate()+' '+n+' dalle ore '+ item.inizio.toDate().getHours() +' fino a '+item.fine.toDate().getHours()+ " con: \n"+ "Nome: "+ utentebyApp.nome+"\n"+ "Cognome: "+ utentebyApp.cognome+"\n"+"Email: "+utentebyApp.email+"\n"+"Cellulare: "+utentebyApp.cellulare+"\n"+"Piattaforma: "+ piatt+"\n"); 
+                        } else {
+                          showDialog2();
+                          }
                       } else {
                         alert('Questo slot ancora non è stato prenotato!'); 
                       }

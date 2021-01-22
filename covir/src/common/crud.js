@@ -54,6 +54,11 @@ const manage={
           }
     },
 
+    setAppIniziato: async function(id) {
+        const app = await this.getAppBySlotOBJ(id);
+        ref.collection("appuntamenti").doc(app.id).update({AppuntamentoIniziato: true});
+    },
+
     removeAppuntamento: async function(chiave,idslot){
         this.setSlotNOTOccupato(chiave);
             

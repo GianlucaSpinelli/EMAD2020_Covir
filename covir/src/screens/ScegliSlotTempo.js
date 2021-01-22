@@ -105,7 +105,7 @@ export default function ScegliSlotTempo({navigation,route}) {
           return(
             <View>
         
-            <Text style={styles.scelta}>APPUNTAMENTI DISPONIBILI:</Text>
+            <Text style={styles.scelta}>APPUNTAMENTI DISPONIBILI</Text>
             <FlatList 
             scrollEnabled={true}
                 title="APPUNTAMENTI DISPONIBILI"

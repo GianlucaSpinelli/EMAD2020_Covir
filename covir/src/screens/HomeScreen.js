@@ -23,7 +23,7 @@ const renderContentUtente = (navigation,n,s) => {
       </View>
       <Divider style={{ backgroundColor: '#009bd6', height: 10, width: width , marginTop: 80 }} />
       <View style={styles.container}>
-        <Title style={styles.frase2}>Sono disponibili:</Title>
+        <Title style={styles.frase2}>Sono prenotabili:</Title>
         <Title style={styles.titolo}>{s} slot</Title>
         <FormButton
           backgroundColor='#2196F3'
@@ -52,7 +52,7 @@ const renderContentOperatore = (navigation,n,s) => {
       </View>
       <Divider style={{ backgroundColor: '#009bd6', height: 10, width: width, marginTop: 80 }} />
       <View style={styles.container}>
-        <Title style={styles.frase2}>Hai messo a disposzione:</Title>
+        <Title style={styles.frase2}>Hai messo a disposizione:</Title>
         <Title style={styles.titolo}>{s} slot</Title>
         <FormButton
           backgroundColor='#2196F3'
@@ -82,11 +82,19 @@ export default function HomeScreen({ navigation }) {
   }, []);
 
   async function caricaDati(){
+    var listadisponibiliVol = [];
+    var listadisponibiliTot = [];
     var temp = await db.getUtenteByMail(user.email);
     var nS = await db.getAllSlotByVolontario(user.email);
+    for(i=0;i<nS.length;i++){
+      if (nS[i].occupato == false) listadisponibiliVol.push(nS[i]);
+    }
     var nST = await db.getAllSlot();
-    setNumSlot(nS.length);
-    setNumSlotTotali(nST.length);
+    for(i=0;i<nST.length;i++){
+      if (nST[i].occupato == false) listadisponibiliTot.push(nST[i]);
+    }
+    setNumSlot(listadisponibiliVol.length);
+    setNumSlotTotali(listadisponibiliTot.length);
     setTipo(temp.tipo);
     setNome(temp.nome);
     }

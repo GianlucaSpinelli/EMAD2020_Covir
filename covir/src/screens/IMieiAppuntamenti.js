@@ -30,7 +30,7 @@ export default function IMieiAppuntamenti({navigation}) {
   function showDialog(id){ setVisible(true); setid(id);};       
   function showDialog1(id){ setVisible1(true);setid(id);};
   function showDialog2(id){ setVisible2(true);setid(id);};                 
-  function hideDialog1(){ setVisible1(false)};     
+  function hideDialog1(){ setVisible1(false); caricaDati();};     
   function hideDialog2(){ setVisible2(false)};             
   async function confermaDialog(){ hideDialog(); await db.removeAppuntamento(chiaveSlot,ids);  caricaDati();};
   function hideDialog(){ setVisible(false)};    
@@ -65,10 +65,14 @@ export default function IMieiAppuntamenti({navigation}) {
       console.log("3333333");
       setChiaveSlot(x.id);
       const datajs = slot.dataorainizio.toDate();
+      const orafine = slot.fine.toDate();
+      datajs.setHours(orafine.getHours());
+      datajs.setMinutes(orafine.getMinutes());
       var dataoggi= new Date(Date.now()+(10*60*1000));
       console.log(slot.documentID);
       console.log(dataoggi);
       if(datajs>dataoggi){
+        if (list[i].AppuntamentoIniziato == null && list[i].AppuntamentoIniziato != true)
         listaslot.push(slot); 
       }  
       /*
@@ -118,11 +122,11 @@ export default function IMieiAppuntamenti({navigation}) {
           title='  START CALL'
           modeValue='contained'
           labelStyle={styles.loginButtonLabel}
-          onPress={() =>{if (link != null && link.length != "") Linking.openURL(link); else alert("Il volontario non ha ancora avviato la videochiamata, riprova tra un istante.");}} 
+          onPress={async () =>{if (link != null && link.length != "") { Linking.openURL(link); await db.setAppIniziato(ids); } else alert("Il volontario non ha ancora avviato la videochiamata, riprova tra un istante.");}} 
         /></View>
     </Dialog.Content>
     <Dialog.Actions>
-    <DialogButton style={{height:'105%', width:'22%', backgroundColor: '#e2020e',borderRadius: 7,}} title=' Chiudi' modeValue='contained' labelStyle={{fontSize:10, fontWeight:'bold'}} onPress={hideDialog1}/>
+    <DialogButton style={{height:'105%', width:'22%', backgroundColor: '#e2020e',borderRadius: 7,}} title=' Chiudi' modeValue='contained' labelStyle={{fontSize:10, fontWeight:'bold'}} onPress={ () =>{hideDialog1();}}/>
     </Dialog.Actions>
   </Dialog>
 </Portal>
@@ -164,9 +168,9 @@ export default function IMieiAppuntamenti({navigation}) {
                         setA(item.fine.toDate().getHours()+":"+item.fine.toDate().getMinutes());
                         setP(piatt);
 
-                        if (piatt =="Google Meet") {  
+                        if (piatt =="GoogleMeet") {  
                           setLink(appuntamento.linkCall);
-                          showDialog1();
+                          showDialog1(item.id);
                           //alert("Piattaforma: "+ piatt+";\n"+"Link Videochiamata: "+ Linking.openURL(appuntamento.link)+ "\n"+ "Ore "++":"+item.inizio.toDate().getMinutes()+" - "+); 
                         } else {
                           showDialog2();
