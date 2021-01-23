@@ -17,6 +17,7 @@ export default function ConfermaPrenotazione({navigation,route}) { //non legge i
     const mailric = user.email;
     const [mailVol,setMailVol] = useState("");
     const [visible, setVisible] = useState(false);
+    const [visible2, setVisible2] = useState(false);
     const [info, setInfo] = useState('la tua informazione');
     const [value, setValue] = React.useState('Cellulare');
     const app = {idslot:id, mailrichiedente:mailric, mailvolontario: mailV, piattaforma:value,informazione:info};
@@ -35,9 +36,12 @@ export default function ConfermaPrenotazione({navigation,route}) { //non legge i
         setSlot(x);
     };
 
-    function showDialog(id){ setVisible(true);};                         
+    function showDialog(id){ setVisible(true);};    
+    function showDialog2(id){ setVisible2(true);};                                              
     function confermaDialog(){hideDialog(); db.addAppuntamento(slot.id,app);};
     function hideDialog(){setVisible(false);};
+    function hideDialog2(){setVisible2(false);};
+
     
     
     return (
@@ -50,10 +54,24 @@ export default function ConfermaPrenotazione({navigation,route}) { //non legge i
     </Dialog.Content>
     <Dialog.Actions>
       <DialogButton title=' No' modeValue='contained' labelStyle={styles.loginButtonLabel}  onPress={hideDialog}/>
-      <DialogButton title=' Si' modeValue='contained' labelStyle={styles.loginButtonLabel} onPress={ () => {confermaDialog(); navigation.navigate('Home');}}/>
+      <DialogButton title=' Si' modeValue='contained' labelStyle={styles.loginButtonLabel} onPress={ () => {confermaDialog(); showDialog2(); navigation.navigate('Home');}}/>
     </Dialog.Actions>
   </Dialog>
-</Portal>   
+</Portal> 
+
+<Portal>
+  <Dialog visible={visible2}  onDismiss={hideDialog2}>
+    <Dialog.Title>PRENOTAZIONE CONFERMATA</Dialog.Title>
+    <Dialog.Content>
+      <Paragraph><Image source={{uri:'https://assets7.lottiefiles.com/packages/lf20_P2WnqE.json'}}/></Paragraph>
+      <Paragraph>A presto!</Paragraph>
+    </Dialog.Content>
+    <Dialog.Actions>
+      <DialogButton title='Chiudi' modeValue='contained' labelStyle={styles.loginButtonLabel} onPress={ () => {hideDialog2(); navigation.navigate('Home');}}/>
+    </Dialog.Actions>
+  </Dialog>
+</Portal> 
+
     <View style={styles.container}>
         <Text  style={styles.scelta}>SCEGLI LA PIATTAFORMA</Text>
         

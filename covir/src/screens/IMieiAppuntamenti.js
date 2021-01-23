@@ -86,7 +86,7 @@ export default function IMieiAppuntamenti({navigation}) {
     }
   } 
     setLoading(false);
-    setResult( listaslot)
+    setResult( listaslot);
   };
 
   

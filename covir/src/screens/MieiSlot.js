@@ -42,7 +42,7 @@ export default function MieiSlot({navigation}) {
   function showDialog(id){ setVisible(true); setid(id);};  
   function showDialog1(id){ setVisible1(true);setid(id);};  
   function showDialog2(id){ setVisible2(true);setid(id);};                                                
-  function confermaDialog(){ hideDialog(); db.removeAppuntamentoBS(ids); db.removeSlot(ids); caricaDati();};
+  async function confermaDialog(){ hideDialog(); await db.removeAppuntamentoBS(ids); await db.removeSlot(ids); caricaDati();};
   function hideDialog(){ setVisible(false)};    
   function hideDialog1(){ setVisible1(false)};  
   function hideDialog2(){ setVisible2(false)};  
@@ -81,10 +81,11 @@ export default function MieiSlot({navigation}) {
     console.log(inizio);
     console.log(fine);
     */
+  setResult( listaslot);
   setLoading(false);
   console.log("listaslot");
   console.log(listaslot);
-  setResult( listaslot)
+  
  };
 
   
@@ -108,7 +109,7 @@ export default function MieiSlot({navigation}) {
     </Dialog.Content>
     <Dialog.Actions>
     <DialogButton title=' No' modeValue='contained' labelStyle={styles.loginButtonLabel} onPress={hideDialog}/>
-      <DialogButton title=' Si' modeValue='contained' labelStyle={styles.loginButtonLabel}onPress={ () => {confermaDialog(); navigation.navigate('MieiSlot')}}/>
+      <DialogButton title=' Si' modeValue='contained' labelStyle={styles.loginButtonLabel}onPress={ () => {confermaDialog(); navigation.navigate('MieiSlot');}}/>
     </Dialog.Actions>
   </Dialog>
 </Portal>
