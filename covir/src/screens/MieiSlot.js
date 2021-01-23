@@ -13,7 +13,7 @@ import DialogButton from '../components/FormButton5';
 import { app } from 'firebase';
 import { Linking } from 'react-native';
 import FormButton5 from '../components/FormButton6';
-import FormInput from '../components/FormInput';
+import FormInput from '../components/StartCallForm';
 
 
 export default function MieiSlot({navigation}) {
@@ -114,9 +114,21 @@ export default function MieiSlot({navigation}) {
 </Portal>
 <Portal>
   <Dialog visible={visible1}  onDismiss={hideDialog1}>
-    <Dialog.Title>INFORMAZIONI</Dialog.Title>
+
+    <Dialog.Title style={{color:'#00719c', fontWeight:'bold'}}>          INFORMAZIONI</Dialog.Title>
     <Dialog.Content>
-      <Paragraph>Sarai impegnato il:{"\n"} Giorno: {giorno}/{mese}; {"\n"} Dalle: {da} alle: {a}; {"\n"} Nome: {conN};{"\n"} Cognome: {conC};{"\n"} Email: {conE};{"\n"} Cellulare: {conCell}; {"\n"} Piattaforma: {p} </Paragraph>
+      <View style={{marginLeft:'5%',marginBottom: '6%'}}>
+      <Paragraph style={{fontWeight:'bold', fontSize:15}}>Sarai impegnato il:{"\n"}{"\n"}
+       Giorno:              {giorno} {mese}; {"\n"} 
+       Dalle:                 {da};{"\n"}
+       Alle:                   {a}; {"\n"} 
+       Nome:                {conN};{"\n"}
+        Cognome:         {conC};{"\n"}
+         Email:                {conE};{"\n"} 
+         Cellulare:          {conCell}; {"\n"}
+          Piattaforma:     {p}; </Paragraph>
+      </View>
+      <View style={{marginLeft:'20%'}}>
       <FormButton5
          
           title='START CALL'
@@ -137,6 +149,7 @@ export default function MieiSlot({navigation}) {
           labelStyle={styles.loginButtonLabelStart}
           onPress={async() =>{ var chiave= await db.getAppBySlotOBJ(ids); await db.addCallLink(chiave.id,link); hideDialog1();}} 
         />
+        </View>
     </Dialog.Content>
     <Dialog.Actions>
     <DialogButton style={{height:'105%', width:'22%', backgroundColor: '#e2020e',borderRadius: 7,}} title='CHIUDI' modeValue='contained' labelStyle={{fontSize:10, fontWeight:'bold'}} onPress={hideDialog1}/>
@@ -245,7 +258,7 @@ const styles = StyleSheet.create({
       },
     loginButtonLabelStart:{
       fontSize:16,
-      marginLeft:'26%'
+      marginLeft:'-1%'
     },
 
     botton:{
