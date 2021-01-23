@@ -63,7 +63,7 @@ export default function ConfermaPrenotazione({navigation,route}) { //non legge i
   <Dialog visible={visible2}  onDismiss={hideDialog2}>
     <Dialog.Title>PRENOTAZIONE CONFERMATA</Dialog.Title>
     <Dialog.Content>
-      <Paragraph><Image source={{uri:'https://assets7.lottiefiles.com/packages/lf20_P2WnqE.json'}}/></Paragraph>
+      <Paragraph><View><Image source={{uri:'https://raw.githubusercontent.com/enzop9898/EMAD2020_Covir/main/covir/src/images/animation_500_kk9o4cxi.gif'}}/></View></Paragraph>
       <Paragraph>A presto!</Paragraph>
     </Dialog.Content>
     <Dialog.Actions>
