@@ -126,7 +126,7 @@ export default function IMieiAppuntamenti({navigation}) {
         /></View>
     </Dialog.Content>
     <Dialog.Actions>
-    <DialogButton style={{height:'105%', width:'22%', backgroundColor: '#e2020e',borderRadius: 7,}} title=' Chiudi' modeValue='contained' labelStyle={{fontSize:10, fontWeight:'bold'}} onPress={ () =>{hideDialog1();}}/>
+    <DialogButton style={{height:'105%', width:'22%', backgroundColor: '#e2020e',borderRadius: 7}} title=' Chiudi' modeValue='contained' labelStyle={{fontSize:10, fontWeight:'bold'}} onPress={ () =>{hideDialog1();}}/>
     </Dialog.Actions>
   </Dialog>
 </Portal>
