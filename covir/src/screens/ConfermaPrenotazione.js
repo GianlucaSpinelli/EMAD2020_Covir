@@ -50,7 +50,7 @@ export default function ConfermaPrenotazione({navigation,route}) { //non legge i
     </Dialog.Content>
     <Dialog.Actions>
       <DialogButton title=' No' modeValue='contained' labelStyle={styles.loginButtonLabel}  onPress={hideDialog}/>
-      <DialogButton title=' Si' modeValue='contained' labelStyle={styles.loginButtonLabel} onPress={ () => {confermaDialog(); navigation.navigate('Il mio Profilo');}}/>
+      <DialogButton title=' Si' modeValue='contained' labelStyle={styles.loginButtonLabel} onPress={ () => {confermaDialog(); navigation.navigate('Home');}}/>
     </Dialog.Actions>
   </Dialog>
 </Portal>   

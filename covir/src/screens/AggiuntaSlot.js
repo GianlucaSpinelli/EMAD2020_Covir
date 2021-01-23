@@ -162,7 +162,7 @@ export default function AggiuntaSlot({ navigation }) {
           title='Conferma'
           modeValue='contained'
           labelStyle={styles.loginButtonLabel}
-          onPress={() => {confermadonatempo(); navigation.navigate('MieiSlot');}}  //{() => login(email, password)}
+          onPress={() => {confermadonatempo(); navigation.navigate('Home');}}  //{() => login(email, password)}
         />
         </View>
     </View>

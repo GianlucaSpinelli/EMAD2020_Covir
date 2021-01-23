@@ -87,7 +87,12 @@ export default function HomeScreen({ navigation }) {
     var temp = await db.getUtenteByMail(user.email);
     var nS = await db.getAllSlotByVolontario(user.email);
     for(i=0;i<nS.length;i++){
-      if (nS[i].occupato == false) listadisponibiliVol.push(nS[i]);
+      const datajs = nS[i].dataorainizio.toDate();
+      const orafine = nS[i].fine.toDate();
+      datajs.setHours(orafine.getHours());
+      datajs.setMinutes(orafine.getMinutes());
+      var dataoggi= new Date(Date.now()+(10*60*1000));
+      if (datajs > dataoggi) listadisponibiliVol.push(nS[i]);
     }
     var nST = await db.getAllSlot();
     for(i=0;i<nST.length;i++){
