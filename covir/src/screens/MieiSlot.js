@@ -24,6 +24,7 @@ export default function MieiSlot({navigation}) {
   const [chiave,setChiave] = useState("");
   const [visible, setVisible] = useState(false);
   const [visible1, setVisible1] = useState(false);
+  const [visible1a, setVisible1a] = useState(false);
   const [visible2, setVisible2] = useState(false);
   const [appuntamento, setAppuntamento] = useState(null);
   const [ids,setid] = useState("");
@@ -41,10 +42,12 @@ export default function MieiSlot({navigation}) {
 
   function showDialog(id){ setVisible(true); setid(id);};  
   function showDialog1(id){ setVisible1(true);setid(id);};  
+  function showDialog1a(id){ setVisible1a(true);setid(id);};  
   function showDialog2(id){ setVisible2(true);setid(id);};                                                
   async function confermaDialog(){ hideDialog(); await db.removeAppuntamentoBS(ids); await db.removeSlot(ids); caricaDati();};
   function hideDialog(){ setVisible(false)};    
-  function hideDialog1(){ setVisible1(false)};  
+  function hideDialog1(){ setVisible1(false)}; 
+  function hideDialog1a(){ setVisible1a(false)};   
   function hideDialog2(){ setVisible2(false)};  
 
 
@@ -159,6 +162,47 @@ export default function MieiSlot({navigation}) {
 </Portal>
 
 <Portal>
+  <Dialog visible={visible1a}  onDismiss={hideDialog1a}>
+
+    <Dialog.Title style={{color:'#00719c', fontWeight:'bold'}}>          INFORMAZIONI</Dialog.Title>
+    <Dialog.Content>
+      <View style={{marginLeft:'5%',marginBottom: '6%'}}>
+      <Paragraph style={{fontWeight:'bold', fontSize:15}}>Sarai impegnato il:{"\n"}{"\n"}
+       Giorno:              {giorno} {mese}; {"\n"} 
+       Dalle:                 {da};{"\n"}
+       Alle:                   {a}; {"\n"} 
+       Utente anonimo.</Paragraph>
+      </View>
+      <View style={{marginLeft:'20%'}}>
+      <FormButton5
+         
+          title='START CALL'
+          modeValue='contained'
+          labelStyle={styles.loginButtonLabelStart}
+          onPress={() =>{Linking.openURL('http://meet.google.com/new')}} 
+        />
+      
+        <FormInput
+          labelName='Link invito'
+          value={link}
+          autoCapitalize='none'
+          onChangeText={newLink => setLink(newLink)}
+        />
+        <FormButton5
+          title='Invia'
+          modeValue='contained'
+          labelStyle={styles.loginButtonLabelStart}
+          onPress={async() =>{ var chiave= await db.getAppBySlotOBJ(ids); await db.addCallLink(chiave.id,link); hideDialog1a();}} 
+        />
+        </View>
+    </Dialog.Content>
+    <Dialog.Actions>
+    <DialogButton style={{height:'105%', width:'22%', backgroundColor: '#e2020e',borderRadius: 7,}} title='CHIUDI' modeValue='contained' labelStyle={{fontSize:10, fontWeight:'bold'}} onPress={hideDialog1a}/>
+    </Dialog.Actions>
+  </Dialog>
+</Portal>
+
+<Portal>
   <Dialog visible={visible2}  onDismiss={hideDialog2}>
     <Dialog.Title>INFORMAZIONI</Dialog.Title>
     <Dialog.Content>
@@ -213,9 +257,11 @@ export default function MieiSlot({navigation}) {
                         setConE(utentebyApp.email);
                         setConCEll(utentebyApp.cellulare);
                         setP(piatt);
-                        if (piatt =="GoogleMeet") {  
+                        if (piatt =="GoogleMeet" && appuntamento.anonimo==false) {  
                           showDialog1(item.id);
                         //alert('Sarai impegnato il '+item.inizio.toDate().getDate()+' '+n+' dalle ore '+ item.inizio.toDate().getHours() +' fino a '+item.fine.toDate().getHours()+ " con: \n"+ "Nome: "+ utentebyApp.nome+"\n"+ "Cognome: "+ utentebyApp.cognome+"\n"+"Email: "+utentebyApp.email+"\n"+"Cellulare: "+utentebyApp.cellulare+"\n"+"Piattaforma: "+ piatt+"\n"); 
+                        } else if (appuntamento.anonimo==true){
+                          showDialog1a(item.id);
                         } else {
                           showDialog2();
                           }

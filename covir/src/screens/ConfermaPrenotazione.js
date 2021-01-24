@@ -2,12 +2,13 @@ import React, { useState, useContext, useEffect } from 'react';
 import { Portal,IconButton,Paragraph,Dialog } from 'react-native-paper';
 import { View, Text, Image, StyleSheet, TouchableOpacity, ViewPropTypes  } from 'react-native';
 import { RadioButton } from 'react-native-paper';
-import { Divider, Card, Button, Icon } from 'react-native-elements';
+import { Divider, Card, Button, Icon, CheckBox } from 'react-native-elements';
 import FormButton from '../components/FormButton3';
 import DialogButton from '../components/FormButton4';
 import FormInput from '../components/FormInput';
 import { AuthContext } from '../navigation/AuthProvider';
 import { db } from '../common/crud'; 
+import { Alert } from 'react-native';
 
 
 export default function ConfermaPrenotazione({navigation,route}) { //non legge immagin
@@ -20,11 +21,15 @@ export default function ConfermaPrenotazione({navigation,route}) { //non legge i
     const [visible2, setVisible2] = useState(false);
     const [info, setInfo] = useState('la tua informazione');
     const [value, setValue] = React.useState('Cellulare');
-    const app = {idslot:id, mailrichiedente:mailric, mailvolontario: mailV, piattaforma:value,informazione:info};
+    const [anonimo, setAnonimo] = React.useState(false);
+    const [disattivato1, setDissativato1] = useState(false);
+    const [disattivato2, setDissativato2] = useState(false);
+    const [disattivato3, setDissativato3] = useState(false);
+    const [disattivato4, setDissativato4] = useState(false);
+    const [flagAlert, setFlagAlert] = useState(false);
+    const app = {idslot:id, mailrichiedente:mailric, mailvolontario: mailV, piattaforma:value,informazione:info, anonimo:anonimo};
     const [slot, setSlot] = useState("");
     const [checked, setChecked] = useState('first');
-    
-
 
     useEffect(() => {
         prelevaSlot();
@@ -34,6 +39,13 @@ export default function ConfermaPrenotazione({navigation,route}) { //non legge i
         var x = await db.getSlotObj(id);
         console.log(x.id);
         setSlot(x);
+    };
+
+    function disattivaScelte(){
+      setDissativato1(!disattivato1);
+      setDissativato2(!disattivato2);
+      setDissativato3(!disattivato3);
+      setDissativato4(!disattivato4);
     };
 
     function showDialog(id){ setVisible(true);};    
@@ -86,7 +98,7 @@ export default function ConfermaPrenotazione({navigation,route}) { //non legge i
       </View>
         <View >
         <Text style={styles.piat}>Cellulare</Text></View>
-        <View style={{ marginLeft:'23.2%', marginBottom:'10%'}}><RadioButton value="Cellulare"
+        <View style={{ marginLeft:'23.2%', marginBottom:'10%'}}><RadioButton disabled={disattivato1} value="Cellulare"
             color='#1979a9'
         /></View>
         </View>
@@ -98,7 +110,7 @@ export default function ConfermaPrenotazione({navigation,route}) { //non legge i
                 />
       </View>
         <View><Text style={styles.piat}>Whatsapp</Text></View>
-        <View style={{marginLeft:'21.5%', marginBottom:'10%'}}><RadioButton value="Whatsapp"
+        <View style={{marginLeft:'21.5%', marginBottom:'10%'}}><RadioButton disabled={disattivato2} value="Whatsapp"
              color='#1979a9'
         />
         </View></View><View style={{ flexDirection: 'row'}}>
@@ -109,7 +121,7 @@ export default function ConfermaPrenotazione({navigation,route}) { //non legge i
                 />
       </View>
         <View><Text style={styles.piat}>E-mail</Text></View>
-        <View style={{marginLeft:'29.3%', marginBottom:'10%'}}><RadioButton value="E-mail" 
+        <View style={{marginLeft:'29.3%', marginBottom:'10%'}}><RadioButton disabled={disattivato3} value="E-mail" 
             color='#1979a9'
         />
         </View></View>
@@ -121,7 +133,7 @@ export default function ConfermaPrenotazione({navigation,route}) { //non legge i
                 /> 
       </View>
         <View><Text style={styles.piat}>Skype</Text></View>
-        <View style={{marginLeft:'30.3%', marginBottom:'10%'}}><RadioButton value="Skype" 
+        <View style={{marginLeft:'30.3%', marginBottom:'10%'}}><RadioButton disabled={disattivato4} value="Skype" 
              color='#1979a9'
         /></View>
         </View>
@@ -141,6 +153,17 @@ export default function ConfermaPrenotazione({navigation,route}) { //non legge i
         </RadioButton.Group>
     </View>
     <View tyle={styles.container1}>
+
+    <CheckBox
+          textStyle={{color:'#00415a', fontWeight:'bold', fontSize:15}}
+          center
+          title='Prenota in anonimo'
+          checkedIcon='dot-circle-o'
+          uncheckedIcon='circle-o'
+          containerStyle={styles.chekky}
+          checked={anonimo}
+          onPress= {() => {setAnonimo(!anonimo); disattivaScelte(); if (flagAlert== false) { alert('Selezionando "Prenota in anonimo" nascondi tutti i duoi dati al volontario. L\'unica piattaforma selezionabile è Google Meet.'); setFlagAlert(true);}}}
+        />
         <FormButton
           containerStyle={styles.bottone}
           title='Conferma'
@@ -178,6 +201,10 @@ const styles = StyleSheet.create({
         marginLeft: '0%'
             
             
+    },
+    chekky: {
+        marginBottom: '-23%',
+        marginTop: '12%'
     },
     loginButtonLabel: {
         fontSize: 15,
