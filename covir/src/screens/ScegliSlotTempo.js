@@ -16,6 +16,19 @@ LogBox.ignoreAllLogs();
  
 
 export default function ScegliSlotTempo({navigation,route}) {
+  var mesi = new Array(12);
+mesi[0] = "Gennaio";
+                        mesi[1] = "Febbraio";
+                        mesi[2] = "Marzo";
+                        mesi[3] = "Aprile";
+                        mesi[4] = "Maggio";
+                        mesi[5] = "Giugno";
+                        mesi[6] = "Luglio";
+                        mesi[7] = "Agosto";
+                        mesi[8] = "Settembre";
+                        mesi[9] = "Ottobre";
+                        mesi[10] = "Novembre";
+                        mesi[11] = "Dicembre";
   LogBox.ignoreLogs(['Warning: ...', 'Require cycle:', ' @firebase/database:, FIREBASE WARNING:']);
   const  etajs = route.params.eta;
     console.log("età"+etajs);
@@ -127,7 +140,7 @@ export default function ScegliSlotTempo({navigation,route}) {
                 data={result}
                   renderItem={({item}) => <Card.Title 
                                                 style={styles.card}
-                                                title={item.dataorainizio.toDate().toDateString()}
+                                                title={item.inizio.toDate().getDate()+' '+ mesi[item.inizio.toDate().getMonth()]+' '+item.inizio.toDate().getFullYear()}
                                                 titleStyle={styles.testo}
                                                 subtitle={item.inizio.toDate().getHours()+":"+item.inizio.toDate().getMinutes()+" - "+item.fine.toDate().getHours()+":"+item.fine.toDate().getMinutes()}
                                                 left={(props) => <Avatar.Icon  icon={{ uri:'https://raw.githubusercontent.com/enzop9898/EMAD2020_Covir/main/covir/src/images/calendar3.png'}} style={styles.icona} />}

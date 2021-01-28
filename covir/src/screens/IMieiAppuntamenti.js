@@ -26,6 +26,19 @@ export default function IMieiAppuntamenti({navigation}) {
   const [ids,setid] = useState("");
   const [da, setDa] = useState(null);
   const [a, setA] = useState(null);
+  var mesi = new Array(12);
+mesi[0] = "Gennaio";
+                        mesi[1] = "Febbraio";
+                        mesi[2] = "Marzo";
+                        mesi[3] = "Aprile";
+                        mesi[4] = "Maggio";
+                        mesi[5] = "Giugno";
+                        mesi[6] = "Luglio";
+                        mesi[7] = "Agosto";
+                        mesi[8] = "Settembre";
+                        mesi[9] = "Ottobre";
+                        mesi[10] = "Novembre";
+                        mesi[11] = "Dicembre";
   const [p, setP] = useState(null);
   const [link, setLink] = useState(null);
   function showDialog(id){ setVisible(true); setid(id);};       
@@ -159,7 +172,7 @@ export default function IMieiAppuntamenti({navigation}) {
                   data={result}
                   renderItem={({ item }) => <Card.Title
                       style={styles.card}
-                      title={item.dataorainizio.toDate().toDateString()}
+                      title={item.inizio.toDate().getDate()+' '+ mesi[item.inizio.toDate().getMonth()]+' '+item.inizio.toDate().getFullYear()}
                       titleStyle={styles.testo}
                       subtitle={item.chiavevolontario}
                       left={(props) => <IconButton icon={{ uri: 'https://raw.githubusercontent.com/enzop9898/EMAD2020_Covir/main/covir/src/images/info.png' }} style={styles.icona} onPress={ async () =>
