@@ -61,8 +61,17 @@ export const AuthProvider = ({ children }) => {
             } catch (e) {
               console.error(e);
             }
+          },
+          cambiopassword: async (email,nuovapassword) => {
+            try {
+              const ut = await db.getUtenteObj(email);
+              db.modificaPassword(ut.id,nuovapassword);
+              await auth.updatePassword(nuovapassword)();
+            } catch (e) {
+              console.error(e);
+            }
           }
-        }}
+      }}
       >
         {children}
       </AuthContext.Provider>

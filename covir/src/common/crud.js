@@ -414,11 +414,8 @@ getAllSlotByVol: async   function(emailutente){ //FUNONZ
     }
     else return null;
     },
-    modificaPasswordUtente:function(chiaveutente,nuovapassword){
+    modificaPassword:function(chiaveutente,nuovapassword){
         ref.collection("utente").doc(chiaveutente).update({password: nuovapassword});
-    },
-    modificaPasswordVolontario:function(chiavevolontario,nuovapassword){
-        ref.collection("utente").doc(chiavevolontario).update({password: nuovapassword});
     },
     setSlotOccupato: function(ids) {
         ref.collection("slot").doc(ids).update({occupato: true});

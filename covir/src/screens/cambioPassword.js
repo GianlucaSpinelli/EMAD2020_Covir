@@ -1,10 +1,13 @@
-import React, { useState/*, useContext*/ } from 'react';
+import React, { useState,useContext/*, useContext*/ } from 'react';
 import { View, StyleSheet, Text, Dimensions, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import { Title } from 'react-native-paper';
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 import Swiper from 'react-native-swiper';
 import { BorderlessButton } from 'react-native-gesture-handler';
+import { AuthContext, AuthProvider } from '../navigation/AuthProvider';
+import { db } from '../common/crud';
+
 
 //import { AuthContext } from '../navigation/AuthProvider';
 
@@ -13,6 +16,9 @@ export default function CambioPassword({navigation}) {
     const [password, setPassword] = useState('');
     const [password2, setPassword2] = useState('');
     const [passwordvecchia, setPasswordvecchia] = useState('');
+    const {cambiopassword} = useContext(AuthContext);
+    const {user,setUser} = useContext(AuthContext);
+
 
     return (
       <TouchableWithoutFeedback onPress= {() => {Keyboard.dismiss();}}>
@@ -24,7 +30,7 @@ export default function CambioPassword({navigation}) {
           labelName='Vecchia Password'
           value={passwordvecchia}
           secureTextEntry={true}
-          onChangeText={userPassword3 => setPassword(userPassword3)}
+          onChangeText={userPassword3 => setPasswordvecchia(userPassword3)}
           
         />
 
@@ -37,22 +43,42 @@ export default function CambioPassword({navigation}) {
         />
         <FormInput
           labelName='Conferma Password'
-          value={password}
+          value={password2}
           secureTextEntry={true}
-          onChangeText={userPassword2 => setPassword(userPassword2)}
+          onChangeText={userPassword2 => setPassword2(userPassword2)}
         />
         <FormButton
           title='Conferma'
           modeValue='contained'
           labelStyle={styles.loginButtonLabel}
-          onPress={() => navigation.navigate('HomeTab')} 
+          onPress={ () => {conferma();  navigation.navigate('HomeTab');}}
         />
         </View>
       </View>
       </TouchableWithoutFeedback>
     );
+
+    async function conferma(nuovapassword){
+          
+          if(password==password2){
+                  var utente = await db.getUtenteByMail(user.email);
+                  var ps = utente.password;
+                  if(ps==passwordvecchia){
+                        cambiopassword(user.email,nuovapassword);
+                        alert("operazione riuscita con successo");
+                  }
+                  else{
+                         alert("La vecchia password che ci hai fornito non coincide con la tua reale password");
+                  }
+          }
+          else{
+            alert("La nuova password e la sua conferma non coincidono");
+          }
+    }
+
   }
   
+ 
 const styles = StyleSheet.create({
     container: {
       backgroundColor: '#f5f5f5',
