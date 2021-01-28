@@ -10,13 +10,14 @@ import ScegliVolontario2 from '../screens/ScegliVolontario2'
 import Appuntamenti from '../screens/IMieiAppuntamenti';
 import MieiSlot from '../screens/MieiSlot';
 import AggiuntaSlot2 from '../screens/AggiuntaSlot2';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, LogBox } from 'react-native';
 import IlmioProfilo from '../screens/IlMioProfilo';
 
 
 const Stack = createStackNavigator();
-
+LogBox.ignoreLogs(['Warning: ...', 'Require cycle:']);
 function Header() {
+  LogBox.ignoreLogs(['Warning: ...', 'Require cycle:']);
   return(
     <Image style={{ width: 50, height: 50}} 
     source= { require('../images/logo.png')}/>
@@ -24,6 +25,7 @@ function Header() {
 }
 
 export default function ProfiloStack() {
+  LogBox.ignoreLogs(['Warning: ...', 'Require cycle:']);
     return (
       <Stack.Navigator initialRouteName='Profilo'>
         <Stack.Screen name='Profilo' component={IlmioProfilo}

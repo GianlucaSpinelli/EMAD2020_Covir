@@ -2,7 +2,8 @@ import React, { createContext, useState } from 'react';
 import {auth} from '../common/firebase';
 import { db } from '../common/crud';
 import ScegliSlotTempo from '../screens/ScegliSlotTempo';
-
+import {LogBox } from 'react-native';
+LogBox.ignoreLogs(['Warning: ...', 'Require cycle:', ' @firebase/database:, FIREBASE WARNING:']);
 export const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
@@ -15,6 +16,7 @@ export const AuthProvider = ({ children }) => {
     const [dataN,setDataN] = useState(null); 
     const [associazione,setAssociazione] = useState(null); 
     const [cellulare,setCellulare] = useState(null);
+    LogBox.ignoreLogs(['Warning: ...', 'Require cycle:', ' @firebase/database:, FIREBASE WARNING:']);
     return (
       <AuthContext.Provider
         value={{
@@ -61,21 +63,10 @@ export const AuthProvider = ({ children }) => {
             } catch (e) {
               console.error(e);
             }
-          },
-          cambiopassword: async (email,nuovapassword) => {
-            try {
-              const ut = await db.getUtenteObj(email);
-              db.modificaPassword(ut.id,nuovapassword);
-              await auth.updatePassword(nuovapassword)();
-            } catch (e) {
-              console.error(e);
-            }
           }
-      }}
+        }}
       >
         {children}
       </AuthContext.Provider>
     );
   };
-
-  

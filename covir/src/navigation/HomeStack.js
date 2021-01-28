@@ -6,11 +6,13 @@ import HomeTabNavigator from './HomeTabNavigator';
 import { View, Text, Image } from 'react-native';
 import PrenotaStack from '../navigation/PrenotaStack';
 import { Button} from 'react-native-paper';
+import {LogBox} from 'react-native';
 
 const Stack = createStackNavigator();
-
+LogBox.ignoreLogs(['Warning: ...', 'Require cycle:']);
 
 function Header() {
+  LogBox.ignoreLogs(['Warning: ...']);
   return(
     <Image style={{ width: 50, height: 50}} 
     source= { require('../images/logo.png')}/>
@@ -18,6 +20,7 @@ function Header() {
 }
 
 export default function HomeStack({navigation}) {
+  LogBox.ignoreLogs(['Warning: ...', 'Require cycle:']);
   return (
     <Stack.Navigator initialRouteName='HomeTab' /*screenOptions={({ route, navigation }) => ({
       headerLeft: () => {

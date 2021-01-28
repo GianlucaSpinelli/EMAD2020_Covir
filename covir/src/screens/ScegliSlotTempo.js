@@ -3,7 +3,7 @@ import { db } from '../common/crud';
 import { AuthContext } from '../navigation/AuthProvider';
 import { Title } from 'react-native-paper';
 import { IconButton, List, Card, Avatar } from 'react-native-paper';
-import { View, Text, Image, StyleSheet, VirtualizedList,ActivityIndicator } from 'react-native'
+import { View, Text, Image, StyleSheet, VirtualizedList,ActivityIndicator, LogBox } from 'react-native'
 import {ListItem, Button, Icon, SocialIcon } from 'react-native-elements'
 import { FlatList, ScrollView } from 'react-native-gesture-handler';
 import TouchableScale from 'react-native-touchable-scale'; // https://github.com/kohver/react-native-touchable-scale
@@ -11,24 +11,30 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { color } from 'react-native-reanimated';
 
 
-
+LogBox.ignoreLogs(['Warning: ...', 'Require cycle:', ' @firebase/database:, FIREBASE WARNING:']);
+LogBox.ignoreAllLogs();
  
 
 export default function ScegliSlotTempo({navigation,route}) {
-    const  etajs = route.params.eta;
+  LogBox.ignoreLogs(['Warning: ...', 'Require cycle:', ' @firebase/database:, FIREBASE WARNING:']);
+  const  etajs = route.params.eta;
     console.log("età"+etajs);
     const [result,setResult] = useState([]);
     const [loading,setLoading] = useState(true);
     var listavolontaricorretti = [];
     var listafinale=[];
-
+    LogBox.ignoreAllLogs();
 
     useEffect(() => {
+      LogBox.ignoreLogs(['Warning: ...', 'Require cycle:', ' @firebase/database:, FIREBASE WARNING:']);
+
         caricaDati(etajs);
       }, []);
 
       
       function calcolaeta( d ) {
+        LogBox.ignoreLogs(['Warning: ...', 'Require cycle:', ' @firebase/database:, FIREBASE WARNING:']);
+
         var timestamp = Date.parse( d );
         var today = new Date().getTime();
         var diff = ( today - timestamp ) / ( 1000 * 60 * 60 * 24 * 365 );
@@ -37,8 +43,12 @@ export default function ScegliSlotTempo({navigation,route}) {
     };
 
     async function caricaDati(eta){
+      LogBox.ignoreLogs(['Warning: ...', 'Require cycle:', ' @firebase/database:, FIREBASE WARNING:']);
+
+        console.log("DAVIDEEEEEEEEEEEEEEEEEE");
         var list = await db.getAllVolontari();
         console.log(list[0].cognome);
+        console.log("GIANLUCAAAAAAAAAAAAAAAAA");
         
         for(i=0;i<list.length;i++){
           const datajs = list[i].datanascita.toDate();
@@ -63,6 +73,8 @@ export default function ScegliSlotTempo({navigation,route}) {
     };
       
      async function caricaSlot() {
+      LogBox.ignoreLogs(['Warning: ...', 'Require cycle:', ' @firebase/database:, FIREBASE WARNING:']);
+
       //ERRORE QUI
       var i,j;
       var listaslot= [];
@@ -81,6 +93,8 @@ export default function ScegliSlotTempo({navigation,route}) {
     }
 
     function crealistafinale(listaslot){
+      LogBox.ignoreLogs(['Warning: ...', 'Require cycle:', ' @firebase/database:, FIREBASE WARNING:']);
+
        var j;
        for(j=0;j<listaslot.length;j++){
         console.log("Chiavevol:"+listaslot[j]);
@@ -94,6 +108,8 @@ export default function ScegliSlotTempo({navigation,route}) {
     }
       
       const renderContent =()=>{
+        LogBox.ignoreLogs(['Warning: ...', 'Require cycle:', ' @firebase/database:, FIREBASE WARNING:']);
+        LogBox.ignoreAllLogs();
         if(loading){
           return (
             <ActivityIndicator size="small" color={"#000000"}/>

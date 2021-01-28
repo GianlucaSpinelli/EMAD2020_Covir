@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Title } from 'react-native-paper';
 import { IconButton,Portal,Paragraph,Dialog, Card, Avatar } from 'react-native-paper';
-import { View, Text, Image, StyleSheet, VirtualizedList,ActivityIndicator, Linking } from 'react-native'
+import { View, Text, Image, StyleSheet, VirtualizedList,ActivityIndicator, Linking, LogBox } from 'react-native'
 import {ListItem, Button, Icon, SocialIcon } from 'react-native-elements'
 import { FlatList, ScrollView } from 'react-native-gesture-handler';
 import TouchableScale from 'react-native-touchable-scale'; // https://github.com/kohver/react-native-touchable-scale
@@ -15,7 +15,8 @@ import FormButton2 from '../components/FormButton2';
 
 export default function IMieiAppuntamenti({navigation}) {
   console.log("ENTR NELLA PAGE");
-  
+  LogBox.ignoreLogs(['Warning: ...', 'Require cycle:', ' @firebase/database:, FIREBASE WARNING:']);
+
   const { emailU, setEmailU } = useContext(AuthContext);
   const [loading,setLoading] = useState(true);
   const [result,setResult] = useState([]);
@@ -38,12 +39,16 @@ export default function IMieiAppuntamenti({navigation}) {
   const { user, setUser } = useContext(AuthContext); 
 
   useEffect(() => {
+    LogBox.ignoreLogs(['Warning: ...', 'Require cycle:', ' @firebase/database:, FIREBASE WARNING:']);
+
     const f = navigation.addListener("focus",() => {caricaDati()});
     setVisible(false);     //per far partire la fetch appena viene creato lo screen, senno la chiamavo sull on press di un button la getWallet
     //caricaDati();
   }, []);
 
    async function caricaDati(){
+    LogBox.ignoreLogs(['Warning: ...', 'Require cycle:', ' @firebase/database:, FIREBASE WARNING:']);
+
     console.log("ENTRO NELLA FUNZIONE CARICA DATI");
     
 
@@ -91,6 +96,8 @@ export default function IMieiAppuntamenti({navigation}) {
 
   
   const renderContent =()=>{
+    LogBox.ignoreLogs(['Warning: ...', 'Require cycle:', ' @firebase/database:, FIREBASE WARNING:']);
+
   if(loading){
     return (
       <ActivityIndicator size="small" color={"#000000"}/>

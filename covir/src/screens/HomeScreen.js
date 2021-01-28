@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { View, StyleSheet, Image, Dimensions } from 'react-native';
+import { View, StyleSheet, Image, Dimensions, LogBox } from 'react-native';
 import { Title } from 'react-native-paper';
 import { AuthContext, AuthProvider } from '../navigation/AuthProvider';
 import FormButton from '../components/FormButton';
@@ -7,6 +7,7 @@ import { Divider } from 'react-native-elements';
 import { db } from '../common/crud'; 
 
 const renderContentUtente = (navigation,n,s) => {
+  LogBox.ignoreLogs(['Warning: ...', 'Require cycle:']);
   const { nome, setNome } = useContext(AuthContext);
   var width = Dimensions.get('window').width;
 
@@ -37,6 +38,7 @@ const renderContentUtente = (navigation,n,s) => {
 };
 
 const renderContentOperatore = (navigation,n,s) => {
+  LogBox.ignoreLogs(['Warning: ...', 'Require cycle:']);
   const { nome, setNome } = useContext(AuthContext);
   var width = Dimensions.get('window').width;
   return (
@@ -67,6 +69,7 @@ const renderContentOperatore = (navigation,n,s) => {
 
 
 export default function HomeScreen({ navigation }) {
+  LogBox.ignoreLogs(['Warning: ...', 'Require cycle:']);
   const { user, logout } = useContext(AuthContext);
   const [ tipo, setTipo ] = useState("");
   const [ nome, setNome ] = useState("");
@@ -82,6 +85,7 @@ export default function HomeScreen({ navigation }) {
   }, []);
 
   async function caricaDati(){
+    LogBox.ignoreLogs(['Warning: ...', 'Require cycle:']);
     var listadisponibiliVol = [];
     var listadisponibiliTot = [];
     var temp = await db.getUtenteByMail(user.email);

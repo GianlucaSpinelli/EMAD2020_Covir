@@ -8,10 +8,11 @@ import DialogButton from '../components/FormButton4';
 import FormInput from '../components/FormInput';
 import { AuthContext } from '../navigation/AuthProvider';
 import { db } from '../common/crud'; 
-import { Alert } from 'react-native';
+import { Alert, LogBox } from 'react-native';
 
 
 export default function ConfermaPrenotazione({navigation,route}) { //non legge immagin
+  LogBox.ignoreLogs(['Warning: ...', 'Require cycle:']);
     const {user,setUser} = useContext(AuthContext);
     const id = route.params.idSlot;
     const mailV = route.params.emailvolontario;
@@ -32,16 +33,19 @@ export default function ConfermaPrenotazione({navigation,route}) { //non legge i
     const [checked, setChecked] = useState('first');
 
     useEffect(() => {
+      LogBox.ignoreLogs(['Warning: ...']);
         prelevaSlot();
       }, []);
     
     async function prelevaSlot(){
+      LogBox.ignoreLogs(['Warning: ...']);
         var x = await db.getSlotObj(id);
         console.log(x.id);
         setSlot(x);
     };
 
     function disattivaScelte(){
+      LogBox.ignoreLogs(['Warning: ...', 'Require cycle:']);
       setDissativato1(!disattivato1);
       setDissativato2(!disattivato2);
       setDissativato3(!disattivato3);
@@ -53,7 +57,7 @@ export default function ConfermaPrenotazione({navigation,route}) { //non legge i
     function confermaDialog(){hideDialog(); db.addAppuntamento(slot.id,app);};
     function hideDialog(){setVisible(false);};
     function hideDialog2(){setVisible2(false);};
-
+    LogBox.ignoreLogs(['Warning: ...', 'Require cycle:']);
     
     
     return (

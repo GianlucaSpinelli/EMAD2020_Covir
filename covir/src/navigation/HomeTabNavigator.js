@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 
 import { NavigationContainer } from '@react-navigation/native';
-import { View, StyleSheet, Text, Dimensions } from 'react-native';
+import { View, StyleSheet, Text, Dimensions, LogBox } from 'react-native';
 import { AuthContext, AuthProvider } from '../navigation/AuthProvider';
 import AuthStack from './AuthStack';
 import PrenotaStack from '../navigation/PrenotaStack';
@@ -22,20 +22,26 @@ import { db } from '../common/crud';
 
 
 const Tab = createBottomTabNavigator();
+LogBox.ignoreLogs(['Warning: ...', 'Require cycle:', ' @firebase/database:, FIREBASE WARNING:']);
 
 const renderContentUtente = () => {
+  LogBox.ignoreLogs(['Warning: ...']);
   return (
     <Tab.Screen name="Prenota" component={PrenotaStack} />  
   );
 };
 
 const renderContentOperatore = () => {
+  LogBox.ignoreLogs(['Warning: ...', 'Require cycle:', ' @firebase/database:, FIREBASE WARNING:']);
+
   return (
     <Tab.Screen name="Dona tempo" component={DonaStack} />    
   );
 };
 
 export default function HomeTabNavigator({navigation}) {
+  LogBox.ignoreLogs(['Warning: ...', 'Require cycle:', ' @firebase/database:, FIREBASE WARNING:']);
+
   const [ tipo, setTipo ] = useState("");
   const { user, logout } = useContext(AuthContext);
 
@@ -47,6 +53,7 @@ export default function HomeTabNavigator({navigation}) {
     var temp = await db.getUtenteByMail(user.email);
     setTipo(temp.tipo);
  };
+ LogBox.ignoreLogs(['Warning: ...', 'Require cycle:', ' @firebase/database:, FIREBASE WARNING:']);
 
     return (          
           <Tab.Navigator 

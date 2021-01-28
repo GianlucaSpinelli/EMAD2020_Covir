@@ -6,7 +6,7 @@ import React, { useState,useContext,useEffect } from 'react';
 import { AuthContext } from '../navigation/AuthProvider';
 import FormButton from '../components/FormButton';
 // import all the components we are going to use
-import { SafeAreaView, StyleSheet, Text, View, Dimensions, Platform, Button } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, View, Dimensions, Platform, Button, LogBox } from 'react-native';
 
 //import TimePicker from the package we installed
 import DateTimePicker from '@react-native-community/datetimepicker';
@@ -14,9 +14,11 @@ import moment from 'moment';
 import { Card, Icon } from 'react-native-elements'; import { color } from 'react-native-reanimated';
 import { db } from '../common/crud';
 const { width, height } = Dimensions.get('screen');
-
+LogBox.ignoreLogs(['Warning: ...', 'Require cycle:']);
 
 export default function AggiuntaSlot({ navigation }) {
+  LogBox.ignoreLogs(['Warning: ...', 'Require cycle:', ' @firebase/database:, FIREBASE WARNING:']);
+
   /*const [selectedHours, setSelectedHours] = useState(0);
   const [selectedMinutes, setSelectedMinutes] = useState(0);*/
 
@@ -32,6 +34,7 @@ export default function AggiuntaSlot({ navigation }) {
 
 
   const onChangeG = (event, selectedDate) => {
+    LogBox.ignoreLogs(['Warning: ...', 'Require cycle:']);
     const currentDate = selectedDate || dateG;
     setDateG(currentDate);
     setShowG(false);
@@ -86,6 +89,7 @@ export default function AggiuntaSlot({ navigation }) {
   };
 
   async function confermadonatempo(){
+    LogBox.ignoreLogs(['Warning: ...', 'Require cycle:']);
        const list = await db.getAllSlot();
        var num = list[0].id+1;
        const slot = {chiavevolontario:user.email, dataorainizio:dateG, fine:dateAO , id:num,inizio:dateDO,occupato:false};

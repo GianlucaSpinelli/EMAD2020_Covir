@@ -1,11 +1,12 @@
 import React from 'react';
 import { Title } from 'react-native-paper';
-import { View, Text, Image, StyleSheet } from 'react-native'
+import { View, Text, Image, StyleSheet, LogBox } from 'react-native'
 import { Card, ListItem, Button, Icon } from 'react-native-elements'
 import { ScrollView } from 'react-native-gesture-handler';
 
 
 export default function ScegliVolontario({navigation}) { //non legge immagin
+    LogBox.ignoreLogs(['Warning: ...', 'Require cycle:']);
     return (
     <ScrollView>
     <View>

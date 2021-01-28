@@ -2,12 +2,12 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import SignUpScreen from '../screens/Registrazione';
 import LoginScreen from '../screens/LoginScreen';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, LogBox } from 'react-native';
 import HomeTabNavigator from './HomeTabNavigator';
 
 
 const Stack = createStackNavigator();
-
+LogBox.ignoreLogs(['Warning: ...', 'Require cycle:']);
 function Header() {
   return(
     <Image style={{ width: 50, height: 50}} 
@@ -16,6 +16,7 @@ function Header() {
 }
 
 export default function AuthStack() {
+  LogBox.ignoreLogs(['Warning: ...', 'Require cycle:']);
     return (
       <Stack.Navigator initialRouteName='Login'>
         <Stack.Screen name='Login' component={LoginScreen}

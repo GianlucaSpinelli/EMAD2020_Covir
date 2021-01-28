@@ -10,11 +10,11 @@ import ScegliVolontario2 from '../screens/ScegliVolontario2'
 import Appuntamenti from '../screens/IMieiAppuntamenti';
 import MieiSlot from '../screens/MieiSlot';
 import AggiuntaSlot from '../screens/AggiuntaSlot';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image,LogBox } from 'react-native';
 
 
 const Stack = createStackNavigator();
-
+LogBox.ignoreLogs(['Warning: ...', 'Require cycle:']);
 function Header() {
   return (
     <Image style={{ width: 50, height: 50 }}
@@ -23,6 +23,7 @@ function Header() {
 }
 
 export default function DonaStack() {
+  LogBox.ignoreLogs(['Warning: ...', 'Require cycle:']);
   return (
     <Stack.Navigator initialRouteName='AggiuntaSlot'>
       <Stack.Screen name='AggiuntaSlot' component={AggiuntaSlot} options={{

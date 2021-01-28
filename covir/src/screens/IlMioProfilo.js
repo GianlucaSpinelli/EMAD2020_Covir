@@ -1,5 +1,5 @@
 import React , { useContext,useState,useEffect } from 'react';
-import { View, StyleSheet,Image } from 'react-native';
+import { View, StyleSheet,Image, LogBox } from 'react-native';
 import { Title } from 'react-native-paper';
 import { AuthContext } from '../navigation/AuthProvider';
 import FormButton from '../components/FormButton';
@@ -9,9 +9,9 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { BaseRouter } from '@react-navigation/native';
 import FormInput from '../components/FormInput';
 import { db } from '../common/crud';
-
+LogBox.ignoreLogs(['Warning: ...']);
 const renderContentOperatore = (navigation,logout,tipo,nome,cognome,emailU,dataN,cellulare,associazione,descrizioneUtente) => {
-  
+  LogBox.ignoreLogs(['Warning: ...']);
   console.log(cellulare);
   console.log("ENTRO IN RENDER CONTENT OPERATORE");
   const [descrizione, setDescrizione] = useState(" ");
@@ -19,6 +19,7 @@ const renderContentOperatore = (navigation,logout,tipo,nome,cognome,emailU,dataN
 
 
   async function confermaDescrizione(){
+    LogBox.ignoreLogs(['Warning: ...']);
      const ut = await db.getUtenteObj(emailU);
      db.setDescrizione(ut.id,descrizione);
      descrizioneUtente=descrizione;
@@ -111,8 +112,10 @@ const renderContentOperatore = (navigation,logout,tipo,nome,cognome,emailU,dataN
 };
 
 const renderContentUtente = (navigation,logout,tipo,nome,cognome,emailU,dataN,cellulare,descrizioneU) => {
+  LogBox.ignoreLogs(['Warning: ...']);
   const [descrizione, setDescrizione] = useState("");
   async function confermaDescrizione(){
+    LogBox.ignoreLogs(['Warning: ...']);
 
     const ut = await db.getUtenteObj(emailU);
     db.setDescrizione(ut.id,descrizione);
@@ -207,6 +210,7 @@ const renderContentUtente = (navigation,logout,tipo,nome,cognome,emailU,dataN,ce
 
 
 export default function IlMioProfilo({navigation}) {
+  LogBox.ignoreLogs(['Warning: ...', 'Require cycle:']);
   const { logout } = useContext(AuthContext);
   const [ tipo, setTipo ] = useState("");
   const [ nome, setNome ] = useState("");
@@ -219,11 +223,13 @@ export default function IlMioProfilo({navigation}) {
   const { user, setUser } = useContext(AuthContext); 
 
   useEffect(() => {
+    LogBox.ignoreLogs(['Warning: ...', 'Require cycle:']);
     console.log("ENTRO NELLA USE EFFECT DI IL MIO PROFILO");
     caricaDati();
   }, []);
 
   async function caricaDati(){
+    LogBox.ignoreLogs(['Warning: ...', 'Require cycle:']);
     console.log(emailU);
     var temp = await db.getUtenteByMail(user.email);
     console.log("STAMPO L'UTENTE");
