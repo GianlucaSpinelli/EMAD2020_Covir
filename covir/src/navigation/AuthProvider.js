@@ -63,7 +63,8 @@ export const AuthProvider = ({ children }) => {
             } catch (e) {
               console.error(e);
             }
-          }
+          },
+          
         }}
       >
         {children}

@@ -7,6 +7,8 @@ import Swiper from 'react-native-swiper';
 import { BorderlessButton } from 'react-native-gesture-handler';
 import { AuthContext, AuthProvider } from '../navigation/AuthProvider';
 import { db } from '../common/crud';
+import { auth,us,authProvider } from '../common/firebase';
+import { Alert } from 'react-native';
 
 
 //import { AuthContext } from '../navigation/AuthProvider';
@@ -15,9 +17,62 @@ export default function CambioPassword({navigation}) {
     //const { login } = useContext(AuthContext);
     const [password, setPassword] = useState('');
     const [password2, setPassword2] = useState('');
-    const [passwordvecchia, setPasswordvecchia] = useState('');
-    const {cambiopassword} = useContext(AuthContext);
-    const {user,setUser} = useContext(AuthContext);
+    const [passwordvecchia, setCurrentPassword] = useState('');
+
+    reauthenticate = (currpass) => {
+      var user = auth.currentUser;
+      var cred = authProvider.EmailAuthProvider.credential(user.email,currpass);
+      return user.reauthenticateWithCredential(cred);
+    }
+
+     function conferma(){
+
+      reauthenticate(passwordvecchia).then( () => {
+        
+        var user = auth.currentUser;
+        console.log(user.password);
+        user.updatePassword(password2).then(async () => {
+          alert('Password cambiata');
+          await db.updatePass(user.email,password2);
+          navigation.navigate('Home');
+        }).catch( (error) => {
+          alert(error.message);
+        }); 
+      }).catch((error) =>{
+        alert(error.message);
+      });
+
+      /* reauthenticate(passwordvecchia).then( async () => {
+        if(password==password2){
+                    
+                      var utente = await db.getUtenteByMail(user.email);
+                      var ps = utente.password;
+                      if(ps==passwordvecchia){
+                        
+                            user.updatePassword(password2).then(async () => {
+                            alert('Operazione riuscita con successo');
+                            await db.updatePass(user.email,password2);
+                            reauthenticate();
+                            navigation.navigate('HomeTab');
+                          }).catch( (error) => {
+                            if (error == "Password should be at least 6 characters\n") alert("La password deve essere lunga almeno 6 caratteri");
+                            else alert(error.message);
+                          });
+                      } else{
+                            alert("La vecchia password che ci hai fornito non coincide con la tua reale password");
+                      }
+              }
+              else{
+                alert("La nuova password e la sua conferma non coincidono");
+              }
+      }).catch((error) => {
+        alert(error.message);
+      });
+ */
+
+
+          
+    }
 
 
     return (
@@ -30,7 +85,7 @@ export default function CambioPassword({navigation}) {
           labelName='Vecchia Password'
           value={passwordvecchia}
           secureTextEntry={true}
-          onChangeText={userPassword3 => setPasswordvecchia(userPassword3)}
+          onChangeText={userPassword3 => setCurrentPassword(userPassword3)}
           
         />
 
@@ -51,30 +106,13 @@ export default function CambioPassword({navigation}) {
           title='Conferma'
           modeValue='contained'
           labelStyle={styles.loginButtonLabel}
-          onPress={ () => {conferma();  navigation.navigate('HomeTab');}}
+          onPress={ () => {if (passwordvecchia != us.password) alert ('La vecchia password è sbagliata'); else if (password.length < 6) alert ('La password deve essere lunga almeno 6 caratteri');
+                            else if (password != password2) alert ('La nuova password e la sua conferma non coincidono'); else conferma();}}
         />
         </View>
       </View>
       </TouchableWithoutFeedback>
     );
-
-    async function conferma(nuovapassword){
-          
-          if(password==password2){
-                  var utente = await db.getUtenteByMail(user.email);
-                  var ps = utente.password;
-                  if(ps==passwordvecchia){
-                        cambiopassword(user.email,nuovapassword);
-                        alert("operazione riuscita con successo");
-                  }
-                  else{
-                         alert("La vecchia password che ci hai fornito non coincide con la tua reale password");
-                  }
-          }
-          else{
-            alert("La nuova password e la sua conferma non coincidono");
-          }
-    }
 
   }
   

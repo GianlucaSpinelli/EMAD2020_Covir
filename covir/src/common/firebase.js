@@ -25,6 +25,7 @@ const firebaseConfig = {
   //firebase.analytics();
 
   export const auth=firebase.auth();
-
+  export const authProvider = firebase.auth;
+  export const us= firebase.auth().currentUser;
   export const ref=firebase.firestore();
   export const dbref = firebase.database().ref();

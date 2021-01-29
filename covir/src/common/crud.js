@@ -425,6 +425,10 @@ getAllSlotByVol: async   function(emailutente){ //FUNONZ
     },
     setDescrizione: function(id,desc) {
         ref.collection("utente").doc(id).update({descrizioneUtente: desc});
+    }, 
+    updatePass: async function(email,password) {
+        var user = await db.getUtenteObj(email);
+        ref.collection("utente").doc(user.id).update({password:password});
     }
 }
 
