@@ -11,6 +11,7 @@ import { db } from '../common/crud';
 import { Alert, LogBox } from 'react-native';
 
 
+
 export default function ConfermaPrenotazione({navigation,route}) { //non legge immagin
   LogBox.ignoreLogs(['Warning: ...', 'Require cycle:']);
     const {user,setUser} = useContext(AuthContext);
