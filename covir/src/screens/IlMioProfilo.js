@@ -1,5 +1,5 @@
 import React , { useContext,useState,useEffect } from 'react';
-import { View, StyleSheet,Image, LogBox } from 'react-native';
+import { View, StyleSheet,Image, LogBox, Dimensions } from 'react-native';
 import { Title } from 'react-native-paper';
 import { AuthContext } from '../navigation/AuthProvider';
 import FormButton from '../components/FormButton';
@@ -10,19 +10,21 @@ import { BaseRouter } from '@react-navigation/native';
 import FormInput from '../components/FormInput';
 import { db } from '../common/crud';
 LogBox.ignoreLogs(['Warning: ...']);
-const renderContentOperatore = (navigation,logout,tipo,nome,cognome,emailU,dataN,cellulare,associazione,descrizioneUtente) => {
-  LogBox.ignoreLogs(['Warning: ...']);
-  console.log(cellulare);
-  console.log("ENTRO IN RENDER CONTENT OPERATORE");
-  const [descrizione, setDescrizione] = useState(" ");
+ 
 
+const renderContentOperatore = (navigation,logout,tipo,nome,cognome,emailU,dataN,cellulare,associazione,descrizioneU) => {
+  var width = Dimensions.get('window').width;
+  LogBox.ignoreLogs(['Warning: ...']);
+  console.log("ENTRO IN RENDER CONTENT OPERATORE");
+  console.log(descrizioneU);
+  const [descrizione, setDescrizione] = useState(" ");
 
 
   async function confermaDescrizione(){
     LogBox.ignoreLogs(['Warning: ...']);
      const ut = await db.getUtenteObj(emailU);
      db.setDescrizione(ut.id,descrizione);
-     descrizioneUtente=descrizione;
+     descrizioneU=descrizione;
      setDescrizione("");
   }
 
@@ -31,7 +33,7 @@ const renderContentOperatore = (navigation,logout,tipo,nome,cognome,emailU,dataN
         <View style={styles.welcome}>
             <View style={styles.welcome2}>
                 <Image
-                style={{ width: 150, height: 150, borderRadius: 100,marginTop: 15,marginLeft: 0}}
+                style={{ width: 168, height: 168, borderRadius: 100,marginTop: 15,marginLeft: 0}}
                 source={require('../images/PROFILEMAN.png')}
                 />
             </View>
@@ -39,11 +41,12 @@ const renderContentOperatore = (navigation,logout,tipo,nome,cognome,emailU,dataN
                 <Title style={styles.frase}>{nome+" "+cognome}</Title> 
                 <Title style={styles.frase2}>{emailU}</Title> 
                 <Title style={styles.frase2}>{cellulare}</Title> 
+                <Title style={styles.frase2}>{associazione}</Title>
             </View>
         </View>
         <View style={styles.welcome4}>
         <View style={styles.welcome8}>
-          <Title style={styles.frase10}>{descrizioneUtente}</Title> 
+          <Title style={styles.frase10}>"{descrizioneU}"</Title> 
           <FormInput
           style={styles.descri}
           labelName='Aggiorna le informazioni su di te...'
@@ -114,13 +117,13 @@ const renderContentOperatore = (navigation,logout,tipo,nome,cognome,emailU,dataN
 const renderContentUtente = (navigation,logout,tipo,nome,cognome,emailU,dataN,cellulare,descrizioneU) => {
   LogBox.ignoreLogs(['Warning: ...']);
   const [descrizione, setDescrizione] = useState("");
+  
   async function confermaDescrizione(){
     LogBox.ignoreLogs(['Warning: ...']);
-
-    const ut = await db.getUtenteObj(emailU);
-    db.setDescrizione(ut.id,descrizione);
-    descrizioneUtente=descrizione;
-    setDescrizione("");
+     const ut = await db.getUtenteObj(emailU);
+     db.setDescrizione(ut.id,descrizione);
+     descrizioneU=descrizione;
+     setDescrizione("");
  }
 
   return (
@@ -140,7 +143,7 @@ const renderContentUtente = (navigation,logout,tipo,nome,cognome,emailU,dataN,ce
         </View>
         <View style={styles.welcome4}>
         <View style={styles.welcome8}>
-          <Title style={styles.frase10}>{descrizioneU}</Title> 
+          <Title style={styles.frase10}>"{descrizioneU}"</Title> 
           <FormInput
           style={styles.descri}
           labelName='Dicci un po di te...'
@@ -233,7 +236,6 @@ export default function IlMioProfilo({navigation}) {
     console.log(emailU);
     var temp = await db.getUtenteByMail(user.email);
     console.log("STAMPO L'UTENTE");
-    console.log(temp);
     setTipo(temp.tipo);
     setNome(temp.nome);
     setCognome(temp.cognome);
@@ -242,7 +244,6 @@ export default function IlMioProfilo({navigation}) {
     setCellulare(temp.cellulare);
     setAssociazione(temp.associazione);
     setDescrizioneU(temp.descrizioneUtente);
-    console.log("333333333333 "+descrizioneU);
     }
     return (
      <View style={styles.container}>
@@ -275,7 +276,7 @@ export default function IlMioProfilo({navigation}) {
     },
       welcome2: {
         flex: 1,
-        marginTop: '5%'
+        marginTop: '0%'
       },
       titolo: {
         fontSize: 30,
@@ -305,10 +306,12 @@ export default function IlMioProfilo({navigation}) {
         marginLeft: '-6%'
      },
      frase10:{
-      fontSize: 14,
-      color: '#4d5354',
-      marginTop: -25,
-      marginBottom: -25
+      fontSize: 16,
+      fontWeight: 'bold',
+      fontStyle: 'italic',
+      color: '#00719c',
+      marginTop: -55,
+      marginBottom: 10
      },
      frasesotto:{
       fontSize: 22,
@@ -353,7 +356,7 @@ export default function IlMioProfilo({navigation}) {
         flex: 1,
         marginBottom: '23%',
         marginLeft: '3%',
-        marginTop: -90,
+        marginTop: -95,
         width: '94%'
     },
     descri:{
