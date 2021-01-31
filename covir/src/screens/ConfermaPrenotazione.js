@@ -78,11 +78,11 @@ export default function ConfermaPrenotazione({navigation,route}) { //non legge i
 
 <Portal>
   <Dialog visible={visible2}  onDismiss={hideDialog2}>
-    <Dialog.Title>PRENOTAZIONE CONFERMATA</Dialog.Title>
+    <Dialog.Title style={{color:'#00719c', fontWeight:'bold', fontSize: 18}}>PRENOTAZIONE CONFERMATA</Dialog.Title>
     <Dialog.Content>
-    <Paragraph style={{ marginBottom:15}}>A presto!</Paragraph>
+    <Paragraph style={{ marginBottom:0, textAlign:'center', color:'#00719c', fontWeight:'bold'}}>A presto!</Paragraph>
     <Image
-              style={{ width: 60, height: 60, resizeMode: 'stretch' }}
+              style={{ width: 120, height: 120, resizeMode: 'stretch', alignContent:'center', alignItems:'center', marginLeft:'28%' }}
               source={{ uri: 'https://raw.githubusercontent.com/enzop9898/EMAD2020_Covir/main/covir/src/images/animation_500_kk9o4cxi.gif' }}
             />
       
