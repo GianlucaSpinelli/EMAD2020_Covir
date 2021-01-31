@@ -71,7 +71,7 @@ export default function ConfermaPrenotazione({navigation,route}) { //non legge i
     </Dialog.Content>
     <Dialog.Actions>
       <DialogButton title=' No' modeValue='contained' labelStyle={styles.loginButtonLabel}  onPress={hideDialog}/>
-      <DialogButton title=' Si' modeValue='contained' labelStyle={styles.loginButtonLabel} onPress={ () => {confermaDialog(); showDialog2(); navigation.navigate('Home');}}/>
+      <DialogButton title=' Si' modeValue='contained' labelStyle={styles.loginButtonLabel} onPress={ () => {confermaDialog(); showDialog2();}}/>
     </Dialog.Actions>
   </Dialog>
 </Portal> 
@@ -80,8 +80,12 @@ export default function ConfermaPrenotazione({navigation,route}) { //non legge i
   <Dialog visible={visible2}  onDismiss={hideDialog2}>
     <Dialog.Title>PRENOTAZIONE CONFERMATA</Dialog.Title>
     <Dialog.Content>
-      <Image source={{uri:'https://raw.githubusercontent.com/enzop9898/EMAD2020_Covir/main/covir/src/images/animation_500_kk9o4cxi.gif'}}/>
-      <Paragraph>A presto!</Paragraph>
+    <Paragraph style={{ marginBottom:15}}>A presto!</Paragraph>
+    <Image
+              style={{ width: 60, height: 60, resizeMode: 'stretch' }}
+              source={{ uri: 'https://raw.githubusercontent.com/enzop9898/EMAD2020_Covir/main/covir/src/images/animation_500_kk9o4cxi.gif' }}
+            />
+      
     </Dialog.Content>
     <Dialog.Actions>
       <DialogButton title='Chiudi' modeValue='contained' labelStyle={styles.loginButtonLabel} onPress={ () => {hideDialog2(); navigation.navigate('Home');}}/>

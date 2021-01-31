@@ -5,6 +5,7 @@ import LoginScreen from '../screens/LoginScreen';
 import HomeScreen from '../screens/HomeScreen';
 import ScegliSlot from '../screens/ScegliSlotTempo';
 import CambioPassword from '../screens/cambioPassword';
+import MioProfilo from '../screens/IlMioProfilo';
 import ConfermaPrenot from '../screens/ConfermaPrenotazione';
 import ScegliVolontario2 from '../screens/ScegliVolontario2'
 import Appuntamenti from '../screens/IMieiAppuntamenti';
@@ -60,7 +61,14 @@ export default function ProfiloStack() {
           },
           headerTintColor: '#fff',
         }} />
-        
+        <Stack.Screen name='IlMioProfilo' component={MioProfilo} 
+        options={{
+          title: 'Il mio profilo',
+          headerStyle: {
+            backgroundColor: '#1979a9',
+          },
+          headerTintColor: '#fff',
+        }} />
         
 
       </Stack.Navigator>

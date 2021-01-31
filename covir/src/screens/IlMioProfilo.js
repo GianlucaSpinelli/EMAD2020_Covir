@@ -24,8 +24,8 @@ const renderContentOperatore = (navigation,logout,tipo,nome,cognome,emailU,dataN
     LogBox.ignoreLogs(['Warning: ...']);
      const ut = await db.getUtenteObj(emailU);
      db.setDescrizione(ut.id,descrizione);
-     descrizioneU=descrizione;
      setDescrizione("");
+     navigation.navigate('IlMioProfilo');
   }
 
   return (
@@ -117,13 +117,14 @@ const renderContentOperatore = (navigation,logout,tipo,nome,cognome,emailU,dataN
 const renderContentUtente = (navigation,logout,tipo,nome,cognome,emailU,dataN,cellulare,descrizioneU) => {
   LogBox.ignoreLogs(['Warning: ...']);
   const [descrizione, setDescrizione] = useState("");
+
   
   async function confermaDescrizione(){
     LogBox.ignoreLogs(['Warning: ...']);
      const ut = await db.getUtenteObj(emailU);
      db.setDescrizione(ut.id,descrizione);
-     descrizioneU=descrizione;
      setDescrizione("");
+     navigation.navigate('IlMioProfilo');
  }
 
   return (
@@ -143,7 +144,7 @@ const renderContentUtente = (navigation,logout,tipo,nome,cognome,emailU,dataN,ce
         </View>
         <View style={styles.welcome4}>
         <View style={styles.welcome8}>
-          <Title style={styles.frase10}>"{descrizioneU}"</Title> 
+          <Title style={styles.frase10}>{descrizioneU}</Title> 
           <FormInput
           style={styles.descri}
           labelName='Dicci un po di te...'
