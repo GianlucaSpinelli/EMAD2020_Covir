@@ -216,8 +216,8 @@ const styles = StyleSheet.create({
         marginTop: '12%'
     },
     loginButtonLabel: {
-        fontSize: 15,
-        marginLeft: '0%',
+        fontSize: 11,
+        marginLeft: '10%',
         textAlign: 'center',
         color: '#ffffff'
     },
